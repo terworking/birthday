@@ -123,8 +123,11 @@ const birthdayData: BirthdayData[] = await response.json()
 
   subscribeButton.addEventListener('click', async () => {
     try {
-      // disable the button while processing subscription
-      subscribeButton.disabled = unsubscribeButton.disabled = true
+      // disable user interaction while processing subscription
+      birthdaySelect.disabled =
+        subscribeButton.disabled =
+        unsubscribeButton.disabled =
+          true
 
       if (target === undefined) {
         throw new Error('You have not selected a target.')
