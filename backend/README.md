@@ -1,4 +1,4 @@
-# Birthday notify backend (cloudflare workers)
+# Birthday notify backend (Cloudflare Workers)
 
 The backend handles the subscription (subscribe/unsubscribe) and (scheduling/sending) notifications.
 

@@ -4,6 +4,8 @@ Using Astro here because ... uh well, why not?
 
 ## Setup
 
+> Don't hesitate to open an issue if something is unclear in the instructions.
+
 > You **need** to [deploy the backend](../backend/README.md#setup) before deploying the frontend because Astro needs to fetch the data from your backend at build-time.
 
 1. Change `PUBLIC_BACKEND_SERVER` at [`.env.example`](.env.example) into your backend. (required)
