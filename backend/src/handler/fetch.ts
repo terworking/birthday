@@ -4,7 +4,7 @@ import { targetsWithKey } from '~data'
 import { handle as triggerScheduled } from '~handler/scheduled'
 import type { ExtendedRequest } from '~types'
 import { isValidTimeZone, NestedPartial } from '~utils'
-import { getPublicKeyFromJwk } from '~webpush/utils'
+import { getPublicKeyFromJwk } from 'cloudflare-webpush-request-builder'
 
 const processPostRequest = async (request: ExtendedRequest) => {
   const body = await request

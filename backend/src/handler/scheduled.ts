@@ -6,7 +6,7 @@ import {
 
 import { targets } from '~data'
 import { birthdayTargetAsKey, dateWithTimeZone, asOrdinalNumber } from '~utils'
-import { buildRequest } from '~webpush/builder'
+import { buildRequest } from 'cloudflare-webpush-request-builder'
 
 export const handle = async (
   _: ScheduledController | undefined,
