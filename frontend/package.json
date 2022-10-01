@@ -10,9 +10,9 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/cloudflare": "^2.0.0",
-    "astro": "^1.2.7",
-    "typescript": "^4.8.3"
+    "@astrojs/cloudflare": "^2.1.0",
+    "astro": "^1.4.2",
+    "typescript": "^4.8.4"
   },
   "dependencies": {
     "date-fns": "^2.29.3",
