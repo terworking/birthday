@@ -10,10 +10,10 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@astrojs/cloudflare@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@astrojs/cloudflare/-/cloudflare-2.1.0.tgz#2252677272e280957b6b3758032296367f6ae03d"
-  integrity sha512-PZS5QmJ87YR+d9demsSIcxagoB1UM5/sFrDG3AKHPPz24eDSmSI10dnHLIhsl+5F0iEuFttFPuXoTRTMsrAzUQ==
+"@astrojs/cloudflare@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@astrojs/cloudflare/-/cloudflare-3.0.0.tgz#c1a8830b4a2010fc501f44aa042ed1ccca20caee"
+  integrity sha512-UaMc7pYekS7+bfeCOj/roG1inhT9/g/T/sq9sRwwNM+oGYaTOB9OsdD3oo8DhbXBmUcnfvsjr57SwTNPaTiYzw==
   dependencies:
     esbuild "^0.14.42"
 
