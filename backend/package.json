@@ -7,10 +7,10 @@
     "dev": "miniflare --modules --debug --watch --kv-persist --no-cf-fetch"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^3.16.0",
+    "@cloudflare/workers-types": "^3.17.0",
     "@types/itty-router-extras": "^0.4.0",
-    "esbuild": "^0.15.10",
-    "miniflare": "^2.9.0",
+    "esbuild": "^0.15.11",
+    "miniflare": "^2.10.0",
     "typescript": "^4.8.4"
   },
   "dependencies": {
