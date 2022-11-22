@@ -1,5 +1,5 @@
 {
-  "name": "birthday",
+  "name": "backend",
   "version": "0.0.0",
   "module": "./dist/index.js",
   "scripts": {

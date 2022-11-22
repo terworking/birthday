@@ -4,6 +4,7 @@ import { subYears } from 'date-fns'
 
 import { fetchBirthdayNotificationServer } from '~utils/backend'
 import { calculateNextBirthdayDate } from '~utils/birthday'
+import { asOrdinalNumber } from 'backend/src/utils'
 
 export const get: APIRoute = async (context) => {
   const items = await fetchBirthdayNotificationServer('list')
@@ -30,7 +31,7 @@ export const get: APIRoute = async (context) => {
     items: items.map(({ age, name, pastBirthday }) => ({
       link: site,
       pubDate: pastBirthday,
-      title: `${name} birthday`,
+      title: `${name}'s ${asOrdinalNumber(age)} birthday`,
       description: `${name} turns ${age} today`,
     })),
     stylesheet: '/rss/pretty-feed-v3.xsl',
