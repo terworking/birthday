@@ -1,0 +1,12 @@
+{
+  "name": "birthday",
+  "version": "0.0.1",
+  "repository": "https://github.com/terworking/birthday-notify.git",
+  "author": "Aynh <99479536+Aynh@users.noreply.github.com>",
+  "license": "UNLICENSE",
+  "workspaces": [
+    "./backend",
+    "./frontend"
+  ],
+  "private": true
+}
