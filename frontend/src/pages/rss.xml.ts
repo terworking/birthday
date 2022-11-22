@@ -11,11 +11,14 @@ export const get: APIRoute = async (context) => {
     .then((response) => response.json())
     .then((values: BirthdayData[]) =>
       values
-        .map((value) => {
-          const pastBirthday = subYears(calculateNextBirthdayDate(value), 1)
-          const age = pastBirthday.getFullYear() - value.year
-
-          return { age, name: value.name, pastBirthday }
+        .flatMap((value) => {
+          const nextBirthday = calculateNextBirthdayDate(value)
+          const nextAge = nextBirthday.getFullYear() - value.year
+          return Array.from({ length: nextAge - 1 }, (_, n) => ({
+            age: n + 1,
+            name: value.name,
+            pastBirthday: subYears(nextBirthday, nextAge - (n + 1)),
+          }))
         })
         .sort(
           ({ pastBirthday: a }, { pastBirthday: b }) =>
