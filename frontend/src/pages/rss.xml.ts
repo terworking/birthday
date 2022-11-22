@@ -33,5 +33,6 @@ export const get: APIRoute = async (context) => {
       title: `${name} birthday`,
       description: `${name} turns ${age} today`,
     })),
+    stylesheet: '/rss/pretty-feed-v3.xsl',
   })
 }
