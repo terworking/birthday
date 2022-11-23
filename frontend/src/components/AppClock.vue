@@ -12,7 +12,6 @@ const value = $computed(() => format(now, 'do MMMM, yyyy hh:mm:ss a'))
 
 <style scoped>
 .clock {
-  text-align: center;
   font-weight: 600;
 }
 </style>

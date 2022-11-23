@@ -55,8 +55,7 @@ const keyedOptions = $computed(() =>
   padding: 8px 6px;
   margin: 8px 0;
   border-radius: 8px;
-  max-width: 300px;
-  width: 100%;
+  width: 75%;
 }
 
 .birthday-select:disabled {

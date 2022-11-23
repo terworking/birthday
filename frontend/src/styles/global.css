@@ -3,9 +3,14 @@ body {
   color: var(--t-color);
 }
 
-.content {
-  padding: 32px 16px;
-  height: 100vh;
+[astro-icon] {
+  color: var(--t-color);
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+[astro-icon]:hover {
+  color: var(--t-color-alt);
 }
 
 @media (prefers-color-scheme: light) {

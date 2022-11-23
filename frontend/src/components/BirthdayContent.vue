@@ -73,8 +73,8 @@ const upcomingBirthdayDates = $computed(() =>
 
 <style scoped>
 .birthday-content {
-  height: 80%;
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;

@@ -99,7 +99,6 @@ const unsubscribe = async () => {
 <style scoped>
 .subscription-button-container {
   width: 100%;
-  max-width: 350px;
   display: flex;
   justify-content: space-evenly;
 }

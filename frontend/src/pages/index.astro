@@ -1,5 +1,4 @@
 ---
-import AppClock from '~components/AppClock.vue'
 import BaseLayout from '~layouts/BaseLayout.astro'
 import BirthdayContent from '~components/BirthdayContent.vue'
 
@@ -11,6 +10,5 @@ const response: BirthdayData[] = await fetchBirthdayNotificationServer(
 ---
 
 <BaseLayout>
-  <AppClock client:only />
   <BirthdayContent client:only options={response} />
 </BaseLayout>
