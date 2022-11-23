@@ -10,18 +10,6 @@ export const birthdayTargetAsKey = ({
   return `${escapedName}:${birthDate.valueOf()}`
 }
 
-export const dateWithTimeZone = (date: Date, timeZone: string) =>
-  new Date(date.toLocaleDateString('en-US', { timeZone }))
-
-export const isValidTimeZone = (timeZone: string) => {
-  try {
-    new Intl.DateTimeFormat(undefined, { timeZone })
-    return true
-  } catch {
-    return false
-  }
-}
-
 export const asOrdinalNumber = (n: number) => {
   const lastDigit = n % 10
   switch (lastDigit) {

@@ -1,15 +1,22 @@
 <script setup lang="ts">
+import { getTimeZones } from '@vvo/tzdb'
+
 interface Properties {
   options: BirthdayData[]
   disabled: boolean
-  selected: BirthdayData
+  target: BirthdayData
+  timeZone: string
 }
 
 const { options } = defineProps<Properties>()
-defineEmits<{ 'update:selected': (value: BirthdayData) => void }>()
+defineEmits(['update:target', 'update:timeZone'])
 
 const keyedOptions = $computed(() =>
   Object.fromEntries(options.map((value) => [value.key, value] as const))
+)
+
+const timeZones = getTimeZones({ includeUtc: true }).sort(
+  ({ name: a }, { name: b }) => a.localeCompare(b)
 )
 </script>
 
@@ -20,10 +27,9 @@ const keyedOptions = $computed(() =>
       :disabled="disabled"
       aria-labelledby="Pilih nama"
       name="birthday-select"
-      class="birthday-select"
       @input="
         $emit(
-          'update:selected',
+          'update:target',
           keyedOptions[($event.target as HTMLSelectElement).value]
         )
       "
@@ -31,10 +37,29 @@ const keyedOptions = $computed(() =>
       <option value="" disabled>Pilih nama</option>
       <option
         v-for="{ key, name } of options"
-        :selected="selected.key === key"
+        :selected="target.key === key"
         :value="key"
       >
         {{ name }}
+      </option>
+    </select>
+
+    <label for="timezone-select">Pilih zona waktu</label>
+    <select
+      :disabled="disabled"
+      aria-labelledby="Pilih zona waktu"
+      name="timezone-select"
+      @input="
+        $emit('update:timeZone', ($event.target as HTMLSelectElement).value)
+      "
+    >
+      <option value="" disabled>Pilih zona waktu</option>
+      <option
+        v-for="{ abbreviation, name } of timeZones"
+        :selected="name === timeZone"
+        :value="name"
+      >
+        {{ name }} ({{ abbreviation }})
       </option>
     </select>
   </div>
@@ -48,7 +73,7 @@ const keyedOptions = $computed(() =>
   align-items: center;
 }
 
-.birthday-select {
+.birthday-select-container > select {
   background-color: var(--t-bg-color-alt);
   color: inherit;
   border: 1px solid currentColor;
@@ -58,7 +83,7 @@ const keyedOptions = $computed(() =>
   width: 75%;
 }
 
-.birthday-select:disabled {
+.birthday-select-container > select:disabled {
   filter: opacity(0.7);
 }
 </style>

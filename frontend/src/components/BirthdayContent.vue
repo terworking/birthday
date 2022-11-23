@@ -8,8 +8,9 @@ import { calculateNextBirthdayDate } from '~utils/birthday'
 
 const { options } = defineProps<{ options: BirthdayData[] }>()
 
-let disabled = $ref(false)
-let selected = $ref(
+let pending = $ref(false)
+let timeZone = $ref(Intl.DateTimeFormat().resolvedOptions().timeZone)
+let target = $ref(
   options
     .slice()
     .sort(
@@ -23,16 +24,14 @@ let selected = $ref(
 const now = $(useNow({ interval: 1000 }))
 const birthDate = $computed(() => {
   const date =
-    selected === undefined
+    target === undefined
       ? new Date(0)
-      : new Date(selected.year, selected.month - 1, selected.date)
+      : new Date(target.year, target.month - 1, target.date)
 
   return format(date, 'd/M/yyyy')
 })
 
-const nextBirthdayDate = $computed(() =>
-  calculateNextBirthdayDate(selected, now)
-)
+const nextBirthdayDate = $computed(() => calculateNextBirthdayDate(target, now))
 
 const distanceToNextBirthdayDate = $computed(() =>
   formatDistance(nextBirthdayDate, now, { addSuffix: true })
@@ -56,8 +55,9 @@ const upcomingBirthdayDates = $computed(() =>
   <div class="birthday-content">
     <BirthdaySelect
       :options="options"
-      :disabled="disabled"
-      v-model:selected="selected"
+      :disabled="pending"
+      v-model:target="target"
+      v-model:time-zone="timeZone"
     />
 
     <div class="selected-value">
@@ -67,7 +67,11 @@ const upcomingBirthdayDates = $computed(() =>
       <p>Next notification {{ distanceToNextBirthdayDate }}</p>
     </div>
 
-    <SubscribtionButton :target="selected" v-model:pending="disabled" />
+    <SubscribtionButton
+      :target="target"
+      :time-zone="timeZone"
+      v-model:pending="pending"
+    />
   </div>
 </template>
 

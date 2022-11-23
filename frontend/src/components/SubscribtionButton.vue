@@ -9,10 +9,11 @@ import {
 
 interface Properties {
   target: BirthdayData | undefined
+  timeZone: string
   pending: boolean
 }
 
-const { target } = defineProps<Properties>()
+const { target, timeZone } = defineProps<Properties>()
 const emit = defineEmits(['update:pending'])
 const subscriptions = $(
   useLocalStorage<Set<string>>('subscriptions', new Set([]))
@@ -34,7 +35,7 @@ const subscribe = async () => {
       throw new Error('Unable to get notification permission.')
     }
 
-    const payload = await generateSubscriptionPayload(target.key)
+    const payload = await generateSubscriptionPayload(target.key, timeZone)
     const response = await fetchBirthdayNotificationServer('subscribe', {
       body: JSON.stringify(payload),
       method: 'POST',
@@ -63,7 +64,7 @@ const unsubscribe = async () => {
     }
 
     if (subscribed) {
-      const payload = await generateSubscriptionPayload(target.key)
+      const payload = await generateSubscriptionPayload(target.key, timeZone)
       const response = await fetchBirthdayNotificationServer('unsubscribe', {
         body: JSON.stringify(payload),
         method: 'POST',

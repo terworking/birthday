@@ -17,6 +17,7 @@
     "@astrojs/rss": "^1.0.3",
     "@astrojs/vue": "^1.2.1",
     "@vueuse/core": "^9.5.0",
+    "@vvo/tzdb": "^6.76.0",
     "astro-icon": "^0.8.0",
     "date-fns": "^2.29.3",
     "modern-normalize": "^1.1.0",

@@ -1,30 +1,35 @@
 import { fetchBirthdayNotificationServer } from './backend'
 
-export const registerServiceWorker = () =>
-  navigator.serviceWorker.register('/sw.js')
+const registerServiceWorker = () => navigator.serviceWorker.register('/sw.js')
 
-export const fetchPublicKey = () =>
+const fetchPublicKey = () =>
   fetchBirthdayNotificationServer('key')
     .then((response) => response.json())
     .then((json: { publicKey: string }) => json.publicKey)
 
+const getApplicationServerKey = async () => {
+  const localKey = localStorage.getItem('application-server-key')
+  if (localKey == null) {
+    const key = await fetchPublicKey()
+    localStorage.setItem('application-server-key', key)
+    return key
+  } else {
+    return localKey
+  }
+}
+
 // https://web.dev/push-notifications-subscribing-a-user/#subscribe-a-user-with-pushmanager
-export const generateSubscriptionPayload = async (key: string) => {
-  const localPublicKey = localStorage.getItem('application-server-key')
-
-  const publicKey =
-    localPublicKey != null ? localPublicKey : await fetchPublicKey()
-
+export const generateSubscriptionPayload = async (
+  key: string,
+  timeZone: string
+) => {
+  const publicKey = await getApplicationServerKey()
   const serviceWorker = await registerServiceWorker()
   const pushSubscription = await serviceWorker.pushManager.subscribe({
     userVisibleOnly: true,
     applicationServerKey: publicKey,
   })
 
-  if (localPublicKey == null)
-    localStorage.setItem('application-server-key', publicKey)
-
-  const { timeZone } = Intl.DateTimeFormat().resolvedOptions()
   return {
     subscription: pushSubscription,
     target: key,

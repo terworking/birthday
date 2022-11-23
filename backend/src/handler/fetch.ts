@@ -1,9 +1,10 @@
+import { timeZonesNames } from '@vvo/tzdb'
 import { ThrowableRouter, status, json } from 'itty-router-extras'
 
 import { targetsWithKey } from '~data'
 import { handle as triggerScheduled } from '~handler/scheduled'
 import type { ExtendedRequest } from '~types'
-import { isValidTimeZone, NestedPartial } from '~utils'
+import type { NestedPartial } from '~utils'
 import { getPublicKeyFromJwk } from 'cloudflare-webpush-request-builder'
 
 const processPostRequest = async (request: ExtendedRequest) => {
@@ -28,12 +29,12 @@ const processPostRequest = async (request: ExtendedRequest) => {
     return bad('MISSING PUSH SUBSCRIPTION')
   }
 
-  // safe to type cast here because we already check them before
+  // safe to type cast here as we already check them before
   const { target, subscription, timeZone } = body as SubscriptionPayload
 
   if (!targetsWithKey.some(({ key }) => key === target)) {
     return bad('INVALID SUBSCRIPTION TARGET')
-  } else if (!isValidTimeZone(timeZone)) {
+  } else if (!timeZonesNames.includes(timeZone)) {
     return bad('INVALID TIMEZONE')
   }
 
