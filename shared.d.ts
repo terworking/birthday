@@ -41,6 +41,4 @@ interface BirthdayTarget {
   year: number
 }
 
-interface BirthdayData extends BirthdayTarget {
-  key: string
-}
+type BackendListResponse = Record<string, BirthdayTarget>

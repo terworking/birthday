@@ -7,12 +7,8 @@ import type { ExtendedRequest } from '~types'
 import { birthdayTargetAsKey, NestedPartial } from '~utils'
 import { getPublicKeyFromJwk } from 'cloudflare-webpush-request-builder'
 
-const itemsWithKey = items.map((value) => ({
-  key: birthdayTargetAsKey(value),
-  ...value,
-}))
 const keyedItems = Object.fromEntries(
-  itemsWithKey.map(({ key, ...rest }) => [key, rest] as const)
+  items.map((value) => [birthdayTargetAsKey(value), value] as const)
 )
 
 const processPostRequest = async (request: ExtendedRequest) => {
@@ -72,7 +68,7 @@ export const handle: ExportedHandlerFetchHandler<Environment> = async (
 
     return status(200, { publicKey })
   })
-  router.get!('/list', () => (items.length > 0 ? json(itemsWithKey) : null))
+  router.get!('/list', () => json(keyedItems))
 
   router.post!(
     '/subscribe',

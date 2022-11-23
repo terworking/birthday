@@ -4,11 +4,11 @@ import BirthdayContent from '~components/BirthdayContent.vue'
 
 import { fetchBirthdayNotificationServer } from '~utils/backend'
 
-const response: BirthdayData[] = await fetchBirthdayNotificationServer(
+const response: BackendListResponse = await fetchBirthdayNotificationServer(
   'list'
 ).then((response) => response.json())
 ---
 
 <BaseLayout>
-  <BirthdayContent client:only options={response} />
+  <BirthdayContent client:only data={response} />
 </BaseLayout>

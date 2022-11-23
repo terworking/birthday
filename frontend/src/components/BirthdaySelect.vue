@@ -2,18 +2,14 @@
 import { getTimeZones } from '@vvo/tzdb'
 
 interface Properties {
-  options: BirthdayData[]
+  data: BackendListResponse
   disabled: boolean
-  target: BirthdayData
+  target: BirthdayTarget
   timeZone: string
 }
 
-const { options } = defineProps<Properties>()
+const { data } = defineProps<Properties>()
 defineEmits(['update:target', 'update:timeZone'])
-
-const keyedOptions = $computed(() =>
-  Object.fromEntries(options.map((value) => [value.key, value] as const))
-)
 
 const timeZones = getTimeZones({ includeUtc: true }).sort(
   ({ name: a }, { name: b }) => a.localeCompare(b)
@@ -28,16 +24,13 @@ const timeZones = getTimeZones({ includeUtc: true }).sort(
       aria-labelledby="Pilih nama"
       name="birthday-select"
       @input="
-        $emit(
-          'update:target',
-          keyedOptions[($event.target as HTMLSelectElement).value]
-        )
+        $emit('update:target', data[($event.target as HTMLSelectElement).value])
       "
     >
       <option value="" disabled>Pilih nama</option>
       <option
-        v-for="{ key, name } of options"
-        :selected="target.key === key"
+        v-for="[key, { name }] of Object.entries(data)"
+        :selected="target.name === name"
         :value="key"
       >
         {{ name }}

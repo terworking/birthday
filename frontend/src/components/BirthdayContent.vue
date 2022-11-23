@@ -6,12 +6,12 @@ import { useNow } from '@vueuse/core'
 import { format, formatDistance } from 'date-fns'
 import { calculateNextBirthdayDate } from '~utils/birthday'
 
-const { options } = defineProps<{ options: BirthdayData[] }>()
+const { data } = defineProps<{ data: BackendListResponse }>()
 
 let pending = $ref(false)
 let timeZone = $ref(Intl.DateTimeFormat().resolvedOptions().timeZone)
 let target = $ref(
-  options
+  Object.values(data)
     .slice()
     .sort(
       (a, b) =>
@@ -54,7 +54,7 @@ const upcomingBirthdayDates = $computed(() =>
 <template>
   <div class="birthday-content">
     <BirthdaySelect
-      :options="options"
+      :data="data"
       :disabled="pending"
       v-model:target="target"
       v-model:time-zone="timeZone"
