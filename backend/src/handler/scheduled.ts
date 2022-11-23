@@ -6,7 +6,7 @@ import {
 } from 'date-fns'
 import { utcToZonedTime } from 'date-fns-tz'
 
-import { targets } from '~data'
+import { items } from '~target.json'
 import { birthdayTargetAsKey, asOrdinalNumber } from '~utils'
 import { buildRequest } from 'cloudflare-webpush-request-builder'
 
@@ -23,7 +23,7 @@ export const handle = async (
       await fetch(environment.FRONTEND_DEPLOY_HOOK, { method: 'POST' })
     }
 
-    const birthdayMatches = targets.filter(({ date, month }) => {
+    const birthdayMatches = items.filter(({ date, month }) => {
       const targetDate = new Date(now.getFullYear(), month - 1, date)
       return (
         dateIsAfter(subHours(targetDate, 12), now) &&

@@ -1,11 +1,19 @@
 import { timeZonesNames } from '@vvo/tzdb'
 import { ThrowableRouter, status, json } from 'itty-router-extras'
 
-import { targetsWithKey } from '~data'
+import { items } from '~target.json'
 import { handle as triggerScheduled } from '~handler/scheduled'
 import type { ExtendedRequest } from '~types'
-import type { NestedPartial } from '~utils'
+import { birthdayTargetAsKey, NestedPartial } from '~utils'
 import { getPublicKeyFromJwk } from 'cloudflare-webpush-request-builder'
+
+const itemsWithKey = items.map((value) => ({
+  key: birthdayTargetAsKey(value),
+  ...value,
+}))
+const keyedItems = Object.fromEntries(
+  itemsWithKey.map(({ key, ...rest }) => [key, rest] as const)
+)
 
 const processPostRequest = async (request: ExtendedRequest) => {
   const body = await request
@@ -32,7 +40,7 @@ const processPostRequest = async (request: ExtendedRequest) => {
   // safe to type cast here as we already check them before
   const { target, subscription, timeZone } = body as SubscriptionPayload
 
-  if (!targetsWithKey.some(({ key }) => key === target)) {
+  if (keyedItems[target] !== undefined) {
     return bad('INVALID SUBSCRIPTION TARGET')
   } else if (!timeZonesNames.includes(timeZone)) {
     return bad('INVALID TIMEZONE')
@@ -64,9 +72,7 @@ export const handle: ExportedHandlerFetchHandler<Environment> = async (
 
     return status(200, { publicKey })
   })
-  router.get!('/list', () =>
-    targetsWithKey.length > 0 ? json(targetsWithKey) : null
-  )
+  router.get!('/list', () => (items.length > 0 ? json(itemsWithKey) : null))
 
   router.post!(
     '/subscribe',
