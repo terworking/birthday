@@ -13,6 +13,14 @@ export const handle = async (
   environment: Environment
 ) => {
   const current = new Date()
+
+  if (
+    environment.FRONTEND_DEPLOY_HOOK !== undefined &&
+    current.getHours() === 0
+  ) {
+    await fetch(environment.FRONTEND_DEPLOY_HOOK, { method: 'POST' })
+  }
+
   const matches = targets.filter(({ date, month }) => {
     const targetDate = new Date(current.getFullYear(), month - 1, date)
     return (
