@@ -6,7 +6,7 @@ import { fetchBirthdayNotificationServer } from '~utils/backend'
 import { calculateNextBirthdayDate } from '~utils/birthday'
 import { asOrdinalNumber } from 'backend/src/utils'
 
-export const get: APIRoute = async (context) => {
+export const get: APIRoute = async () => {
   const items = await fetchBirthdayNotificationServer('list')
     .then((response) => response.json())
     .then((values: BirthdayData[]) =>
@@ -26,7 +26,7 @@ export const get: APIRoute = async (context) => {
         )
     )
 
-  const site = context.url.origin
+  const site = import.meta.env.SITE
   return rss({
     description: 'Past birthday history, sorted by recent',
     title: 'Birthday History',

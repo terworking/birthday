@@ -3,6 +3,7 @@
 
 interface ImportMetaEnv {
   readonly PUBLIC_BACKEND_SERVER: string
+  readonly SITE: string
 }
 
 interface ImportMeta {

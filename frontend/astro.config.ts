@@ -3,6 +3,7 @@ import vue from '@astrojs/vue'
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://terworking-birthday.pages.dev',
   integrations: [vue({ reactivityTransform: true })],
   output: 'static',
   vite: {
