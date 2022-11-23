@@ -64,7 +64,7 @@ const upcomingBirthdayDates = $computed(() =>
       <p class="selected-date-value">
         {{ birthDate }} &gt; {{ upcomingBirthdayDates.join(', ') }}, ...
       </p>
-      <p>Next notification in {{ distanceToNextBirthdayDate }}</p>
+      <p>Next notification {{ distanceToNextBirthdayDate }}</p>
     </div>
 
     <SubscribtionButton :target="selected" v-model:pending="disabled" />
