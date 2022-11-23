@@ -9,8 +9,8 @@ import { asOrdinalNumber } from 'backend/src/utils'
 export const get: APIRoute = async () => {
   const items = await fetchBirthdayNotificationServer('list')
     .then((response) => response.json())
-    .then((values: BirthdayData[]) =>
-      values
+    .then((values: BackendListResponse) =>
+      Object.values(values)
         .flatMap((value) => {
           const nextBirthday = calculateNextBirthdayDate(value)
           const nextAge = nextBirthday.getFullYear() - value.year
