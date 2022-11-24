@@ -1,20 +1,15 @@
+import { utcToZonedTime } from 'date-fns-tz'
+
 export const calculateNextBirthdayDate = (
-  target?: BirthdayData,
+  target?: BirthdayTarget,
+  timeZone?: string,
   now = new Date()
 ) => {
   if (target === undefined) return new Date(1971, 0, 1)
 
-  const currentYear = now.getFullYear()
-  const currentMonth = now.getMonth() + 1
-  const currentDate = now.getDate()
+  const now_ = timeZone !== undefined ? utcToZonedTime(now, timeZone) : now
+  const next = new Date(now_.getFullYear(), target.month - 1, target.date)
+  if (next.valueOf() <= now_.valueOf()) next.setFullYear(next.getFullYear() + 1)
 
-  const { month, date } = target
-  const birthdayIsThisYear =
-    currentMonth < month || (currentMonth === month && currentDate < date)
-
-  return new Date(
-    birthdayIsThisYear ? currentYear : currentYear + 1,
-    month - 1,
-    date
-  )
+  return next
 }

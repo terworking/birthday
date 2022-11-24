@@ -31,7 +31,9 @@ const birthDate = $computed(() => {
   return format(date, 'd/M/yyyy')
 })
 
-const nextBirthdayDate = $computed(() => calculateNextBirthdayDate(target, now))
+const nextBirthdayDate = $computed(() =>
+  calculateNextBirthdayDate(target, timeZone, now)
+)
 
 const distanceToNextBirthdayDate = $computed(() =>
   formatDistance(nextBirthdayDate, now, { addSuffix: true })
