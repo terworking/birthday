@@ -1,4 +1,4 @@
-import { utcToZonedTime } from 'date-fns-tz'
+import utcToZonedTime from 'date-fns-tz/esm/utcToZonedTime'
 
 export const calculateNextBirthdayDate = (
   target?: BirthdayTarget,

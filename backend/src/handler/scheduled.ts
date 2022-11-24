@@ -4,7 +4,7 @@ import {
   addHours,
   subHours,
 } from 'date-fns'
-import { utcToZonedTime } from 'date-fns-tz'
+import utcToZonedTime from 'date-fns-tz/esm/utcToZonedTime'
 
 import { items } from '~target.json'
 import { birthdayTargetAsKey, asOrdinalNumber } from '~utils'
