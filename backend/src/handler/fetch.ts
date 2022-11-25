@@ -36,7 +36,7 @@ const processPostRequest = async (request: ExtendedRequest) => {
   // safe to type cast here as we already check them before
   const { target, subscription, timeZone } = body as SubscriptionPayload
 
-  if (keyedItems[target] !== undefined) {
+  if (keyedItems[target] === undefined) {
     return bad('INVALID SUBSCRIPTION TARGET')
   } else if (!timeZonesNames.includes(timeZone)) {
     return bad('INVALID TIMEZONE')

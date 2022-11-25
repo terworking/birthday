@@ -11,28 +11,28 @@ const { data } = defineProps<{ data: BackendListResponse }>()
 let pending = $ref(false)
 let timeZone = $ref(Intl.DateTimeFormat().resolvedOptions().timeZone)
 let target = $ref(
-  Object.values(data)
-    .slice()
+  Object.entries(data)
     .sort(
-      (a, b) =>
+      ([_, a], [__, b]) =>
         calculateNextBirthdayDate(a).valueOf() -
         calculateNextBirthdayDate(b).valueOf()
     )
-    .shift()!
+    .shift()![0]
 )
 
+const targetValue = $computed(() => data[target]!)
 const now = $(useNow({ interval: 1000 }))
 const birthDate = $computed(() => {
   const date =
-    target === undefined
+    targetValue === undefined
       ? new Date(0)
-      : new Date(target.year, target.month - 1, target.date)
+      : new Date(targetValue.year, targetValue.month - 1, targetValue.date)
 
   return format(date, 'd/M/yyyy')
 })
 
 const nextBirthdayDate = $computed(() =>
-  calculateNextBirthdayDate(target, timeZone, now)
+  calculateNextBirthdayDate(targetValue, timeZone, now)
 )
 
 const distanceToNextBirthdayDate = $computed(() =>

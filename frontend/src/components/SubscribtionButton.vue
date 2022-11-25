@@ -8,24 +8,24 @@ import {
 } from '~utils/webpush'
 
 interface Properties {
-  target: BirthdayData | undefined
+  target: string | undefined
   timeZone: string
   pending: boolean
 }
 
-const { target, timeZone } = defineProps<Properties>()
+const { target: key, timeZone } = defineProps<Properties>()
 const emit = defineEmits(['update:pending'])
 const subscriptions = $(
   useLocalStorage<Set<string>>('subscriptions', new Set([]))
 )
 
-const subscribed = $computed(() => subscriptions.has(target?.key ?? ''))
+const subscribed = $computed(() => subscriptions.has(key ?? ''))
 
 const subscribe = async () => {
   emit('update:pending', true)
 
   try {
-    if (target === undefined) {
+    if (key === undefined) {
       throw new Error('You have not selected a target.')
     }
 
@@ -35,7 +35,7 @@ const subscribe = async () => {
       throw new Error('Unable to get notification permission.')
     }
 
-    const payload = await generateSubscriptionPayload(target.key, timeZone)
+    const payload = await generateSubscriptionPayload(key, timeZone)
     const response = await fetchBirthdayNotificationServer('subscribe', {
       body: JSON.stringify(payload),
       method: 'POST',
@@ -43,8 +43,8 @@ const subscribe = async () => {
 
     const text = await response.text()
     if (response.status === 201 && text.includes('SUBSCRIBED')) {
-      subscriptions.add(target.key)
-      alert(`Successfully subscribed to ${target.name}.`)
+      subscriptions.add(key)
+      alert('Successfully subscribed.')
     } else {
       throw new Error(text)
     }
@@ -59,12 +59,12 @@ const unsubscribe = async () => {
   emit('update:pending', true)
 
   try {
-    if (target === undefined) {
+    if (key === undefined) {
       throw new Error('You have not selected a target.')
     }
 
     if (subscribed) {
-      const payload = await generateSubscriptionPayload(target.key, timeZone)
+      const payload = await generateSubscriptionPayload(key, timeZone)
       const response = await fetchBirthdayNotificationServer('unsubscribe', {
         body: JSON.stringify(payload),
         method: 'POST',
@@ -72,8 +72,8 @@ const unsubscribe = async () => {
 
       const text = await response.text()
       if (response.status === 200 && text.includes('UNSUBSCRIBED')) {
-        subscriptions.delete(target.key)
-        alert(`Successfully unsubscribed from ${target.name}.`)
+        subscriptions.delete(key)
+        alert('Successfully unsubscribed.')
       } else {
         throw new Error(text)
       }
