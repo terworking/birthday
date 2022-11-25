@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { useLocalStorage } from '@vueuse/core'
+import {
+  addSubscription,
+  removeSubscription,
+  subscriptions,
+} from '~subscriptionStore'
+import { useStore } from '@nanostores/vue'
 import { fetchBirthdayNotificationServer } from '~utils/backend'
 import {
   checkWebpushCompability,
@@ -15,11 +20,9 @@ interface Properties {
 
 const { target: key, timeZone } = defineProps<Properties>()
 const emit = defineEmits(['update:pending'])
-const subscriptions = $(
-  useLocalStorage<Set<string>>('subscriptions', new Set([]))
-)
+const $subscriptions = $(useStore(subscriptions))
 
-const subscribed = $computed(() => subscriptions.has(key ?? ''))
+const subscribed = $computed(() => $subscriptions.includes(key ?? ''))
 
 const subscribe = async () => {
   emit('update:pending', true)
@@ -43,7 +46,7 @@ const subscribe = async () => {
 
     const text = await response.text()
     if (response.status === 201 && text.includes('SUBSCRIBED')) {
-      subscriptions.add(key)
+      addSubscription(key)
       alert('Successfully subscribed.')
     } else {
       throw new Error(text)
@@ -72,7 +75,7 @@ const unsubscribe = async () => {
 
       const text = await response.text()
       if (response.status === 200 && text.includes('UNSUBSCRIBED')) {
-        subscriptions.delete(key)
+        removeSubscription(key)
         alert('Successfully unsubscribed.')
       } else {
         throw new Error(text)
