@@ -22,7 +22,7 @@ const { target: key, timeZone } = defineProps<Properties>()
 const emit = defineEmits(['update:pending'])
 const $subscriptions = $(useStore(subscriptions))
 
-const subscribed = $computed(() => $subscriptions.includes(key ?? ''))
+const subscribed = $computed(() => $subscriptions.has(key ?? ''))
 
 const subscribe = async () => {
   emit('update:pending', true)
