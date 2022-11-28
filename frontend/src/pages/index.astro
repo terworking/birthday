@@ -1,14 +1,44 @@
 ---
 import BaseLayout from '~layouts/BaseLayout.astro'
 import BirthdayContent from '~components/BirthdayContent.vue'
+import BirthdaySelect from '~components/BirthdaySelect.vue'
+import SubscribtionButton from '~components/SubscribtionButton.vue'
 
 import { fetchBirthdayNotificationServer } from '~utils/backend'
 
-const response: BackendListResponse = await fetchBirthdayNotificationServer(
-  'list'
-).then((response) => response.json())
+const data = await fetchBirthdayNotificationServer('list')
+  .then((response) => response.json())
+  .then((json) => Buffer.from(JSON.stringify(json)).toString('base64'))
 ---
 
 <BaseLayout>
-  <BirthdayContent client:only data={response} />
+  <birthday-container data-value={data}>
+    <BirthdaySelect client:only />
+    <BirthdayContent client:only />
+    <SubscribtionButton client:only />
+  </birthday-container>
 </BaseLayout>
+
+<script>
+  import { initializeData } from '~stores/data'
+
+  class BirthdayContainer extends HTMLElement {
+    constructor() {
+      super()
+
+      initializeData(JSON.parse(atob(this.dataset.value!)))
+    }
+  }
+
+  customElements.define('birthday-container', BirthdayContainer)
+</script>
+
+<style>
+  birthday-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

@@ -1,15 +1,14 @@
 <script setup lang="ts">
+import { data } from '~stores/data'
+import { disableInteraction, state } from '~stores/state'
 import { getTimeZones } from '@vvo/tzdb'
+import { useStore, useVModel } from '@nanostores/vue'
 
-interface Properties {
-  data: BackendListResponse
-  disabled: boolean
-  target: string
-  timeZone: string
-}
+const $data = $(useStore(data))
+const $disableInteraction = $(useStore(disableInteraction))
 
-const { data } = defineProps<Properties>()
-defineEmits(['update:target', 'update:timeZone'])
+const selected = useVModel(state, 'selected')
+const timeZone = useVModel(state, 'timeZone')
 
 const timeZones = getTimeZones({ includeUtc: true }).sort(
   ({ name: a }, { name: b }) => a.localeCompare(b)
@@ -17,41 +16,29 @@ const timeZones = getTimeZones({ includeUtc: true }).sort(
 </script>
 
 <template>
-  <div class="birthday-select-container">
-    <label for="birthday-select">Pilih nama</label>
+  <div class="birthday-select">
+    <label for="birthday">Pilih nama</label>
     <select
-      :disabled="disabled"
+      :disabled="$disableInteraction"
       aria-labelledby="Pilih nama"
-      name="birthday-select"
-      @input="
-        $emit('update:target', ($event.target as HTMLSelectElement).value)
-      "
+      name="birthday"
+      v-model="selected"
     >
       <option value="" disabled>Pilih nama</option>
-      <option
-        v-for="[key, { name }] of Object.entries(data)"
-        :selected="target === key"
-        :value="key"
-      >
+      <option v-for="[key, { name }] of Object.entries($data)" :value="key">
         {{ name }}
       </option>
     </select>
 
-    <label for="timezone-select">Pilih zona waktu</label>
+    <label for="timezone">Pilih zona waktu</label>
     <select
-      :disabled="disabled"
+      :disabled="$disableInteraction"
       aria-labelledby="Pilih zona waktu"
-      name="timezone-select"
-      @input="
-        $emit('update:timeZone', ($event.target as HTMLSelectElement).value)
-      "
+      name="timezone"
+      v-model="timeZone"
     >
       <option value="" disabled>Pilih zona waktu</option>
-      <option
-        v-for="{ abbreviation, name } of timeZones"
-        :selected="name === timeZone"
-        :value="name"
-      >
+      <option v-for="{ abbreviation, name } of timeZones" :value="name">
         {{ name }} ({{ abbreviation }})
       </option>
     </select>
@@ -59,14 +46,14 @@ const timeZones = getTimeZones({ includeUtc: true }).sort(
 </template>
 
 <style scoped>
-.birthday-select-container {
+.birthday-select {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.birthday-select-container > select {
+.birthday-select > select {
   background-color: var(--t-bg-color-alt);
   color: inherit;
   border: 1px solid currentColor;
@@ -76,7 +63,7 @@ const timeZones = getTimeZones({ includeUtc: true }).sort(
   width: 75%;
 }
 
-.birthday-select-container > select:disabled {
+.birthday-select > select:disabled {
   filter: opacity(0.7);
 }
 </style>

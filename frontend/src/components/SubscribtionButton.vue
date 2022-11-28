@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { disableInteraction, state } from '~stores/state'
 import {
   addSubscription,
   removeSubscription,
   subscriptions,
-} from '~subscriptionStore'
+} from '~stores/subscription'
 import { useStore } from '@nanostores/vue'
 import { fetchBirthdayNotificationServer } from '~utils/backend'
 import {
@@ -12,23 +13,17 @@ import {
   generateSubscriptionPayload,
 } from '~utils/webpush'
 
-interface Properties {
-  target: string | undefined
-  timeZone: string
-  pending: boolean
-}
-
-const { target: key, timeZone } = defineProps<Properties>()
-const emit = defineEmits(['update:pending'])
+const $disableInteraction = $(useStore(disableInteraction))
 const $subscriptions = $(useStore(subscriptions))
 
-const subscribed = $computed(() => $subscriptions.has(key ?? ''))
+const $state = $(useStore(state))
+const subscribed = $computed(() => $subscriptions.has($state.selected ?? ''))
 
 const subscribe = async () => {
-  emit('update:pending', true)
+  disableInteraction.set(true)
 
   try {
-    if (key === undefined) {
+    if ($state.selected === undefined) {
       throw new Error('You have not selected a target.')
     }
 
@@ -38,7 +33,10 @@ const subscribe = async () => {
       throw new Error('Unable to get notification permission.')
     }
 
-    const payload = await generateSubscriptionPayload(key, timeZone)
+    const payload = await generateSubscriptionPayload(
+      $state.selected,
+      $state.timeZone
+    )
     const response = await fetchBirthdayNotificationServer('subscribe', {
       body: JSON.stringify(payload),
       method: 'POST',
@@ -46,7 +44,7 @@ const subscribe = async () => {
 
     const text = await response.text()
     if (response.status === 201 && text.includes('SUBSCRIBED')) {
-      addSubscription(key)
+      addSubscription($state.selected)
       alert('Successfully subscribed.')
     } else {
       throw new Error(text)
@@ -54,20 +52,23 @@ const subscribe = async () => {
   } catch (error) {
     alert(error)
   } finally {
-    emit('update:pending', false)
+    disableInteraction.set(false)
   }
 }
 
 const unsubscribe = async () => {
-  emit('update:pending', true)
+  disableInteraction.set(true)
 
   try {
-    if (key === undefined) {
+    if ($state.selected === undefined) {
       throw new Error('You have not selected a target.')
     }
 
     if (subscribed) {
-      const payload = await generateSubscriptionPayload(key, timeZone)
+      const payload = await generateSubscriptionPayload(
+        $state.selected,
+        $state.timeZone
+      )
       const response = await fetchBirthdayNotificationServer('unsubscribe', {
         body: JSON.stringify(payload),
         method: 'POST',
@@ -75,7 +76,7 @@ const unsubscribe = async () => {
 
       const text = await response.text()
       if (response.status === 200 && text.includes('UNSUBSCRIBED')) {
-        removeSubscription(key)
+        removeSubscription($state.selected)
         alert('Successfully unsubscribed.')
       } else {
         throw new Error(text)
@@ -84,17 +85,17 @@ const unsubscribe = async () => {
   } catch (error) {
     alert(error)
   } finally {
-    emit('update:pending', false)
+    disableInteraction.set(false)
   }
 }
 </script>
 
 <template>
   <div class="subscription-button-container">
-    <button @click="subscribe" :disabled="subscribed || pending">
+    <button @click="subscribe" :disabled="subscribed || $disableInteraction">
       Subscribe
     </button>
-    <button @click="unsubscribe" :disabled="!subscribed || pending">
+    <button @click="unsubscribe" :disabled="!subscribed || $disableInteraction">
       Unsubscribe
     </button>
   </div>

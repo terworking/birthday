@@ -1,38 +1,27 @@
 <script setup lang="ts">
-import BirthdaySelect from './BirthdaySelect.vue'
-import SubscribtionButton from './SubscribtionButton.vue'
-
+import { data } from '~stores/data'
+import { state } from '~stores/state'
 import { useNow } from '@vueuse/core'
 import { format, formatDistance } from 'date-fns'
 import { calculateNextBirthdayDate } from '~utils/birthday'
+import { useStore } from '@nanostores/vue'
 
-const { data } = defineProps<{ data: BackendListResponse }>()
+const $data = $(useStore(data))
+const $state = $(useStore(state))
+const target = $computed(() => $data[$state.selected])
 
-let pending = $ref(false)
-let timeZone = $ref(Intl.DateTimeFormat().resolvedOptions().timeZone)
-let target = $ref(
-  Object.entries(data)
-    .sort(
-      ([_, a], [__, b]) =>
-        calculateNextBirthdayDate(a).valueOf() -
-        calculateNextBirthdayDate(b).valueOf()
-    )
-    .shift()![0]
-)
-
-const targetValue = $computed(() => data[target]!)
 const now = $(useNow({ interval: 1000 }))
 const birthDate = $computed(() => {
   const date =
-    targetValue === undefined
+    target === undefined
       ? new Date(0)
-      : new Date(targetValue.year, targetValue.month - 1, targetValue.date)
+      : new Date(target.year, target.month - 1, target.date)
 
   return format(date, 'd/M/yyyy')
 })
 
 const nextBirthdayDate = $computed(() =>
-  calculateNextBirthdayDate(targetValue, timeZone, now)
+  calculateNextBirthdayDate(target, $state.timeZone, now)
 )
 
 const distanceToNextBirthdayDate = $computed(() =>
@@ -55,42 +44,19 @@ const upcomingBirthdayDates = $computed(() =>
 
 <template>
   <div class="birthday-content">
-    <BirthdaySelect
-      :data="data"
-      :disabled="pending"
-      v-model:target="target"
-      v-model:time-zone="timeZone"
-    />
-
-    <div class="selected-value">
-      <p class="selected-date-value">
-        {{ birthDate }} &gt; {{ upcomingBirthdayDates.join(', ') }}, ...
-      </p>
-      <p>Next notification {{ distanceToNextBirthdayDate }}</p>
-    </div>
-
-    <SubscribtionButton
-      :target="target"
-      :time-zone="timeZone"
-      v-model:pending="pending"
-    />
+    <p class="upcoming-birthday">
+      {{ birthDate }} &gt; {{ upcomingBirthdayDates.join(', ') }}, ...
+    </p>
+    <p>Next notification {{ distanceToNextBirthdayDate }}</p>
   </div>
 </template>
 
 <style scoped>
 .birthday-content {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.selected-value {
   text-align: center;
 }
 
-.selected-date-value {
+.upcoming-birthday {
   font-size: 1rem;
   font-weight: 600;
 }
