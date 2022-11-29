@@ -3,13 +3,13 @@ body {
   color: var(--t-color);
 }
 
-[astro-icon] {
+.t-icon {
   color: var(--t-color);
   width: 1.75rem;
   height: 1.75rem;
 }
 
-[astro-icon]:hover {
+.t-icon:hover {
   color: var(--t-color-alt);
 }
 
