@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import { disableInteraction, state } from '~stores/state'
-import {
-  addSubscription,
-  removeSubscription,
-  subscriptions,
-} from '~stores/subscription'
+import { disableInteraction, state, subscribed } from '~stores/state'
+import { addSubscription, removeSubscription } from '~stores/subscription'
 import { useStore } from '@nanostores/vue'
 import { fetchBirthdayNotificationServer } from '~utils/backend'
 import {
@@ -14,10 +10,8 @@ import {
 } from '~utils/webpush'
 
 const $disableInteraction = $(useStore(disableInteraction))
-const $subscriptions = $(useStore(subscriptions))
-
 const $state = $(useStore(state))
-const subscribed = $computed(() => $subscriptions.has($state.selected ?? ''))
+const $subscribed = $(useStore(subscribed))
 
 const subscribe = async () => {
   disableInteraction.set(true)
@@ -64,7 +58,7 @@ const unsubscribe = async () => {
       throw new Error('You have not selected a target.')
     }
 
-    if (subscribed) {
+    if ($subscribed) {
       const payload = await generateSubscriptionPayload(
         $state.selected,
         $state.timeZone
@@ -92,10 +86,13 @@ const unsubscribe = async () => {
 
 <template>
   <div class="subscription-button-container">
-    <button @click="subscribe" :disabled="subscribed || $disableInteraction">
+    <button @click="subscribe" :disabled="$subscribed || $disableInteraction">
       Subscribe
     </button>
-    <button @click="unsubscribe" :disabled="!subscribed || $disableInteraction">
+    <button
+      @click="unsubscribe"
+      :disabled="!$subscribed || $disableInteraction"
+    >
       Unsubscribe
     </button>
   </div>
