@@ -4,36 +4,44 @@ import IconPanRight from '~icons/mdi/pan-right'
 
 import { data } from '~stores/data'
 import { disableInteraction, sortedByDistanceData, state } from '~stores/state'
-import { useStore, useVModel } from '@nanostores/vue'
+import { useStore } from '@nanostores/vue'
 import { useCycleList } from '@vueuse/core'
 import { getTimeZones } from '@vvo/tzdb'
+import { watch } from 'vue'
 
 const $data = $(useStore(data))
 const $disableInteraction = $(useStore(disableInteraction))
 
-const selected = $(useVModel(state, 'selected'))
-const timeZone = $(useVModel(state, 'timeZone'))
-
-const sortedData = $(useStore(sortedByDistanceData))
-const { next: nextKey, prev: prevKey } = useCycleList(
-  sortedData.map(([key]) => key),
-  { initialValue: selected }
+const {
+  next: nextKey,
+  prev: prevKey,
+  state: selected,
+} = useCycleList(
+  sortedByDistanceData.get().map(([key]) => key),
+  { initialValue: state.get().selected }
 )
 
 const timeZones = getTimeZones({ includeUtc: true }).sort(
   ({ name: a }, { name: b }) => a.localeCompare(b)
 )
-const { next: nextTimeZone, prev: prevTimeZone } = useCycleList(
+const {
+  next: nextTimeZone,
+  prev: prevTimeZone,
+  state: timeZone,
+} = useCycleList(
   timeZones.map(({ name }) => name),
-  { initialValue: timeZone }
+  { initialValue: state.get().timeZone }
 )
+
+watch(selected, (v) => state.setKey('selected', v))
+watch(timeZone, (v) => state.setKey('timeZone', v))
 </script>
 
 <template>
   <div class="birthday-select">
     <label for="birthday">Pilih nama</label>
     <div class="select-container">
-      <button @click="selected = prevKey()">
+      <button @click="prevKey()">
         <IconPanLeft />
       </button>
       <select
@@ -47,14 +55,14 @@ const { next: nextTimeZone, prev: prevTimeZone } = useCycleList(
           {{ name }}
         </option>
       </select>
-      <button @click="selected = nextKey()">
+      <button @click="nextKey()">
         <IconPanRight />
       </button>
     </div>
 
     <label for="timezone">Pilih zona waktu</label>
     <div class="select-container">
-      <button @click="timeZone = prevTimeZone()">
+      <button @click="prevTimeZone()">
         <IconPanLeft />
       </button>
       <select
@@ -68,7 +76,7 @@ const { next: nextTimeZone, prev: prevTimeZone } = useCycleList(
           {{ name }} ({{ abbreviation }})
         </option>
       </select>
-      <button @click="timeZone = nextTimeZone()">
+      <button @click="nextTimeZone()">
         <IconPanRight />
       </button>
     </div>
