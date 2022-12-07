@@ -27,6 +27,7 @@ const data = await fetchBirthdayNotificationServer('list')
       super()
 
       initializeData(JSON.parse(atob(this.dataset.value!)))
+      this.removeAttribute('data-value')
     }
   }
 
