@@ -1,48 +1,59 @@
 ---
 import IconDiscord from '~icons/simple-icons/discord'
-import IconGithub from '~icons/simple-icons/github'
 import IconGit from '~icons/simple-icons/git'
 import IconInstagram from '~icons/simple-icons/instagram'
+import IconRss from '~icons/simple-icons/rss'
 import IconYoutube from '~icons/simple-icons/youtube'
+
+interface FooterIcon {
+  Icon: astroHTML.JSX.Element
+  title: string
+  href: string
+}
+
+const icons: FooterIcon[] = [
+  {
+    Icon: IconRss,
+    title: 'RSS feed',
+    href: '/rss.xml',
+  },
+  {
+    Icon: IconDiscord,
+    title: 'Discord server invite',
+    href: 'https://discord.gg/BMESwz5wE4',
+  },
+  {
+    Icon: IconGit,
+    title: 'Source code',
+    href: 'https://github.com/terworking/birthday-notify',
+  },
+  {
+    Icon: IconInstagram,
+    title: 'Instagram account',
+    href: 'https://www.instagram.com/terworking/',
+  },
+  {
+    Icon: IconYoutube,
+    title: 'Youtube channel',
+    href: 'https://www.youtube.com/@terworking',
+  },
+]
 ---
 
 <footer class="footer">
   <div class="footer-icons">
-    <a
-      target="_blank"
-      title="Discord server invite"
-      href="https://discord.gg/BMESwz5wE4"
-    >
-      <IconDiscord />
-    </a>
-    <a
-      target="_blank"
-      title="Github organization"
-      href="https://github.com/terworking/"
-    >
-      <IconGithub />
-    </a>
-    <a
-      target="_blank"
-      title="Source code"
-      href="https://github.com/terworking/birthday-notify"
-    >
-      <IconGit />
-    </a>
-    <a
-      target="_blank"
-      title="Instagram account"
-      href="https://www.instagram.com/terworking/"
-    >
-      <IconInstagram />
-    </a>
-    <a
-      target="_blank"
-      title="Youtube channel"
-      href="https://www.youtube.com/@terworking"
-    >
-      <IconYoutube />
-    </a>
+    {
+      icons.map(({ Icon, title, href }) => {
+        const [rel, target] = href.startsWith('https')
+          ? ['noreferrer', '_blank']
+          : []
+        return (
+          <a rel={rel} target={target} title={title} href={href}>
+            <Icon />
+          </a>
+        )
+      })
+    }
   </div>
 </footer>
 
