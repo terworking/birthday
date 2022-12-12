@@ -53,12 +53,7 @@ const data: BirthdayContainerData = [birthdayDataResponse, timeZones]
         Object.fromEntries(
           v[0].map(([key, name, date, month, year]) => [
             key,
-            Object.fromEntries([
-              ['name', name],
-              ['date', date],
-              ['month', month],
-              ['year', year],
-            ]),
+            { name, date, month, year },
           ])
         )
       )
