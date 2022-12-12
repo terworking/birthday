@@ -8,11 +8,6 @@ import { useStore } from '@nanostores/vue'
 import { useCycleList } from '@vueuse/core'
 import { watch } from 'vue'
 
-const convertOffset = (offset: number) => {
-  const offsetInHour = offset / 60
-  return `${offsetInHour >= 0 ? '+' : ''}${offsetInHour}`
-}
-
 const $data = $(useStore(data))
 const $disableInteraction = $(useStore(disableInteraction))
 
@@ -77,12 +72,10 @@ watch(timeZone, (v) => state.setKey('timeZone', v))
       >
         <option value="" disabled>Pilih zona waktu</option>
         <option
-          v-for="{ abbreviation, name, rawOffsetInMinutes } of timeZones.get()"
+          v-for="{ abbreviation, name, offset } of timeZones.get()"
           :value="name"
         >
-          {{ name }} ({{ abbreviation }}, UTC{{
-            convertOffset(rawOffsetInMinutes)
-          }})
+          {{ name }} ({{ abbreviation }}, UTC{{ offset }})
         </option>
       </select>
       <button @click="nextTimeZone()">

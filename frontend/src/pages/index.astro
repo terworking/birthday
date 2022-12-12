@@ -4,23 +4,27 @@ import BirthdayContent from '~components/BirthdayContent.vue'
 import BirthdaySelect from '~components/BirthdaySelect.vue'
 import SubscribtionButton from '~components/SubscribtionButton.vue'
 
-import { getTimeZones } from '@vvo/tzdb'
+import { rawTimeZones } from '@vvo/tzdb'
 import { fetchBirthdayNotificationServer } from '~utils/backend'
+import type { BirthdayContainerData, TTimeZone } from '~stores/data'
 
-const birthdayData: BackendListResponse[] =
+const birthdayDataResponse: BackendListResponse =
   await fetchBirthdayNotificationServer('list').then((response) =>
     response.json()
   )
-const timeZones = getTimeZones({ includeUtc: false }).sort(
-  ({ name: a }, { name: b }) => a.localeCompare(b)
-)
-const data = Buffer.from(
-  JSON.stringify({ data: birthdayData, timeZones })
-).toString('base64')
+const timeZones: TTimeZone[] = rawTimeZones
+  .sort(({ name: a }, { name: b }) => a.localeCompare(b))
+  .map(({ name, abbreviation, rawOffsetInMinutes }) => {
+    const offsetInHour = rawOffsetInMinutes / 60
+    const offset = `${offsetInHour >= 0 ? '+' : ''}${offsetInHour}`
+
+    return { name, abbreviation, offset }
+  })
+const data: BirthdayContainerData = { data: birthdayDataResponse, timeZones }
 ---
 
 <BaseLayout>
-  <birthday-container data-value={data}>
+  <birthday-container data-value={JSON.stringify(data)}>
     <BirthdaySelect client:only />
     <BirthdayContent client:only />
     <SubscribtionButton client:only />
@@ -34,10 +38,11 @@ const data = Buffer.from(
     constructor() {
       super()
 
-      const v: BirthdayContainerData = JSON.parse(atob(this.dataset.value!))
+      const v: BirthdayContainerData = JSON.parse(this.dataset.value!)
 
       data.set(v.data)
       timeZones.set(v.timeZones)
+
       this.removeAttribute('data-value')
     }
   }
