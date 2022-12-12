@@ -51,8 +51,11 @@ watch(timeZone, (v) => state.setKey('timeZone', v))
         v-model="selected"
       >
         <option value="" disabled>Pilih nama</option>
-        <option v-for="[key, { name }] of Object.entries($data)" :value="key">
-          {{ name }}
+        <option
+          v-for="([key, { name }], i) of Object.entries($data)"
+          :value="key"
+        >
+          {{ i + 1 }} - {{ name }}
         </option>
       </select>
       <button @click="nextKey()">
