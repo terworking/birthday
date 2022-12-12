@@ -24,7 +24,7 @@ export const sortedByDistanceData = computed(
         calculateNextBirthdayDate(b, timeZone).valueOf()
     )
 )
-state.setKey('selected', sortedByDistanceData.get()[0]![0])
+state.setKey('selected', sortedByDistanceData.get().at(0)?.[0] ?? '')
 
 export const subscribed = computed(
   [subscriptions, state],

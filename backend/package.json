@@ -9,12 +9,12 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20221111.1",
     "@types/itty-router-extras": "^0.4.0",
-    "esbuild": "^0.15.16",
+    "esbuild": "^0.16.4",
     "miniflare": "^2.11.0",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@vvo/tzdb": "^6.77.0",
+    "@vvo/tzdb": "^6.79.0",
     "cloudflare-webpush-request-builder": "^1.1.0",
     "date-fns": "^2.29.3",
     "date-fns-tz": "^1.3.7",
