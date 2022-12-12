@@ -2,11 +2,10 @@
 import IconPanLeft from '~icons/mdi/pan-left'
 import IconPanRight from '~icons/mdi/pan-right'
 
-import { data } from '~stores/data'
+import { data, timeZones } from '~stores/data'
 import { disableInteraction, sortedByDistanceData, state } from '~stores/state'
 import { useStore } from '@nanostores/vue'
 import { useCycleList } from '@vueuse/core'
-import { getTimeZones } from '@vvo/tzdb'
 import { watch } from 'vue'
 
 const $data = $(useStore(data))
@@ -21,15 +20,12 @@ const {
   { initialValue: state.get().selected }
 )
 
-const timeZones = getTimeZones({ includeUtc: true }).sort(
-  ({ name: a }, { name: b }) => a.localeCompare(b)
-)
 const {
   next: nextTimeZone,
   prev: prevTimeZone,
   state: timeZone,
 } = useCycleList(
-  timeZones.map(({ name }) => name),
+  timeZones.get().map(({ name }) => name),
   { initialValue: state.get().timeZone }
 )
 
@@ -75,7 +71,7 @@ watch(timeZone, (v) => state.setKey('timeZone', v))
         v-model="timeZone"
       >
         <option value="" disabled>Pilih zona waktu</option>
-        <option v-for="{ abbreviation, name } of timeZones" :value="name">
+        <option v-for="{ abbreviation, name } of timeZones.get()" :value="name">
           {{ name }} ({{ abbreviation }})
         </option>
       </select>

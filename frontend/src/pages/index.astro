@@ -4,11 +4,19 @@ import BirthdayContent from '~components/BirthdayContent.vue'
 import BirthdaySelect from '~components/BirthdaySelect.vue'
 import SubscribtionButton from '~components/SubscribtionButton.vue'
 
+import { getTimeZones } from '@vvo/tzdb'
 import { fetchBirthdayNotificationServer } from '~utils/backend'
 
-const data = await fetchBirthdayNotificationServer('list')
-  .then((response) => response.json())
-  .then((json) => Buffer.from(JSON.stringify(json)).toString('base64'))
+const birthdayData: BackendListResponse[] =
+  await fetchBirthdayNotificationServer('list').then((response) =>
+    response.json()
+  )
+const timeZones = getTimeZones({ includeUtc: false }).sort(
+  ({ name: a }, { name: b }) => a.localeCompare(b)
+)
+const data = Buffer.from(
+  JSON.stringify({ data: birthdayData, timeZones })
+).toString('base64')
 ---
 
 <BaseLayout>
@@ -20,13 +28,16 @@ const data = await fetchBirthdayNotificationServer('list')
 </BaseLayout>
 
 <script>
-  import { initializeData } from '~stores/data'
+  import { BirthdayContainerData, data, timeZones } from '~stores/data'
 
   class BirthdayContainer extends HTMLElement {
     constructor() {
       super()
 
-      initializeData(JSON.parse(atob(this.dataset.value!)))
+      const v: BirthdayContainerData = JSON.parse(atob(this.dataset.value!))
+
+      data.set(v.data)
+      timeZones.set(v.timeZones)
       this.removeAttribute('data-value')
     }
   }

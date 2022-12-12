@@ -1,9 +1,10 @@
-import { action, atom } from 'nanostores'
+import type { TimeZone } from '@vvo/tzdb'
+import { atom } from 'nanostores'
+
+export interface BirthdayContainerData {
+  data: BackendListResponse
+  timeZones: TimeZone[]
+}
 
 export const data = atom<BackendListResponse>({})
-
-export const initializeData = action(
-  data,
-  'initialize',
-  (store, value: BackendListResponse) => store.set(value)
-)
+export const timeZones = atom<TimeZone[]>([])
