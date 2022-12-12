@@ -1,15 +1,10 @@
 <script setup lang="ts">
-import { state } from '~stores/state'
-import { useNow } from '@vueuse/core'
+import { now } from '~stores/state'
 import { useStore } from '@nanostores/vue'
-import utcToZonedTime from 'date-fns-tz/esm/utcToZonedTime'
 import { format } from 'date-fns'
 
-const now = $(useNow({ interval: 1000 }))
-const $state = $(useStore(state))
-const value = $computed(() =>
-  format(utcToZonedTime(now, $state.timeZone), 'do MMMM, yyyy hh:mm:ss a')
-)
+const $now = $(useStore(now))
+const value = $computed(() => format($now, 'do MMMM, yyyy hh:mm:ss a'))
 </script>
 
 <template>

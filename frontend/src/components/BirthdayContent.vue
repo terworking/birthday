@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { data } from '~stores/data'
-import { state } from '~stores/state'
-import { useNow } from '@vueuse/core'
+import { now, state } from '~stores/state'
 import { format, formatDistance } from 'date-fns'
 import { calculateNextBirthdayDate } from '~utils/birthday'
 import { useStore } from '@nanostores/vue'
@@ -10,7 +9,7 @@ const $data = $(useStore(data))
 const $state = $(useStore(state))
 const target = $computed(() => $data[$state.selected])
 
-const now = $(useNow({ interval: 1000 }))
+const $now = $(useStore(now))
 const birthDate = $computed(() => {
   const date =
     target === undefined
@@ -21,11 +20,11 @@ const birthDate = $computed(() => {
 })
 
 const nextBirthdayDate = $computed(() =>
-  calculateNextBirthdayDate(target, $state.timeZone, now)
+  calculateNextBirthdayDate(target, $state.timeZone, $now)
 )
 
 const distanceToNextBirthdayDate = $computed(() =>
-  formatDistance(nextBirthdayDate, now, { addSuffix: true })
+  formatDistance(nextBirthdayDate, $now, { addSuffix: true })
 )
 
 const upcomingBirthdayDates = $computed(() =>
