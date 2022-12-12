@@ -15,22 +15,6 @@ export const state = map<State>({
   timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 })
 
-export const sortedByDistanceData = computed(
-  [data, state],
-  (data, { timeZone }) =>
-    Object.entries(data).sort(
-      ([_, a], [__, b]) =>
-        calculateNextBirthdayDate(a, timeZone).valueOf() -
-        calculateNextBirthdayDate(b, timeZone).valueOf()
-    )
-)
-state.setKey('selected', sortedByDistanceData.get().at(0)?.[0] ?? '')
-
-export const subscribed = computed(
-  [subscriptions, state],
-  (subscriptions, { selected }) => subscriptions.has(selected)
-)
-
 export const now = atom(new Date())
 const updateNow = () =>
   now.set(utcToZonedTime(new Date(), state.get().timeZone))
@@ -42,3 +26,17 @@ state.subscribe((_, key) => {
     nowTimer = setInterval(updateNow, 1000)
   }
 })
+
+export const sortedByDistanceData = computed([data, now], (data, now) =>
+  Object.entries(data).sort(
+    ([_, a], [__, b]) =>
+      calculateNextBirthdayDate(a, now).valueOf() -
+      calculateNextBirthdayDate(b, now).valueOf()
+  )
+)
+state.setKey('selected', sortedByDistanceData.get().at(0)?.[0] ?? '')
+
+export const subscribed = computed(
+  [subscriptions, state],
+  (subscriptions, { selected }) => subscriptions.has(selected)
+)

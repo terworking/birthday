@@ -20,7 +20,7 @@ const birthDate = $computed(() => {
 })
 
 const nextBirthdayDate = $computed(() =>
-  calculateNextBirthdayDate(target, $state.timeZone, $now)
+  calculateNextBirthdayDate(target, $now)
 )
 
 const distanceToNextBirthdayDate = $computed(() =>
