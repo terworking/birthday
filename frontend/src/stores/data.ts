@@ -1,14 +1,13 @@
 import { atom } from 'nanostores'
 
+export type RawBirthdayData = [string, string, number, number, number]
+export type RawTTimeZone = [string, string, string]
+export type BirthdayContainerData = [RawBirthdayData[], RawTTimeZone[]]
+
 export interface TTimeZone {
   name: string
   abbreviation: string
   offset: string
-}
-
-export interface BirthdayContainerData {
-  data: BackendListResponse
-  timeZones: TTimeZone[]
 }
 
 export const data = atom<BackendListResponse>({})

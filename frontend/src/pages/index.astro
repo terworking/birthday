@@ -6,21 +6,29 @@ import SubscribtionButton from '~components/SubscribtionButton.vue'
 
 import { rawTimeZones } from '@vvo/tzdb'
 import { fetchBirthdayNotificationServer } from '~utils/backend'
-import type { BirthdayContainerData, TTimeZone } from '~stores/data'
+import type {
+  BirthdayContainerData,
+  RawBirthdayData,
+  RawTTimeZone,
+} from '~stores/data'
 
-const birthdayDataResponse: BackendListResponse =
-  await fetchBirthdayNotificationServer('list').then((response) =>
-    response.json()
+const birthdayDataResponse = await fetchBirthdayNotificationServer('list')
+  .then((response) => response.json())
+  .then((json: BackendListResponse) =>
+    Object.entries(json).map(
+      ([key, { date, month, name, year }]) =>
+        [key, name, date, month, year] as RawBirthdayData
+    )
   )
-const timeZones: TTimeZone[] = rawTimeZones
+const timeZones = rawTimeZones
   .sort(({ name: a }, { name: b }) => a.localeCompare(b))
   .map(({ name, abbreviation, rawOffsetInMinutes }) => {
     const offsetInHour = rawOffsetInMinutes / 60
     const offset = `${offsetInHour >= 0 ? '+' : ''}${offsetInHour}`
 
-    return { name, abbreviation, offset }
+    return [name, abbreviation, offset] as RawTTimeZone
   })
-const data: BirthdayContainerData = { data: birthdayDataResponse, timeZones }
+const data: BirthdayContainerData = [birthdayDataResponse, timeZones]
 ---
 
 <BaseLayout>
@@ -39,11 +47,28 @@ const data: BirthdayContainerData = { data: birthdayDataResponse, timeZones }
       super()
 
       const v: BirthdayContainerData = JSON.parse(this.dataset.value!)
-
-      data.set(v.data)
-      timeZones.set(v.timeZones)
-
       this.removeAttribute('data-value')
+
+      data.set(
+        Object.fromEntries(
+          v[0].map(([key, name, date, month, year]) => [
+            key,
+            Object.fromEntries([
+              ['name', name],
+              ['date', date],
+              ['month', month],
+              ['year', year],
+            ]),
+          ])
+        )
+      )
+      timeZones.set(
+        v[1].map(([name, abbreviation, offset]) => ({
+          name,
+          abbreviation,
+          offset,
+        }))
+      )
     }
   }
 
