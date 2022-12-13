@@ -3,13 +3,13 @@ import IconPanLeft from '~icons/mdi/pan-left'
 import IconPanRight from '~icons/mdi/pan-right'
 
 import { data, timeZones } from '~stores/data'
-import { disableInteraction, sortedByDistanceData, state } from '~stores/state'
+import { sortedByDistanceData, state } from '~stores/state'
 import { useStore } from '@nanostores/vue'
 import { useCycleList } from '@vueuse/core'
 import { watch } from 'vue'
 
 const $data = $(useStore(data))
-const $disableInteraction = $(useStore(disableInteraction))
+const $state = $(useStore(state))
 
 const {
   next: nextKey,
@@ -41,7 +41,7 @@ watch(timeZone, (v) => state.setKey('timeZone', v))
         <IconPanLeft />
       </button>
       <select
-        :disabled="$disableInteraction"
+        :disabled="$state.disableInteraction"
         aria-labelledby="Pilih nama"
         name="birthday"
         v-model="selected"
@@ -65,7 +65,7 @@ watch(timeZone, (v) => state.setKey('timeZone', v))
         <IconPanLeft />
       </button>
       <select
-        :disabled="$disableInteraction"
+        :disabled="$state.disableInteraction"
         aria-labelledby="Pilih zona waktu"
         name="timezone"
         v-model="timeZone"

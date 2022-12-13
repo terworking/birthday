@@ -5,12 +5,13 @@ import { subscriptions } from './subscription'
 import utcToZonedTime from 'date-fns-tz/esm/utcToZonedTime'
 
 interface State {
+  disableInteraction: boolean
   selected: string
   timeZone: string
 }
 
-export const disableInteraction = atom(false)
 export const state = map<State>({
+  disableInteraction: false,
   selected: '',
   timeZone: '',
 })

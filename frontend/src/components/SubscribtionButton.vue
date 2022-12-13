@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { disableInteraction, state, subscribed } from '~stores/state'
+import { state, subscribed } from '~stores/state'
 import { addSubscription, removeSubscription } from '~stores/subscription'
 import { useStore } from '@nanostores/vue'
 import { fetchBirthdayNotificationServer } from '~utils/backend'
@@ -9,12 +9,11 @@ import {
   generateSubscriptionPayload,
 } from '~utils/webpush'
 
-const $disableInteraction = $(useStore(disableInteraction))
 const $state = $(useStore(state))
 const $subscribed = $(useStore(subscribed))
 
 const subscribe = async () => {
-  disableInteraction.set(true)
+  state.setKey('disableInteraction', true)
 
   try {
     if ($state.selected === undefined) {
@@ -46,12 +45,12 @@ const subscribe = async () => {
   } catch (error) {
     alert(error)
   } finally {
-    disableInteraction.set(false)
+    state.setKey('disableInteraction', false)
   }
 }
 
 const unsubscribe = async () => {
-  disableInteraction.set(true)
+  state.setKey('disableInteraction', true)
 
   try {
     if ($state.selected === undefined) {
@@ -79,19 +78,22 @@ const unsubscribe = async () => {
   } catch (error) {
     alert(error)
   } finally {
-    disableInteraction.set(false)
+    state.setKey('disableInteraction', false)
   }
 }
 </script>
 
 <template>
   <div class="subscription-button-container">
-    <button @click="subscribe" :disabled="$subscribed || $disableInteraction">
+    <button
+      @click="subscribe"
+      :disabled="$subscribed || $state.disableInteraction"
+    >
       Subscribe
     </button>
     <button
       @click="unsubscribe"
-      :disabled="!$subscribed || $disableInteraction"
+      :disabled="!$subscribed || $state.disableInteraction"
     >
       Unsubscribe
     </button>
