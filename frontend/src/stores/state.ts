@@ -12,20 +12,21 @@ interface State {
 export const disableInteraction = atom(false)
 export const state = map<State>({
   selected: '',
-  timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+  timeZone: '',
 })
 
 export const now = atom(new Date())
-const updateNow = () =>
-  now.set(utcToZonedTime(new Date(), state.get().timeZone))
+const updateNow = (timeZone: string) =>
+  now.set(utcToZonedTime(new Date(), timeZone))
 let nowTimer: NodeJS.Timer
-state.subscribe((_, key) => {
+state.subscribe((state, key) => {
   if (key === 'timeZone') {
-    updateNow()
+    updateNow(state.timeZone)
     clearInterval(nowTimer)
-    nowTimer = setInterval(updateNow, 1000)
+    nowTimer = setInterval(() => updateNow(state.timeZone), 1000)
   }
 })
+state.setKey('timeZone', Intl.DateTimeFormat().resolvedOptions().timeZone)
 
 export const sortedByDistanceData = computed([data, now], (data, now) =>
   Object.entries(data).sort(
