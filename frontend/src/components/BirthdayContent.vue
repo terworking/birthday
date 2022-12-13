@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { data } from '~stores/data'
-import { now, state } from '~stores/state'
+import { now, sortedByDistanceData, state } from '~stores/state'
 import { format, formatDistance } from 'date-fns'
 import { calculateNextBirthdayDate } from '~utils/birthday'
 import { useStore } from '@nanostores/vue'
 
 const $data = $(useStore(data))
 const $state = $(useStore(state))
-const target = $computed(() => $data[$state.selected])
+const target = $computed(() =>
+  $state.selected === 'all'
+    ? sortedByDistanceData.get()[0]![1]
+    : $data[$state.selected]
+)
 
 const $now = $(useStore(now))
 const birthDate = $computed(() => {

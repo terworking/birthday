@@ -38,11 +38,19 @@ export const handle = async (
     )
     const subscriptionKeys = await Promise.all(
       targetKeys.map((target) =>
-        environment.BIRTHDAY_SUBSCRIPTIONS.list({
-          prefix: target,
-        }).then(({ keys }) => ({ target, keys: keys.map(({ name }) => name) }))
+        Promise.all([
+          environment.BIRTHDAY_SUBSCRIPTIONS.list({ prefix: 'all' }),
+          environment.BIRTHDAY_SUBSCRIPTIONS.list({
+            prefix: target,
+          }),
+        ]).then((result) =>
+          result.map(({ keys }) => ({
+            target,
+            keys: keys.map(({ name }) => name),
+          }))
+        )
       )
-    )
+    ).then((it) => it.flat())
     const subscriptions = await Promise.all(
       subscriptionKeys.map(({ target, keys }) =>
         Promise.all(
