@@ -10,19 +10,19 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@iconify-json/mdi": "^1.1.36",
-    "@iconify-json/simple-icons": "^1.1.38",
-    "astro": "^1.6.14",
-    "unplugin-icons": "^0.14.14",
+    "@iconify-json/mdi": "^1.1.37",
+    "@iconify-json/simple-icons": "^1.1.39",
+    "astro": "^1.6.15",
+    "unplugin-icons": "^0.14.15",
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@astrojs/rss": "^1.1.0",
-    "@astrojs/vue": "^1.2.1",
+    "@astrojs/rss": "^1.2.1",
+    "@astrojs/vue": "^1.2.2",
     "@nanostores/persistent": "0.7.0",
     "@nanostores/vue": "0.6.1",
     "@vueuse/core": "^9.6.0",
-    "@vvo/tzdb": "^6.79.0",
+    "@vvo/tzdb": "^6.81.0",
     "date-fns": "^2.29.3",
     "date-fns-tz": "^1.3.7",
     "modern-normalize": "^1.1.0",
