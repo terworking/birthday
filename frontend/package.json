@@ -17,7 +17,7 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@astrojs/rss": "^1.2.1",
+    "@astrojs/rss": "^2.1.0",
     "@astrojs/vue": "^1.2.2",
     "@nanostores/persistent": "0.7.0",
     "@nanostores/vue": "0.6.1",
