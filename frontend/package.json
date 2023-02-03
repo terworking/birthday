@@ -12,7 +12,7 @@
   "devDependencies": {
     "@iconify-json/mdi": "^1.1.37",
     "@iconify-json/simple-icons": "^1.1.39",
-    "astro": "^1.6.15",
+    "astro": "^2.0.6",
     "unplugin-icons": "^0.14.15",
     "typescript": "^4.9.4"
   },
