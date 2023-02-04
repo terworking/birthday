@@ -2,7 +2,7 @@ import { isAfter as dateIsAfter, isBefore as dateIsBefore, addHours, subHours } 
 import { targets } from '$lib/server/target';
 import type { RequestHandler } from '@sveltejs/kit';
 import { asOrdinalNumber, birthdayTargetAsKey } from '$lib/util';
-import utcToZonedTime from 'date-fns-tz/esm/utcToZonedTime';
+import { utcToZonedTime } from 'date-fns-tz';
 import { buildRequest } from 'cf-webpush';
 import type { NotificationPayload, PushSubscription } from '$lib/types';
 
