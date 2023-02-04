@@ -1,12 +1,41 @@
 {
-  "name": "birthday",
-  "version": "0.0.1",
-  "repository": "https://github.com/terworking/birthday-notify.git",
-  "author": "Aynh <99479536+Aynh@users.noreply.github.com>",
-  "license": "UNLICENSE",
-  "workspaces": [
-    "./backend",
-    "./frontend"
-  ],
-  "private": true
+	"name": "fullstack",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"test:unit": "vitest",
+		"lint": "prettier --plugin-search-dir . --check .",
+		"format": "prettier --plugin-search-dir . --write ."
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20230115.0",
+		"@iconify-json/mdi": "^1.1.45",
+		"@iconify-json/simple-icons": "^1.1.42",
+		"@sveltejs/adapter-auto": "^1.0.0",
+		"@sveltejs/adapter-cloudflare": "^2.0.1",
+		"@sveltejs/kit": "^1.0.0",
+		"miniflare": "^2.11.0",
+		"prettier": "^2.8.0",
+		"prettier-plugin-svelte": "^2.8.1",
+		"svelte": "^3.54.0",
+		"svelte-check": "^3.0.1",
+		"tslib": "^2.4.1",
+		"typescript": "^4.9.3",
+		"unplugin-icons": "^0.15.2",
+		"vite": "^4.0.0",
+		"vitest": "^0.25.3",
+		"wrangler": "^2.9.0"
+	},
+	"type": "module",
+	"dependencies": {
+		"@vvo/tzdb": "^6.93.0",
+		"cf-webpush": "^1.1.1",
+		"date-fns": "^2.29.3",
+		"date-fns-tz": "^2.0.0"
+	}
 }
