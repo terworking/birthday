@@ -1,0 +1,11 @@
+name = "worker-cron"
+main = "src/index.js"
+compatibility_date = "2023-02-04"
+
+[triggers]
+crons = ["0 * * * *"]
+
+[vars]
+TOKEN = ""
+OWNER = "terworking"
+REPO = "birthday"
