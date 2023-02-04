@@ -5,12 +5,18 @@ import { asOrdinalNumber, birthdayTargetAsKey } from '$lib/util';
 import { utcToZonedTime } from 'date-fns-tz';
 import { buildRequest } from 'cf-webpush';
 import type { NotificationPayload, PushSubscription } from '$lib/types';
+import { APP_TRIGGER_KEY } from '$env/static/private';
 
 interface BirthdaySubscriptionMetadata {
 	timeZone: string;
 }
 
-export const GET = (async ({ locals: { jwk }, platform }) => {
+export const POST = (async ({ locals: { jwk }, platform, request }) => {
+	const key = request.headers.get('x-trigger-key');
+	if (key !== APP_TRIGGER_KEY) {
+		return new Response(undefined, { status: 401 });
+	}
+
 	const KV = platform?.env?.BIRTHDAY_STORE!;
 	try {
 		const now = new Date();

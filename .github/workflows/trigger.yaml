@@ -5,4 +5,8 @@ jobs:
   trigger:
     runs-on: ubuntu-22.04
     steps:
-      - run: curl --silent "https://terworking-birthday.pages.dev/api/trigger"
+      - run: |
+          curl --silent \
+            --request post
+            "${{ vars.APP_SITE }}/api/trigger" \
+            --header "x-trigger-key: ${{ secrets.APP_TRIGGER_KEY }}"
