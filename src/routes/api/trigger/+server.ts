@@ -1,6 +1,6 @@
 import { isAfter as dateIsAfter, isBefore as dateIsBefore, addHours, subHours } from 'date-fns';
 import { targets } from '$lib/server/target';
-import type { RequestHandler } from '@sveltejs/kit';
+import { error, type RequestHandler } from '@sveltejs/kit';
 import { asOrdinalNumber, birthdayTargetAsKey } from '$lib/util';
 import { utcToZonedTime } from 'date-fns-tz';
 import { buildRequest } from 'cf-webpush';
@@ -14,7 +14,7 @@ interface BirthdaySubscriptionMetadata {
 export const POST = (async ({ locals: { jwk }, platform, request }) => {
 	const key = request.headers.get('x-trigger-key');
 	if (key !== APP_TRIGGER_KEY) {
-		return new Response(undefined, { status: 401 });
+		throw error(401);
 	}
 
 	const KV = platform?.env?.BIRTHDAY_STORE!;
