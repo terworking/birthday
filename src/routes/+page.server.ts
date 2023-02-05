@@ -1,8 +1,9 @@
 import { keyedTargets } from '$lib/server/target';
 import { rawTimeZones } from '@vvo/tzdb';
+import { getPublicKeyFromJwk } from 'cf-webpush';
 import type { PageServerLoad } from './$types';
 
-export const load = (() => {
+export const load = (({ locals: { jwk } }) => {
 	const timeZones = Object.fromEntries(
 		rawTimeZones
 			.sort(({ name: a }, { name: b }) => a.localeCompare(b))
@@ -14,5 +15,5 @@ export const load = (() => {
 			})
 	);
 
-	return { targets: keyedTargets, timeZones };
+	return { targets: keyedTargets, timeZones, publicKey: getPublicKeyFromJwk(jwk) };
 }) satisfies PageServerLoad;

@@ -57,7 +57,7 @@
 	<main>
 		<BirthdaySelect data={data.targets} timeZones={data.timeZones} />
 		<BirthdayContent data={data.targets} />
-		<SubscriptionButton />
+		<SubscriptionButton publicKey={data.publicKey} />
 	</main>
 	<AppFooter />
 </div>

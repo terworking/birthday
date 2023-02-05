@@ -8,6 +8,8 @@
 		generateSubscriptionPayload
 	} from '../webpush';
 
+	export let publicKey: string;
+
 	const state = getContext('state') as Writable<State>;
 
 	const subscribe = async () => {
@@ -22,7 +24,8 @@
 
 			const payload = await generateSubscriptionPayload(
 				$state.selectedKey,
-				$state.selectedTimeZone
+				$state.selectedTimeZone,
+				publicKey
 			);
 			console.log(payload);
 			const response = await fetch('/api/subscribe', {
@@ -49,7 +52,8 @@
 		try {
 			const payload = await generateSubscriptionPayload(
 				$state.selectedKey,
-				$state.selectedTimeZone
+				$state.selectedTimeZone,
+				publicKey
 			);
 			const response = await fetch('/api/subscribe', {
 				body: JSON.stringify(payload),

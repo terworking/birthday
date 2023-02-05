@@ -2,25 +2,12 @@ import type { PushSubscription, SubscriptionPayload } from './types';
 
 const registerServiceWorker = () => navigator.serviceWorker.register('/sw.js');
 
-const fetchPublicKey = () => fetch('/api/key').then((response) => response.text());
-
-const getApplicationServerKey = async () => {
-	const localKey = localStorage.getItem('application-server-key');
-	if (localKey == null) {
-		const key = await fetchPublicKey();
-		localStorage.setItem('application-server-key', key);
-		return key;
-	} else {
-		return localKey;
-	}
-};
-
 // https://web.dev/push-notifications-subscribing-a-user/#subscribe-a-user-with-pushmanager
 export const generateSubscriptionPayload = async (
 	key: string,
-	timeZone: string
+	timeZone: string,
+	publicKey: string
 ): Promise<SubscriptionPayload> => {
-	const publicKey = await getApplicationServerKey();
 	const serviceWorker = await registerServiceWorker();
 	const subscription = (await serviceWorker.pushManager.subscribe({
 		userVisibleOnly: true,
