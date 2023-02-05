@@ -1,3 +1,4 @@
+import type { SubscriptionMetadata } from '$lib/server/schedule/subscription';
 import { keyedTargets } from '$lib/server/target';
 import type { SubscriptionPayload } from '$lib/types';
 import { error, type RequestHandler } from '@sveltejs/kit';
@@ -35,18 +36,19 @@ export const DELETE = (async ({ platform, request }) => {
 	const { subscription, target } = await parseBody(request);
 
 	const KV = platform?.env?.BIRTHDAY_STORE!;
-	const subscriptionKey = `${target}:${subscription.keys!.auth}`;
-	await KV.delete(subscriptionKey);
+	const key = `${target}:${subscription.keys!.auth}`;
+	await KV.delete(key);
 
-	return new Response(undefined, { status: 204 /* No Content */ });
+	return new Response(undefined, { status: 204 });
 }) satisfies RequestHandler;
 
 export const POST = (async ({ platform, request }) => {
 	const { subscription, target, timeZone } = await parseBody(request);
 
 	const KV = platform?.env?.BIRTHDAY_STORE!;
-	const subscriptionKey = `${target}:${subscription.keys!.auth}`;
-	await KV.put(subscriptionKey, JSON.stringify(subscription), { metadata: { timeZone } });
+	const key = `${target}:${subscription.keys!.auth}`;
+	const metadata = { timeZone } satisfies SubscriptionMetadata;
+	await KV.put(key, JSON.stringify(subscription), { metadata });
 
-	return new Response(undefined, { status: 204 /* No Content */ });
+	return new Response(undefined, { status: 204 });
 }) satisfies RequestHandler;
