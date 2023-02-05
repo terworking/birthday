@@ -11,19 +11,20 @@
 	const state = getContext('state') as Writable<State>;
 	const sortedTarget = getContext('sorted-target') as Readable<[string, BirthdayTarget][]>;
 
-	$: keyIndex = 0;
-	keyIndex = $sortedTarget?.findIndex(([key]) => key === $state.selectedKey);
-	$: state.update((state) => ({ ...state, selectedKey: $sortedTarget[keyIndex][0] }));
-	const nextKey = () => (keyIndex = (keyIndex + 1) % $sortedTarget.length);
-	const prevKey = () => (keyIndex = (keyIndex + $sortedTarget.length - 1) % $sortedTarget.length);
+	$: keyIndex = $sortedTarget?.findIndex(([key]) => key === $state.selectedKey) ?? 0;
+	const nextKey = () =>
+		($state.selectedKey = $sortedTarget[(keyIndex + 1) % $sortedTarget.length][0]);
+	const prevKey = () =>
+		($state.selectedKey =
+			$sortedTarget[(keyIndex + $sortedTarget.length - 1) % $sortedTarget.length][0]);
 
 	$: timeZonesArray = Object.entries(timeZones);
-	$: timeZoneIndex = 0;
-	timeZoneIndex = timeZonesArray?.findIndex(([key]) => key === $state.selectedTimeZone);
-	$: state.update((state) => ({ ...state, selectedTimeZone: timeZonesArray[timeZoneIndex][0] }));
-	const nextTimeZone = () => (timeZoneIndex = (timeZoneIndex + 1) % timeZonesArray.length);
+	$: timeZoneIndex = timeZonesArray?.findIndex(([key]) => key === $state.selectedTimeZone) ?? 0;
+	const nextTimeZone = () =>
+		($state.selectedTimeZone = timeZonesArray[(timeZoneIndex + 1) % timeZonesArray.length][0]);
 	const prevTimeZone = () =>
-		(timeZoneIndex = (timeZoneIndex + timeZonesArray.length - 1) % timeZonesArray.length);
+		($state.selectedTimeZone =
+			timeZonesArray[(timeZoneIndex + timeZonesArray.length - 1) % timeZonesArray.length][0]);
 </script>
 
 <div class="birthday-select">
