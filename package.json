@@ -34,7 +34,7 @@
 	"type": "module",
 	"dependencies": {
 		"@vvo/tzdb": "^6.93.0",
-		"cf-webpush": "^1.1.1",
+		"cf-webpush": "^1.1.2",
 		"date-fns": "^2.29.3",
 		"date-fns-tz": "^2.0.0"
 	}

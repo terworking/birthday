@@ -636,10 +636,10 @@ callsites@^3.0.0:
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
-cf-webpush@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/cf-webpush/-/cf-webpush-1.1.1.tgz#df5f638065167cd9a298c76ca32ebee0912d726f"
-  integrity sha512-r9TZ8cGdGhB2wh/AyyX+ybAWefUF+JXo/bjr5yJ/zOkrjqAGUX44bXKuGvs5307gTJtgb5jqdPM4NVCpt9M71g==
+cf-webpush@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/cf-webpush/-/cf-webpush-1.1.2.tgz#aaaeab37552e596900811b811b6a3b03a4afe7a4"
+  integrity sha512-ulRQ1BoSYvXYCTgp05b6oQcCR7LV19eMlZGnPR4gDRM1IFRRFF3cej1HkKucZsRE7YSb11kuX0+SZ7lG49q/JQ==
 
 chai@^4.3.7:
   version "4.3.7"
