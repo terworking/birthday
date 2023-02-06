@@ -7,6 +7,6 @@ jobs:
     steps:
       - run: |
           curl --silent \
-            --request post \
+            --request POST \
             "${{ vars.APP_SITE }}/api/trigger" \
             --header "x-trigger-key: ${{ secrets.APP_TRIGGER_KEY }}"
