@@ -1,5 +1,5 @@
 import type { SubscriptionMetadata } from '$lib/server/schedule/subscription';
-import { keyedTargets } from '$lib/server/target';
+import { targetMap } from '$lib/server/target';
 import type { SubscriptionPayload } from '$lib/types';
 import { error, type RequestHandler } from '@sveltejs/kit';
 import { timeZonesNames } from '@vvo/tzdb';
@@ -23,7 +23,7 @@ const parseBody = async (request: Request): Promise<SubscriptionPayload> => {
 
 	const { target, timeZone } = body;
 
-	if (target !== 'all' && !(target in keyedTargets)) {
+	if (target !== 'all' && !(target in targetMap)) {
 		throw error(400, 'invalid target');
 	} else if (!timeZonesNames.includes(timeZone)) {
 		throw error(400, 'invalid time zone');

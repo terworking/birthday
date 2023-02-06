@@ -4,19 +4,17 @@
 	import { format, formatDistance } from 'date-fns';
 	import { calculateNextBirthdayDate } from '$lib/util';
 	import { getContext } from 'svelte';
-	import { utcToZonedTime } from 'date-fns-tz';
 
-	export let data: Record<string, BirthdayTarget>;
+	export let targetMap: Record<string, BirthdayTarget>;
 
 	const state = getContext('state') as Writable<State>;
 	const time = getContext('time') as Readable<Date>;
 
-	$: target = data[$state.selectedKey];
+	$: target = targetMap[$state.selectedKey];
 	$: birthDate = format(new Date(target.year, target.month - 1, target.date), 'd/M/yyyy');
 
-	$: zonedTime = utcToZonedTime($time, $state.selectedTimeZone);
-	$: nextBirthdayDate = calculateNextBirthdayDate(target, zonedTime);
-	$: distanceToNextBirthdayDate = formatDistance(nextBirthdayDate, zonedTime, { addSuffix: true });
+	$: nextBirthdayDate = calculateNextBirthdayDate(target, $time);
+	$: distanceToNextBirthdayDate = formatDistance(nextBirthdayDate, $time, { addSuffix: true });
 	$: upcomingBirthdayDates = Array.from({ length: 2 }, (_, index) =>
 		format(
 			new Date(

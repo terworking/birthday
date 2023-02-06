@@ -8,7 +8,23 @@
 		<meta name="viewport" content="width=device-width" />
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div>%sveltekit.body%</div>
+	<body>
+		<div class="content">%sveltekit.body%</div>
 	</body>
 </html>
+
+<style>
+	.content {
+		padding: 32px 16px;
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.content > :not(.clock) {
+		width: 100%;
+		max-width: 350px;
+	}
+</style>

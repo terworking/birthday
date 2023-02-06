@@ -1,7 +1,7 @@
 import type { NotificationPayload } from '$lib/types';
 import { asOrdinalNumber } from '$lib/util';
 import { buildRequest } from 'cf-webpush';
-import { keyedTargets } from '../target';
+import { targetMap } from '../target';
 import type { Subscription } from './subscription';
 
 export interface WebpushRequest {
@@ -16,10 +16,10 @@ export const buildRequests = async (
 ): Promise<WebpushRequest[]> => {
 	const requests = [] as WebpushRequest[];
 	for (const key in subscriptionMap) {
-		const match = keyedTargets[key];
-		const ageOrdinal = asOrdinalNumber(now.getFullYear() - match.year);
+		const target = targetMap[key];
+		const ageOrdinal = asOrdinalNumber(now.getFullYear() - target.year);
 		const payload = JSON.stringify({
-			body: `Happy ${ageOrdinal} Birthday ${match.name}!?`,
+			body: `Happy ${ageOrdinal} Birthday ${target.name}!?`,
 			title: 'Terworking birthday'
 		} as NotificationPayload);
 

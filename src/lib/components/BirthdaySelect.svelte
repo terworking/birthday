@@ -1,30 +1,37 @@
 <script lang="ts">
-	import { getContext } from 'svelte';
+	import { getContext, onMount } from 'svelte';
 	import type { Readable, Writable } from 'svelte/store';
 	import IconPanLeft from '~icons/mdi/pan-left';
 	import IconPanRight from '~icons/mdi/pan-right';
 	import type { BirthdayTarget, State } from '$lib/types';
+	import { calculateNextBirthdayDate } from '$lib/util';
 
-	export let data: Record<string, BirthdayTarget>;
-	export let timeZones: Record<string, string>;
+	export let targetMap: Record<string, BirthdayTarget>;
+	export let timeZoneMap: Record<string, string>;
 
 	const state = getContext('state') as Writable<State>;
-	const sortedTarget = getContext('sorted-target') as Readable<[string, BirthdayTarget][]>;
+	const time = getContext('time') as Readable<Date>;
 
-	$: keyIndex = $sortedTarget?.findIndex(([key]) => key === $state.selectedKey) ?? 0;
+	$: sortedTargets = Object.entries(targetMap).sort(
+		([_, a], [__, b]) =>
+			calculateNextBirthdayDate(a, $time).valueOf() - calculateNextBirthdayDate(b, $time).valueOf()
+	);
+	onMount(() => ($state.selectedKey = sortedTargets[0][0]));
+
+	$: keyIndex = sortedTargets.findIndex(([key]) => key === $state.selectedKey);
 	const nextKey = () =>
-		($state.selectedKey = $sortedTarget[(keyIndex + 1) % $sortedTarget.length][0]);
+		($state.selectedKey = sortedTargets[(keyIndex + 1) % sortedTargets.length][0]);
 	const prevKey = () =>
 		($state.selectedKey =
-			$sortedTarget[(keyIndex + $sortedTarget.length - 1) % $sortedTarget.length][0]);
+			sortedTargets[(keyIndex + sortedTargets.length - 1) % sortedTargets.length][0]);
 
-	$: timeZonesArray = Object.entries(timeZones);
-	$: timeZoneIndex = timeZonesArray?.findIndex(([key]) => key === $state.selectedTimeZone) ?? 0;
+	$: timeZones = Object.entries(timeZoneMap);
+	$: timeZoneIndex = timeZones.findIndex(([key]) => key === $state.selectedTimeZone) ?? 0;
 	const nextTimeZone = () =>
-		($state.selectedTimeZone = timeZonesArray[(timeZoneIndex + 1) % timeZonesArray.length][0]);
+		($state.selectedTimeZone = timeZones[(timeZoneIndex + 1) % timeZones.length][0]);
 	const prevTimeZone = () =>
 		($state.selectedTimeZone =
-			timeZonesArray[(timeZoneIndex + timeZonesArray.length - 1) % timeZonesArray.length][0]);
+			timeZones[(timeZoneIndex + timeZones.length - 1) % timeZones.length][0]);
 </script>
 
 <div class="birthday-select">
@@ -41,7 +48,7 @@
 		>
 			<option value="" disabled>Pilih nama</option>
 			<option value="all">0 - SEMUA</option>
-			{#each Object.entries(data) as [key, { name }], i}
+			{#each Object.entries(targetMap) as [key, { name }], i}
 				<option value={key}>{i + 1} - {name}</option>
 			{/each}
 		</select>
@@ -62,7 +69,7 @@
 			bind:value={$state.selectedTimeZone}
 		>
 			<option value="" disabled>Pilih zona waktu</option>
-			{#each timeZonesArray as [key, value]}
+			{#each timeZones as [key, value]}
 				<option value={key}>{value}</option>
 			{/each}
 		</select>

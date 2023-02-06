@@ -8,8 +8,7 @@
 		generateSubscriptionPayload
 	} from '../webpush';
 
-	export let publicKey: string;
-
+	const publicKey = getContext('public-key') as string;
 	const state = getContext('state') as Writable<State>;
 
 	const subscribe = async () => {

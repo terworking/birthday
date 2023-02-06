@@ -20,8 +20,7 @@ export const getSubscriptions = async (
 	const targetKeys = targets.map(birthdayTargetAsKey);
 
 	// target keys mapped with their subscription keys
-	// target keys mapped with their subscription keys
-	const subscriptionMap = Object.fromEntries(
+	const subscriptionKeysMap = Object.fromEntries(
 		await Promise.all(
 			targetKeys.map(async (prefix) => {
 				const all = await KV.list({ prefix: 'all' });
@@ -33,10 +32,10 @@ export const getSubscriptions = async (
 	);
 
 	// target keys mapped with their subscription
-	const subscriptions = {} as Record<string, Subscription[]>;
+	const subscriptionMap = {} as Record<string, Subscription[]>;
 	for (const key of targetKeys) {
-		subscriptions[key] = [];
-		for (const subscriptionKey of subscriptionMap[key]) {
+		subscriptionMap[key] = [];
+		for (const subscriptionKey of subscriptionKeysMap[key]) {
 			const { value, metadata } = await KV.getWithMetadata<PushSubscription, SubscriptionMetadata>(
 				subscriptionKey,
 				'json'
@@ -45,11 +44,11 @@ export const getSubscriptions = async (
 			if (value != null && metadata?.timeZone !== undefined) {
 				const localSubscriptionDate = utcToZonedTime(now, metadata.timeZone);
 				if (localSubscriptionDate.getHours() === 0) {
-					subscriptions[key].push({ key: subscriptionKey, value });
+					subscriptionMap[key].push({ key: subscriptionKey, value });
 				}
 			}
 		}
 	}
 
-	return subscriptions;
+	return subscriptionMap;
 };

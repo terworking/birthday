@@ -1,10 +1,10 @@
-import { keyedTargets } from '$lib/server/target';
+import { targetMap } from '$lib/server/target';
 import { rawTimeZones } from '@vvo/tzdb';
 import { getPublicKeyFromJwk } from 'cf-webpush';
 import type { PageServerLoad } from './$types';
 
 export const load = (({ locals: { jwk } }) => {
-	const timeZones = Object.fromEntries(
+	const timeZoneMap = Object.fromEntries(
 		rawTimeZones
 			.sort(({ name: a }, { name: b }) => a.localeCompare(b))
 			.map(({ name, abbreviation, rawOffsetInMinutes }) => {
@@ -15,5 +15,5 @@ export const load = (({ locals: { jwk } }) => {
 			})
 	);
 
-	return { targets: keyedTargets, timeZones, publicKey: getPublicKeyFromJwk(jwk) };
+	return { targetMap, timeZoneMap, publicKey: getPublicKeyFromJwk(jwk) };
 }) satisfies PageServerLoad;
