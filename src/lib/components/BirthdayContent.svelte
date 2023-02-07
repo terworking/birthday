@@ -13,7 +13,7 @@
 	$: target = targetMap[$state.selectedKey];
 	$: birthDate = format(new Date(target.year, target.month - 1, target.date), 'd/M/yyyy');
 
-	$: nextBirthdayDate = calculateNextBirthdayDate(target, $time);
+	$: nextBirthdayDate = calculateNextBirthdayDate(target, { now: $time });
 	$: distanceToNextBirthdayDate = formatDistance(nextBirthdayDate, $time, { addSuffix: true });
 	$: upcomingBirthdayDates = Array.from({ length: 2 }, (_, index) =>
 		format(

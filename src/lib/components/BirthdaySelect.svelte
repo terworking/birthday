@@ -14,7 +14,8 @@
 
 	$: sortedTargets = Object.entries(targetMap).sort(
 		([_, a], [__, b]) =>
-			calculateNextBirthdayDate(a, $time).valueOf() - calculateNextBirthdayDate(b, $time).valueOf()
+			calculateNextBirthdayDate(a, { now: $time }).valueOf() -
+			calculateNextBirthdayDate(b, { now: $time }).valueOf()
 	);
 	onMount(() => ($state.selectedKey = sortedTargets[0][0]));
 
