@@ -27,7 +27,7 @@
 				$state.selectedTimeZone,
 				publicKey
 			);
-			console.log(payload);
+
 			const response = await fetch('/api/subscribe', {
 				body: JSON.stringify(payload),
 				method: 'POST'
