@@ -1,16 +1,15 @@
 <script lang="ts">
 	import type { Readable, Writable } from 'svelte/store';
-	import type { BirthdayTarget, State } from '$lib/types';
+	import { page } from '$app/stores';
+	import type { State } from '$lib/types';
 	import { format, formatDistance } from 'date-fns';
 	import { calculateNextBirthdayDate } from '$lib/util';
 	import { getContext } from 'svelte';
 
-	export let targetMap: Record<string, BirthdayTarget>;
-
 	const state = getContext('state') as Writable<State>;
 	const time = getContext('time') as Readable<Date>;
 
-	$: target = targetMap[$state.selectedKey];
+	$: target = $page.data.targetMap[$state.selectedKey];
 	$: birthDate = format(new Date(target.year, target.month - 1, target.date), 'd/M/yyyy');
 
 	$: nextBirthdayDate = calculateNextBirthdayDate(target, { now: $time });

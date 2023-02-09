@@ -31,11 +31,10 @@
 		return () => clearInterval(interval);
 	});
 
-	setContext('public-key', data.publicKey);
 	setContext('state', state);
 	setContext('time', time);
 </script>
 
 <AppClock />
-<Birthday targetMap={data.targetMap} timeZoneMap={data.timeZoneMap} />
+<Birthday />
 <AppFooter />
