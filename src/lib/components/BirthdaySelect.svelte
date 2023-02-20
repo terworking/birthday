@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { getContext, onMount } from 'svelte';
 	import type { Readable, Writable } from 'svelte/store';
-	import IconPanLeft from '~icons/mdi/pan-left';
-	import IconPanRight from '~icons/mdi/pan-right';
 	import type { State } from '$lib/types';
 	import { calculateNextBirthdayDate } from '$lib/util';
 	import type { BirthdayData } from './Birthday.svelte';
@@ -39,7 +37,7 @@
 	<label for="birthday">Pilih nama</label>
 	<div>
 		<button on:click={prevKey}>
-			<IconPanLeft />
+			<div class="t-icon i-mdi-pan-left" />
 		</button>
 		<select
 			disabled={$state.disableInteraction}
@@ -54,14 +52,14 @@
 			{/each}
 		</select>
 		<button on:click={nextKey}>
-			<IconPanRight />
+			<div class="t-icon i-mdi-pan-right" />
 		</button>
 	</div>
 
 	<label for="timezone">Pilih zona waktu</label>
 	<div>
 		<button on:click={prevTimeZone}>
-			<IconPanLeft />
+			<div class="t-icon i-mdi-pan-left" />
 		</button>
 		<select
 			disabled={$state.disableInteraction}
@@ -75,7 +73,7 @@
 			{/each}
 		</select>
 		<button on:click={nextTimeZone}>
-			<IconPanRight />
+			<div class="t-icon i-mdi-pan-right" />
 		</button>
 	</div>
 </div>

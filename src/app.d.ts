@@ -1,5 +1,4 @@
 /// <reference types="@sveltejs/kit" />
-/// <reference types="unplugin-icons/types/svelte" />
 
 import type { BirthdayTarget } from '$lib/types';
 import type { KVNamespace } from '@cloudflare/workers-types';

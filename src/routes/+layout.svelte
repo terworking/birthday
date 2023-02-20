@@ -67,10 +67,10 @@
 	}
 
 	.t-icon {
-		--uno: 'text-$t-color w-8 h-8';
+		--uno: '!text-$t-color !h-6 md:!h-8 !w-6 md:!w-8';
 	}
 
 	.t-icon:hover {
-		--uno: 'text-$t-color-alt';
+		--uno: '!text-$t-color-alt';
 	}
 </style>

@@ -1,39 +1,33 @@
 <script lang="ts">
-	import IconDiscord from '~icons/simple-icons/discord';
-	import IconGit from '~icons/simple-icons/git';
-	import IconInstagram from '~icons/simple-icons/instagram';
-	import IconRss from '~icons/simple-icons/rss';
-	import IconYoutube from '~icons/simple-icons/youtube';
-
 	interface FooterIcon {
-		Icon: any;
+		icon: string;
 		title: string;
 		href: string;
 	}
 
 	const icons: FooterIcon[] = [
 		{
-			Icon: IconRss,
+			icon: 'rss',
 			title: 'RSS feed',
 			href: '/rss.xml'
 		},
 		{
-			Icon: IconDiscord,
+			icon: 'discord',
 			title: 'Discord server invite',
 			href: 'https://discord.gg/BMESwz5wE4'
 		},
 		{
-			Icon: IconGit,
+			icon: 'git',
 			title: 'Source code',
 			href: 'https://github.com/terworking/birthday-notify'
 		},
 		{
-			Icon: IconInstagram,
+			icon: 'instagram',
 			title: 'Instagram account',
 			href: 'https://www.instagram.com/terworking/'
 		},
 		{
-			Icon: IconYoutube,
+			icon: 'youtube',
 			title: 'Youtube channel',
 			href: 'https://www.youtube.com/@terworking'
 		}
@@ -42,11 +36,31 @@
 
 <footer class="flex flex-col items-center">
 	<div class="w-full flex justify-around">
-		{#each icons as { Icon, href, title }}
+		{#each icons as { icon, href, title }}
 			{@const [rel, target] = href.startsWith('https') ? ['noreferrer', '_blank'] : []}
-			<a {rel} {target} {title} {href}>
-				<Icon />
-			</a>
+			<a {rel} {target} {title} {href}> <div class={`t-icon ${icon}`} /> </a>
 		{/each}
 	</div>
 </footer>
+
+<style>
+	.rss {
+		--uno: 'i-simple-icons-rss';
+	}
+
+	.discord {
+		--uno: 'i-simple-icons-discord';
+	}
+
+	.git {
+		--uno: 'i-simple-icons-git';
+	}
+
+	.instagram {
+		--uno: 'i-simple-icons-instagram';
+	}
+
+	.youtube {
+		--uno: 'i-simple-icons-youtube';
+	}
+</style>
