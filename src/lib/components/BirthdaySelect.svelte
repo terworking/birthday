@@ -78,24 +78,24 @@
 	</div>
 </div>
 
-<style>
+<style lang="less" global>
 	.birthday-select {
 		--uno: 'w-full flex flex-col items-center';
-	}
 
-	.birthday-select select {
-		--uno: 'bg-$t-bg-color-alt color-inherit w-3/4 rounded-lg border border-solid border-current px-1.5 py-2 mx-0 my-2';
-	}
+		> div {
+			--uno: 'flex justify-between';
+		}
 
-	.birthday-select select:disabled {
-		filter: opacity(0.7);
-	}
+		select {
+			--uno: 'bg-$t-bg-color-alt color-inherit w-3/4 rounded-lg border border-solid border-current px-1.5 py-2 mx-0 my-2';
 
-	.birthday-select > div {
-		--uno: 'flex justify-between';
-	}
+			&:disabled {
+				filter: opacity(0.7);
+			}
+		}
 
-	.birthday-select > div > button {
-		--uno: 'bg-transparent border-0 cursor-pointer';
+		button {
+			--uno: 'bg-transparent border-0 cursor-pointer';
+		}
 	}
 </style>

@@ -58,11 +58,11 @@
 		--uno: 'font-sans bg-$t-bg-color text-$t-color';
 	}
 
-	body > div {
+	.__root {
 		--uno: 'flex flex-col items-center justify-between h-100vh p-8';
 	}
 
-	body > div > :not(.clock) {
+	.__root > :not(.clock) {
 		--uno: 'w-full max-w-sm';
 	}
 

@@ -80,16 +80,16 @@
 	<button on:click={unsubscribe} disabled={$state.disableInteraction}> Unsubscribe </button>
 </div>
 
-<style>
+<style lang="less">
 	button {
 		--uno: 'bg-$t-bg-color-alt color-inherit border border-solid border-current px-2 py-1.5';
-	}
 
-	button:not([disabled]) {
-		--uno: 'cursor-pointer';
-	}
+		&:not([disabled]) {
+			--uno: 'cursor-pointer';
+		}
 
-	button:disabled {
-		filter: opacity(0.7);
+		&:disabled {
+			filter: opacity(0.7);
+		}
 	}
 </style>
