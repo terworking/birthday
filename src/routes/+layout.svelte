@@ -36,21 +36,6 @@
 <AppFooter />
 
 <style uno:preflights global>
-	:global(body) {
-		background-color: var(--t-bg-color);
-		color: var(--t-color);
-	}
-
-	:global(.t-icon) {
-		color: var(--t-color);
-		width: 1.75rem;
-		height: 1.75rem;
-	}
-
-	:global(.t-icon:hover) {
-		color: var(--t-color-alt);
-	}
-
 	@media (prefers-color-scheme: light) {
 		:root {
 			--t-bg-color: #fdf6e3;
@@ -67,5 +52,25 @@
 			--t-color: #657b83;
 			--t-color-alt: #586e75;
 		}
+	}
+
+	body {
+		--uno: 'font-sans bg-$t-bg-color text-$t-color m-0';
+	}
+
+	body > div {
+		--uno: 'flex flex-col items-center justify-between h-100vh p-8';
+	}
+
+	body > div > :not(.clock) {
+		--uno: 'w-full max-w-sm';
+	}
+
+	.t-icon {
+		--uno: 'text-$t-color w-8 h-8';
+	}
+
+	.t-icon:hover {
+		--uno: 'text-$t-color-alt';
 	}
 </style>

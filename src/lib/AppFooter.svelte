@@ -53,14 +53,10 @@
 
 <style>
 	.footer {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+		--uno: 'flex flex-col items-center';
 	}
 
 	.footer-icons {
-		display: flex;
-		justify-content: space-around;
-		width: 100%;
+		--uno: 'w-full flex justify-around';
 	}
 </style>

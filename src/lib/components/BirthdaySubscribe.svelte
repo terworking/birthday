@@ -82,20 +82,15 @@
 
 <style>
 	.subscription-button-container {
-		width: 100%;
-		display: flex;
-		justify-content: space-evenly;
+		--uno: 'w-full flex justify-evenly';
 	}
 
 	.subscription-button-container > button {
-		background-color: var(--t-bg-color-alt);
-		color: inherit;
-		border: 1px solid currentColor;
-		padding: 6px 8px;
+		--uno: 'bg-$t-bg-color-alt color-inherit border border-solid border-current px-2 py-1.5';
 	}
 
 	.subscription-button-container > button:not([disabled]) {
-		cursor: pointer;
+		--uno: 'cursor-pointer';
 	}
 
 	.subscription-button-container > button:disabled {

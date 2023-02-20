@@ -11,6 +11,6 @@
 
 <style>
 	.clock {
-		font-weight: 600;
+		--uno: 'font-semibold';
 	}
 </style>

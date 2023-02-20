@@ -36,11 +36,10 @@
 
 <style>
 	.birthday-content {
-		text-align: center;
+		--uno: 'text-center';
 	}
 
 	.upcoming-birthday {
-		font-size: 1rem;
-		font-weight: 600;
+		--uno: 'font-semibold';
 	}
 </style>

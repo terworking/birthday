@@ -82,20 +82,11 @@
 
 <style>
 	.birthday-select {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+		--uno: 'w-full flex flex-col items-center';
 	}
 
 	.birthday-select select {
-		background-color: var(--t-bg-color-alt);
-		color: inherit;
-		border: 1px solid currentColor;
-		padding: 8px 6px;
-		margin: 8px 0;
-		border-radius: 8px;
-		width: 75%;
+		--uno: 'bg-$t-bg-color-alt color-inherit w-3/4 rounded-lg border border-solid border-current px-1.5 py-2 mx-0 my-2';
 	}
 
 	.birthday-select select:disabled {
@@ -103,13 +94,10 @@
 	}
 
 	.select-container {
-		display: flex;
-		justify-content: space-between;
+		--uno: 'flex justify-between';
 	}
 
 	.select-container > button {
-		background-color: transparent;
-		border: 0;
-		cursor: pointer;
+		--uno: 'bg-transparent border-0 cursor-pointer';
 	}
 </style>

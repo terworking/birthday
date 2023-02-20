@@ -15,18 +15,8 @@
 	export let data: BirthdayData;
 </script>
 
-<main>
+<main class="w-full flex flex-col justify-center items-center">
 	<BirthdaySelect {data} />
 	<BirthdayContent {data} />
 	<BirthdaySubscribe {data} />
 </main>
-
-<style>
-	main {
-		display: flex;
-		width: 100%;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-</style>
