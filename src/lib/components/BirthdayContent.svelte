@@ -6,7 +6,7 @@
 	import { getContext } from 'svelte';
 	import type { BirthdayData } from './Birthday.svelte';
 
-	export let data: BirthdayData;
+	export let data: Pick<BirthdayData, 'targetMap'>;
 	const state = getContext('state') as Writable<State>;
 	const time = getContext('time') as Readable<Date>;
 

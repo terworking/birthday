@@ -9,7 +9,7 @@
 	} from '../webpush';
 	import type { BirthdayData } from './Birthday.svelte';
 
-	export let data: BirthdayData;
+	export let data: Pick<BirthdayData, 'publicKey'>;
 	const { publicKey } = data;
 	const state = getContext('state') as Writable<State>;
 

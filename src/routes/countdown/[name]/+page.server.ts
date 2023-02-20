@@ -4,11 +4,11 @@ import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load = (({ params: { name } }) => {
-	const target = targets.find((value) => value.name.toLowerCase().replaceAll(' ', '-') === name);
+	const match = targets.find((value) => value.name.toLowerCase().replaceAll(' ', '-') === name);
 
-	if (target === undefined) {
+	if (match === undefined) {
 		throw error(404);
 	}
 
-	return { key: birthdayTargetAsKey(target), value: target };
+	return { target: { key: birthdayTargetAsKey(match), ...match } };
 }) satisfies PageServerLoad;

@@ -1,6 +1,5 @@
 import { targetMap } from '$lib/server/target';
 import { rawTimeZones } from '@vvo/tzdb';
-import { getPublicKeyFromJwk } from 'cf-webpush';
 import type { PageServerLoad } from './$types';
 
 export const load = (({ locals: { jwk } }) => {
@@ -15,5 +14,5 @@ export const load = (({ locals: { jwk } }) => {
 			})
 	);
 
-	return { targetMap, timeZoneMap, publicKey: getPublicKeyFromJwk(jwk) };
+	return { targetMap, timeZoneMap };
 }) satisfies PageServerLoad;
