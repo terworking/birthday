@@ -1,15 +1,16 @@
 <script lang="ts">
 	import type { Readable, Writable } from 'svelte/store';
-	import { page } from '$app/stores';
 	import type { State } from '$lib/types';
 	import { format, formatDistance } from 'date-fns';
 	import { calculateNextBirthdayDate } from '$lib/util';
 	import { getContext } from 'svelte';
+	import type { BirthdayData } from './Birthday.svelte';
 
+	export let data: BirthdayData;
 	const state = getContext('state') as Writable<State>;
 	const time = getContext('time') as Readable<Date>;
 
-	$: target = $page.data.targetMap[$state.selectedKey];
+	$: target = data.targetMap[$state.selectedKey];
 	$: birthDate = format(new Date(target.year, target.month - 1, target.date), 'd/M/yyyy');
 
 	$: nextBirthdayDate = calculateNextBirthdayDate(target, { now: $time });
@@ -26,20 +27,9 @@
 	);
 </script>
 
-<div class="birthday-content">
-	<p class="upcoming-birthday">
+<div class="text-center">
+	<p class="font-semibold">
 		{birthDate} &gt; {upcomingBirthdayDates.join(', ')}, ...
 	</p>
 	<p>Next notification {distanceToNextBirthdayDate}</p>
 </div>
-
-<style>
-	.birthday-content {
-		text-align: center;
-	}
-
-	.upcoming-birthday {
-		font-size: 1rem;
-		font-weight: 600;
-	}
-</style>

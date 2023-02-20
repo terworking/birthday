@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { page } from '$app/stores';
 	import type { Writable } from 'svelte/store';
 	import type { State } from '../types';
 	import {
@@ -8,8 +7,10 @@
 		checkWebpushCompability,
 		generateSubscriptionPayload
 	} from '../webpush';
+	import type { BirthdayData } from './Birthday.svelte';
 
-	const { publicKey } = $page.data;
+	export let data: BirthdayData;
+	const { publicKey } = data;
 	const state = getContext('state') as Writable<State>;
 
 	const subscribe = async () => {
@@ -74,30 +75,21 @@
 	};
 </script>
 
-<div class="subscription-button-container">
+<div class="w-full flex justify-evenly">
 	<button on:click={subscribe} disabled={$state.disableInteraction}> Subscribe </button>
 	<button on:click={unsubscribe} disabled={$state.disableInteraction}> Unsubscribe </button>
 </div>
 
-<style>
-	.subscription-button-container {
-		width: 100%;
-		display: flex;
-		justify-content: space-evenly;
-	}
+<style lang="less">
+	button {
+		--uno: 'bg-$t-bg-color-alt color-inherit border border-solid border-current px-2 py-1.5';
 
-	.subscription-button-container > button {
-		background-color: var(--t-bg-color-alt);
-		color: inherit;
-		border: 1px solid currentColor;
-		padding: 6px 8px;
-	}
+		&:not([disabled]) {
+			--uno: 'cursor-pointer';
+		}
 
-	.subscription-button-container > button:not([disabled]) {
-		cursor: pointer;
-	}
-
-	.subscription-button-container > button:disabled {
-		filter: opacity(0.7);
+		&:disabled {
+			filter: opacity(0.7);
+		}
 	}
 </style>

@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { getContext, onMount } from 'svelte';
-	import { page } from '$app/stores';
 	import type { Readable, Writable } from 'svelte/store';
-	import IconPanLeft from '~icons/mdi/pan-left';
-	import IconPanRight from '~icons/mdi/pan-right';
 	import type { State } from '$lib/types';
 	import { calculateNextBirthdayDate } from '$lib/util';
+	import type { BirthdayData } from './Birthday.svelte';
 
-	const { targetMap, timeZoneMap } = $page.data;
+	export let data: BirthdayData;
+	const { targetMap, timeZoneMap } = data;
 	const state = getContext('state') as Writable<State>;
 	const time = getContext('time') as Readable<Date>;
 
@@ -36,9 +35,9 @@
 
 <div class="birthday-select">
 	<label for="birthday">Pilih nama</label>
-	<div class="select-container">
+	<div>
 		<button on:click={prevKey}>
-			<IconPanLeft />
+			<div class="t-icon i-mdi-pan-left" />
 		</button>
 		<select
 			disabled={$state.disableInteraction}
@@ -53,14 +52,14 @@
 			{/each}
 		</select>
 		<button on:click={nextKey}>
-			<IconPanRight />
+			<div class="t-icon i-mdi-pan-right" />
 		</button>
 	</div>
 
 	<label for="timezone">Pilih zona waktu</label>
-	<div class="select-container">
+	<div>
 		<button on:click={prevTimeZone}>
-			<IconPanLeft />
+			<div class="t-icon i-mdi-pan-left" />
 		</button>
 		<select
 			disabled={$state.disableInteraction}
@@ -74,41 +73,29 @@
 			{/each}
 		</select>
 		<button on:click={nextTimeZone}>
-			<IconPanRight />
+			<div class="t-icon i-mdi-pan-right" />
 		</button>
 	</div>
 </div>
 
-<style>
+<style lang="less" global>
 	.birthday-select {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
+		--uno: 'w-full flex flex-col items-center';
 
-	.birthday-select select {
-		background-color: var(--t-bg-color-alt);
-		color: inherit;
-		border: 1px solid currentColor;
-		padding: 8px 6px;
-		margin: 8px 0;
-		border-radius: 8px;
-		width: 75%;
-	}
+		> div {
+			--uno: 'flex justify-between';
+		}
 
-	.birthday-select select:disabled {
-		filter: opacity(0.7);
-	}
+		select {
+			--uno: 'bg-$t-bg-color-alt color-inherit w-3/4 rounded-lg border border-solid border-current px-1.5 py-2 mx-0 my-2';
 
-	.select-container {
-		display: flex;
-		justify-content: space-between;
-	}
+			&:disabled {
+				filter: opacity(0.7);
+			}
+		}
 
-	.select-container > button {
-		background-color: transparent;
-		border: 0;
-		cursor: pointer;
+		button {
+			--uno: 'bg-transparent border-0 cursor-pointer';
+		}
 	}
 </style>

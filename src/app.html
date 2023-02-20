@@ -3,28 +3,10 @@
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<link rel="stylesheet" href="%sveltekit.assets%/normalize.css" />
-		<link rel="stylesheet" href="%sveltekit.assets%/global.css" />
 		<meta name="viewport" content="width=device-width" />
 		%sveltekit.head%
 	</head>
 	<body>
-		<div class="content">%sveltekit.body%</div>
+		<div class="__root">%sveltekit.body%</div>
 	</body>
 </html>
-
-<style>
-	.content {
-		padding: 32px 16px;
-		height: 100vh;
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-		justify-content: space-between;
-	}
-
-	.content > :not(.clock) {
-		width: 100%;
-		max-width: 350px;
-	}
-</style>
