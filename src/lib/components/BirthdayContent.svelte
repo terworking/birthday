@@ -27,19 +27,9 @@
 	);
 </script>
 
-<div class="birthday-content">
-	<p class="upcoming-birthday">
+<div class="text-center">
+	<p class="font-semibold">
 		{birthDate} &gt; {upcomingBirthdayDates.join(', ')}, ...
 	</p>
 	<p>Next notification {distanceToNextBirthdayDate}</p>
 </div>
-
-<style>
-	.birthday-content {
-		--uno: 'text-center';
-	}
-
-	.upcoming-birthday {
-		--uno: 'font-semibold';
-	}
-</style>

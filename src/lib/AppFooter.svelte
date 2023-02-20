@@ -40,8 +40,8 @@
 	];
 </script>
 
-<footer class="footer">
-	<div class="footer-icons">
+<footer class="flex flex-col items-center">
+	<div class="w-full flex justify-around">
 		{#each icons as { Icon, href, title }}
 			{@const [rel, target] = href.startsWith('https') ? ['noreferrer', '_blank'] : []}
 			<a {rel} {target} {title} {href}>
@@ -50,13 +50,3 @@
 		{/each}
 	</div>
 </footer>
-
-<style>
-	.footer {
-		--uno: 'flex flex-col items-center';
-	}
-
-	.footer-icons {
-		--uno: 'w-full flex justify-around';
-	}
-</style>

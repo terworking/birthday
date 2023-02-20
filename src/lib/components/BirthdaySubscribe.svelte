@@ -75,25 +75,21 @@
 	};
 </script>
 
-<div class="subscription-button-container">
+<div class="w-full flex justify-evenly">
 	<button on:click={subscribe} disabled={$state.disableInteraction}> Subscribe </button>
 	<button on:click={unsubscribe} disabled={$state.disableInteraction}> Unsubscribe </button>
 </div>
 
 <style>
-	.subscription-button-container {
-		--uno: 'w-full flex justify-evenly';
-	}
-
-	.subscription-button-container > button {
+	button {
 		--uno: 'bg-$t-bg-color-alt color-inherit border border-solid border-current px-2 py-1.5';
 	}
 
-	.subscription-button-container > button:not([disabled]) {
+	button:not([disabled]) {
 		--uno: 'cursor-pointer';
 	}
 
-	.subscription-button-container > button:disabled {
+	button:disabled {
 		filter: opacity(0.7);
 	}
 </style>

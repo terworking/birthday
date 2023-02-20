@@ -37,7 +37,7 @@
 
 <div class="birthday-select">
 	<label for="birthday">Pilih nama</label>
-	<div class="select-container">
+	<div>
 		<button on:click={prevKey}>
 			<IconPanLeft />
 		</button>
@@ -59,7 +59,7 @@
 	</div>
 
 	<label for="timezone">Pilih zona waktu</label>
-	<div class="select-container">
+	<div>
 		<button on:click={prevTimeZone}>
 			<IconPanLeft />
 		</button>
@@ -93,11 +93,11 @@
 		filter: opacity(0.7);
 	}
 
-	.select-container {
+	.birthday-select > div {
 		--uno: 'flex justify-between';
 	}
 
-	.select-container > button {
+	.birthday-select > div > button {
 		--uno: 'bg-transparent border-0 cursor-pointer';
 	}
 </style>

@@ -55,7 +55,7 @@
 	}
 
 	body {
-		--uno: 'font-sans bg-$t-bg-color text-$t-color m-0';
+		--uno: 'font-sans bg-$t-bg-color text-$t-color';
 	}
 
 	body > div {

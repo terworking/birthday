@@ -7,10 +7,4 @@
 	$: value = format($time, 'do MMMM, yyyy hh:mm:ss a');
 </script>
 
-<p class="clock">{value}</p>
-
-<style>
-	.clock {
-		--uno: 'font-semibold';
-	}
-</style>
+<p class="font-semibold text-center">{value}</p>
