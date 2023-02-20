@@ -23,11 +23,11 @@
 	$: durationToNextBirthdayDate = formatDuration(
 		intervalToDuration({ start: $time, end: nextBirthdayDate }),
 		{ format: ['months', 'days', 'hours', 'minutes', 'seconds'], zero: true }
-	);
+	).replace(/(days?) /, '$1\n'); // add a newline after days
 </script>
 
-<p><span> {data.target.name} </span> turns <span> {birthdayAge} </span> in</p>
-<p><span> {durationToNextBirthdayDate} </span></p>
+<p><span> {data.target.name} </span> turns <span> {birthdayAge} </span></p>
+<p>in <span> {durationToNextBirthdayDate} </span></p>
 
 <style>
 	p {
@@ -36,5 +36,6 @@
 
 	p > span {
 		font-weight: 700;
+		white-space: pre-line;
 	}
 </style>
