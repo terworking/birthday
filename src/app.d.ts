@@ -12,11 +12,7 @@ declare global {
 		interface Locals {
 			jwk: JsonWebKey;
 		}
-		interface PageData {
-			publicKey: string;
-			targetMap: Record<string, BirthdayTarget>;
-			timeZoneMap: Record<string, string>;
-		}
+		// interface PageData {}
 		interface Platform {
 			env?: {
 				BIRTHDAY_STORE: KVNamespace;

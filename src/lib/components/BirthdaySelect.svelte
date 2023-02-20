@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { getContext, onMount } from 'svelte';
-	import { page } from '$app/stores';
 	import type { Readable, Writable } from 'svelte/store';
 	import IconPanLeft from '~icons/mdi/pan-left';
 	import IconPanRight from '~icons/mdi/pan-right';
 	import type { State } from '$lib/types';
 	import { calculateNextBirthdayDate } from '$lib/util';
+	import type { BirthdayData } from './Birthday.svelte';
 
-	const { targetMap, timeZoneMap } = $page.data;
+	export let data: BirthdayData;
+	const { targetMap, timeZoneMap } = data;
 	const state = getContext('state') as Writable<State>;
 	const time = getContext('time') as Readable<Date>;
 

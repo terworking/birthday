@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { page } from '$app/stores';
 	import type { Writable } from 'svelte/store';
 	import type { State } from '../types';
 	import {
@@ -8,8 +7,10 @@
 		checkWebpushCompability,
 		generateSubscriptionPayload
 	} from '../webpush';
+	import type { BirthdayData } from './Birthday.svelte';
 
-	const { publicKey } = $page.data;
+	export let data: BirthdayData;
+	const { publicKey } = data;
 	const state = getContext('state') as Writable<State>;
 
 	const subscribe = async () => {
