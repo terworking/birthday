@@ -6,6 +6,8 @@
 	import { setContext } from 'svelte';
 	import { readable, writable } from 'svelte/store';
 
+	import '$lib/normalize.css';
+
 	const state = writable<State>({
 		disableInteraction: false,
 		selectedKey: '',
