@@ -1,16 +1,25 @@
 <script lang="ts">
+	import { page } from '$app/stores';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+	import type { State } from './types';
+
 	interface FooterIcon {
 		icon: string;
 		title: string;
 		href: string;
 	}
 
-	const icons: FooterIcon[] = [
-		{
-			icon: 'rss',
-			title: 'RSS feed',
-			href: '/rss.xml'
-		},
+	const state = getContext('state') as Writable<State>;
+
+	$: icons = <FooterIcon[]>[
+		$page.route.id === '/'
+			? {
+					icon: 'counter',
+					title: 'Counter page',
+					href: `/countdown/${$state.selectedKey}`
+			  }
+			: { icon: 'home', title: 'Index page', href: '/' },
 		{
 			icon: 'discord',
 			title: 'Discord server invite',
@@ -44,8 +53,12 @@
 </footer>
 
 <style>
-	.rss {
-		--uno: 'i-simple-icons-rss';
+	.home {
+		--uno: 'i-mdi-home';
+	}
+
+	.counter {
+		--uno: 'i-simple-icons-counterstrike';
 	}
 
 	.discord {
