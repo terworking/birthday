@@ -15,7 +15,11 @@
 			calculateNextBirthdayDate(a, { now: $time }).valueOf() -
 			calculateNextBirthdayDate(b, { now: $time }).valueOf()
 	);
-	onMount(() => ($state.selectedKey = sortedTargets[0][0]));
+	onMount(() => {
+		if ($state.selectedKey === '') {
+			$state.selectedKey = sortedTargets[0][0];
+		}
+	});
 
 	$: keyIndex = sortedTargets.findIndex(([key]) => key === $state.selectedKey);
 	const nextKey = () =>

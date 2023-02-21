@@ -9,8 +9,12 @@
 	export let data: PageData;
 
 	const state = getContext('state') as Writable<State>;
+
 	onMount(() => {
-		$state.selectedKey = $page.url.searchParams.get('select') ?? Object.keys(data.targetMap)[0];
+		const selectQuery = $page.url.searchParams.get('select');
+		if (selectQuery !== null) {
+			$state.selectedKey = selectQuery;
+		}
 	});
 </script>
 
