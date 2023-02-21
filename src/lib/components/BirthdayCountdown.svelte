@@ -29,13 +29,13 @@
 <p><span> {data.target.name} </span> turns <span> {birthdayAge} </span></p>
 <p>in <span> {durationToNextBirthdayDate} </span></p>
 
-<style>
+<style lang="less">
 	p {
-		text-align: center;
-	}
+		--uno: 'text-center';
 
-	p > span {
-		font-weight: 700;
-		white-space: pre-line;
+		> :global(span) {
+			--uno: 'font-bold';
+			white-space: pre-line;
+		}
 	}
 </style>
