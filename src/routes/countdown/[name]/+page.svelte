@@ -12,7 +12,7 @@
 	export let data: PageData;
 
 	const state = getContext('state') as Writable<State>;
-	$state.selectedKey = data.target.key;
+	$: $state.selectedKey = data.target.key;
 
 	const navigate = async (to: 'next' | 'previous') => {
 		const url = new URL($page.url);

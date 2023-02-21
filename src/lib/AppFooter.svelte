@@ -12,14 +12,19 @@
 
 	const state = getContext('state') as Writable<State>;
 
+	$: ({ selectedKey } = $state);
 	$: icons = <FooterIcon[]>[
 		$page.route.id === '/'
 			? {
 					icon: 'counter',
 					title: 'Counter page',
-					href: `/countdown/${$state.selectedKey}`
+					href: `/countdown/${selectedKey}`
 			  }
-			: { icon: 'home', title: 'Index page', href: '/' },
+			: {
+					icon: 'home',
+					title: 'Index page',
+					href: `/?select=${selectedKey}`
+			  },
 		{
 			icon: 'discord',
 			title: 'Discord server invite',
