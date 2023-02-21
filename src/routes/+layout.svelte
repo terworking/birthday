@@ -75,4 +75,8 @@
 	.t-icon:hover {
 		--uno: '!text-$t-color-alt';
 	}
+
+	button:not([disabled]) {
+		--uno: 'cursor-pointer';
+	}
 </style>

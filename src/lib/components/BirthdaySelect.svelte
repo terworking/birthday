@@ -95,7 +95,7 @@
 		}
 
 		button {
-			--uno: 'bg-transparent border-0 cursor-pointer';
+			--uno: 'bg-transparent border-0';
 		}
 	}
 </style>

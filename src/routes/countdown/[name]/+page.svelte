@@ -35,9 +35,3 @@
 	</div>
 	<button on:click={() => navigate('next')} class="t-icon i-mdi-pan-right" />
 </div>
-
-<style>
-	button {
-		--uno: 'cursor-pointer';
-	}
-</style>

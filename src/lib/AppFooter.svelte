@@ -58,7 +58,7 @@
 			on:click={() => navigate()}
 			class:i-simple-icons-counterstrike={isIndex}
 			class:i-mdi-home={!isIndex}
-			class="t-icon cursor-pointer"
+			class="t-icon"
 			title={`${isIndex ? 'Counter' : 'Index'} page`}
 		/>
 		{#each links as { icon, href, title }}

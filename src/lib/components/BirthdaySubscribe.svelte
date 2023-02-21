@@ -84,10 +84,6 @@
 	button {
 		--uno: 'bg-$t-bg-color-alt color-inherit border border-solid border-current px-2 py-1.5';
 
-		&:not([disabled]) {
-			--uno: 'cursor-pointer';
-		}
-
 		&:disabled {
 			filter: opacity(0.7);
 		}
