@@ -13,11 +13,11 @@
 	import type { Readable } from 'svelte/store';
 
 	export let data: CountdownData;
+	export let birthdayAge: number;
 
 	const time = getContext('time') as Readable<Date>;
 
-	const birthDate = new Date(data.target.year, data.target.month - 1, data.target.date);
-
+	$: birthDate = new Date(data.target.year, data.target.month - 1, data.target.date);
 	$: nextBirthdayDate = calculateNextBirthdayDate(data.target, { now: $time });
 	$: birthdayAge = intervalToDuration({ start: birthDate, end: nextBirthdayDate }).years!;
 	$: durationToNextBirthdayDate = formatDuration(
