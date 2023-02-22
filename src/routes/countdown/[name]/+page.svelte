@@ -15,7 +15,7 @@
 	$: $state.selectedKey = data.target.key;
 
 	const navigate = async (to: 'next' | 'previous') => {
-		await goto(`/countdown/${data[to]}`);
+		await goto(`/countdown/${data[to]}`, { replaceState: true, noScroll: true });
 	};
 
 	let birthdayAge: number = 0;
