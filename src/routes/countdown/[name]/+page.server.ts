@@ -6,7 +6,7 @@ import type { PageServerLoad } from './$types';
 const normalizeName = (name: string) => name.toLowerCase().replaceAll(' ', '-');
 
 export const load = (({ params, url }) => {
-	let matchIndex = targets.findIndex(
+	const matchIndex = targets.findIndex(
 		(value) =>
 			birthdayTargetAsKey(value) === params.name || normalizeName(value.name) === params.name
 	);
@@ -15,26 +15,18 @@ export const load = (({ params, url }) => {
 		throw error(404);
 	}
 
-	let shouldRedirect = false;
-	if (url.searchParams.get('previous') === '1') {
-		matchIndex -= 1;
-		shouldRedirect = true;
-	} else if (url.searchParams.get('next') === '1') {
-		matchIndex += 1;
-		shouldRedirect = true;
-	}
-
-	const match = targets.at(matchIndex % targets.length)!;
+	const [left, match, right] = Array.from(
+		{ length: 3 },
+		(_, index) => targets.at((-1 + index + matchIndex) % targets.length)!
+	);
 
 	const key = birthdayTargetAsKey(match);
 	if (key === params.name) {
-		shouldRedirect = true;
-	}
-
-	if (shouldRedirect) {
 		const name = normalizeName(match.name);
 		throw redirect(301, `/countdown/${name}`);
 	}
 
-	return { target: { key, ...match } };
+	const [previous, next] = [left, right].map(({ name }) => normalizeName(name));
+
+	return { target: { key, ...match }, previous, next };
 }) satisfies PageServerLoad;

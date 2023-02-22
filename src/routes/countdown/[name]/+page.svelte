@@ -15,9 +15,7 @@
 	$: $state.selectedKey = data.target.key;
 
 	const navigate = async (to: 'next' | 'previous') => {
-		const url = new URL($page.url);
-		url.searchParams.set(to, '1');
-		await goto(url);
+		await goto(`/countdown/${data[to]}`);
 	};
 
 	let birthdayAge: number = 0;
