@@ -5,7 +5,7 @@ import type { PageServerLoad } from './$types';
 
 const normalizeName = (name: string) => name.toLowerCase().replaceAll(' ', '-');
 
-export const load = (({ params, url }) => {
+export const load = (({ params }) => {
 	const matchIndex = targets.findIndex(
 		(value) =>
 			birthdayTargetAsKey(value) === params.name || normalizeName(value.name) === params.name

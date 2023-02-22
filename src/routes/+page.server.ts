@@ -2,7 +2,7 @@ import { targetMap } from '$lib/server/target';
 import { rawTimeZones } from '@vvo/tzdb';
 import type { PageServerLoad } from './$types';
 
-export const load = (({ locals: { jwk } }) => {
+export const load = (() => {
 	const timeZoneMap = Object.fromEntries(
 		rawTimeZones
 			.sort(({ name: a }, { name: b }) => a.localeCompare(b))
