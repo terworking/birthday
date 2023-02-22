@@ -1,16 +1,16 @@
 <script lang="ts">
-	interface FooterIcon {
+	import { page } from '$app/stores';
+	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+	import type { State } from './types';
+
+	interface FooterLink {
 		icon: string;
 		title: string;
 		href: string;
 	}
 
-	const icons: FooterIcon[] = [
-		{
-			icon: 'rss',
-			title: 'RSS feed',
-			href: '/rss.xml'
-		},
+	const links = <FooterLink[]>[
 		{
 			icon: 'discord',
 			title: 'Discord server invite',
@@ -32,20 +32,42 @@
 			href: 'https://www.youtube.com/@terworking'
 		}
 	];
+
+	const state = getContext('state') as Writable<State>;
+	$: other = (
+		$page.route.id === '/'
+			? {
+					icon: 'counter',
+					title: 'Counter page',
+					href: `/countdown/${$state.selectedKey.split(':')[0].replaceAll('_', '-')}`
+			  }
+			: {
+					icon: 'home',
+					title: 'Index page',
+					href: `/?select=${$state.selectedKey}`
+			  }
+	) satisfies FooterLink;
 </script>
 
 <footer class="flex flex-col items-center">
 	<div class="w-full flex justify-around">
-		{#each icons as { icon, href, title }}
-			{@const [rel, target] = href.startsWith('https') ? ['noreferrer', '_blank'] : []}
-			<a {rel} {target} {title} {href}> <div class={`t-icon ${icon}`} /> </a>
+		<a href={other.href} title={other.title}>
+			<div class={`t-icon ${other.icon}`} />
+		</a>
+
+		{#each links as { icon, href, title }}
+			<a rel="noreferrer" target="_blank" {title} {href}> <div class={`t-icon ${icon}`} /> </a>
 		{/each}
 	</div>
 </footer>
 
 <style>
-	.rss {
-		--uno: 'i-simple-icons-rss';
+	.counter {
+		--uno: 'i-simple-icons-counterstrike';
+	}
+
+	.home {
+		--uno: 'i-mdi-home';
 	}
 
 	.discord {

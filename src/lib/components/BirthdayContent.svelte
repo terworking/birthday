@@ -6,11 +6,11 @@
 	import { getContext } from 'svelte';
 	import type { BirthdayData } from './Birthday.svelte';
 
-	export let data: BirthdayData;
+	export let data: Pick<BirthdayData, 'targetMap'>;
 	const state = getContext('state') as Writable<State>;
 	const time = getContext('time') as Readable<Date>;
 
-	$: target = data.targetMap[$state.selectedKey];
+	$: target = data.targetMap[$state.selectedKey || Object.keys(data.targetMap)[0]];
 	$: birthDate = format(new Date(target.year, target.month - 1, target.date), 'd/M/yyyy');
 
 	$: nextBirthdayDate = calculateNextBirthdayDate(target, { now: $time });

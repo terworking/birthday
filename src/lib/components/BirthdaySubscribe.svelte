@@ -9,7 +9,7 @@
 	} from '../webpush';
 	import type { BirthdayData } from './Birthday.svelte';
 
-	export let data: BirthdayData;
+	export let data: Pick<BirthdayData, 'publicKey'>;
 	const { publicKey } = data;
 	const state = getContext('state') as Writable<State>;
 
@@ -83,10 +83,6 @@
 <style lang="less">
 	button {
 		--uno: 'bg-$t-bg-color-alt color-inherit border border-solid border-current px-2 py-1.5';
-
-		&:not([disabled]) {
-			--uno: 'cursor-pointer';
-		}
 
 		&:disabled {
 			filter: opacity(0.7);

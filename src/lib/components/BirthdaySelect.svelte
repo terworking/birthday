@@ -5,7 +5,7 @@
 	import { calculateNextBirthdayDate } from '$lib/util';
 	import type { BirthdayData } from './Birthday.svelte';
 
-	export let data: BirthdayData;
+	export let data: Pick<BirthdayData, 'targetMap' | 'timeZoneMap'>;
 	const { targetMap, timeZoneMap } = data;
 	const state = getContext('state') as Writable<State>;
 	const time = getContext('time') as Readable<Date>;
@@ -15,7 +15,11 @@
 			calculateNextBirthdayDate(a, { now: $time }).valueOf() -
 			calculateNextBirthdayDate(b, { now: $time }).valueOf()
 	);
-	onMount(() => ($state.selectedKey = sortedTargets[0][0]));
+	onMount(() => {
+		if ($state.selectedKey === '') {
+			$state.selectedKey = sortedTargets[0][0];
+		}
+	});
 
 	$: keyIndex = sortedTargets.findIndex(([key]) => key === $state.selectedKey);
 	const nextKey = () =>
@@ -95,7 +99,7 @@
 		}
 
 		button {
-			--uno: 'bg-transparent border-0 cursor-pointer';
+			--uno: 'bg-transparent border-0';
 		}
 	}
 </style>
