@@ -23,11 +23,18 @@
 	$: durationToNextBirthdayDate = formatDuration(
 		intervalToDuration({ start: $time, end: nextBirthdayDate }),
 		{ format: ['months', 'days', 'hours', 'minutes', 'seconds'], zero: true }
-	).replace(/(days?) /, '$1\n'); // add a newline after days
+	).replace(/0 (month|day)s? /g, ''); // remove 0 month and 0 days
+
+	$: content = durationToNextBirthdayDate.replace(
+		durationToNextBirthdayDate.includes('month')
+			? /(day|hour)s? / // only add a newline after days? if month is not removed
+			: /(hours?) /,
+		'$1\n' // add a newline after a match
+	);
 </script>
 
 <p><span> {data.target.name} </span> turns <span> {birthdayAge} </span></p>
-<p>in <span> {durationToNextBirthdayDate} </span></p>
+<p>in <span> {content} </span></p>
 
 <style lang="less">
 	p {
