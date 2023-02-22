@@ -1,6 +1,6 @@
 import { targets } from '$lib/server/target';
 import { birthdayTargetAsKey } from '$lib/util';
-import { error, redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 const normalizeName = (name: string) => name.toLowerCase().replaceAll(' ', '-');
