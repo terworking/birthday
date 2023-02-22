@@ -79,4 +79,8 @@
 	button:not([disabled]) {
 		--uno: 'cursor-pointer';
 	}
+
+	button[disabled] {
+		--uno: 'cursor-not-allowed';
+	}
 </style>

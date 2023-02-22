@@ -25,10 +25,18 @@
 </svelte:head>
 
 <div class="flex items-center justify-between">
-	<button on:click={() => navigate('previous')} class="t-icon i-mdi-pan-left" />
+	<button
+		disabled={$state.disableInteraction}
+		on:click={() => navigate('previous')}
+		class="t-icon i-mdi-pan-left"
+	/>
 	<div class="flex-1">
 		<BirthdayCountdown bind:birthdayAge {data} />
 		<BirthdaySubscribe {data} />
 	</div>
-	<button on:click={() => navigate('next')} class="t-icon i-mdi-pan-right" />
+	<button
+		disabled={$state.disableInteraction}
+		on:click={() => navigate('next')}
+		class="t-icon i-mdi-pan-right"
+	/>
 </div>

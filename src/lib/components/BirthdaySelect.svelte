@@ -40,9 +40,7 @@
 <div class="birthday-select">
 	<label for="birthday">Pilih nama</label>
 	<div>
-		<button on:click={prevKey}>
-			<div class="t-icon i-mdi-pan-left" />
-		</button>
+		<button disabled={$state.disableInteraction} on:click={prevKey} class="t-icon i-mdi-pan-left" />
 		<select
 			disabled={$state.disableInteraction}
 			aria-labelledby="Pilih nama"
@@ -55,16 +53,20 @@
 				<option value={key}>{i + 1} - {name}</option>
 			{/each}
 		</select>
-		<button on:click={nextKey}>
-			<div class="t-icon i-mdi-pan-right" />
-		</button>
+		<button
+			disabled={$state.disableInteraction}
+			on:click={nextKey}
+			class="t-icon i-mdi-pan-right"
+		/>
 	</div>
 
 	<label for="timezone">Pilih zona waktu</label>
 	<div>
-		<button on:click={prevTimeZone}>
-			<div class="t-icon i-mdi-pan-left" />
-		</button>
+		<button
+			disabled={$state.disableInteraction}
+			on:click={prevTimeZone}
+			class="t-icon i-mdi-pan-left"
+		/>
 		<select
 			disabled={$state.disableInteraction}
 			aria-labelledby="Pilih zona waktu"
@@ -76,9 +78,11 @@
 				<option value={key}>{value}</option>
 			{/each}
 		</select>
-		<button on:click={nextTimeZone}>
-			<div class="t-icon i-mdi-pan-right" />
-		</button>
+		<button
+			disabled={$state.disableInteraction}
+			on:click={nextTimeZone}
+			class="t-icon i-mdi-pan-right"
+		/>
 	</div>
 </div>
 
@@ -87,7 +91,7 @@
 		--uno: 'w-full flex flex-col items-center';
 
 		> div {
-			--uno: 'flex justify-between';
+			--uno: 'flex items-center justify-between';
 		}
 
 		select {
@@ -96,10 +100,6 @@
 			&:disabled {
 				filter: opacity(0.7);
 			}
-		}
-
-		button {
-			--uno: 'bg-transparent border-0';
 		}
 	}
 </style>
