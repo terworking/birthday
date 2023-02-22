@@ -11,7 +11,7 @@
 		href: string;
 	}
 
-	$: links = <FooterLink[]>[
+	const links = <FooterLink[]>[
 		{
 			icon: 'discord',
 			title: 'Discord server invite',
@@ -35,32 +35,24 @@
 	];
 
 	const state = getContext('state') as Writable<State>;
-
-	$: isIndex = $page.route.id === '/';
-	const navigate = async () => {
-		const url = new URL($page.url);
-		const key = $state.selectedKey;
-
-		if (isIndex) {
-			url.pathname = `/countdown/${key}`;
-		} else {
-			url.pathname = '/';
-			url.searchParams.set('select', key);
-		}
-
-		await goto(url);
-	};
 </script>
 
 <footer class="flex flex-col items-center">
 	<div class="w-full flex justify-around">
-		<button
-			on:click={() => navigate()}
-			class:i-simple-icons-counterstrike={isIndex}
-			class:i-mdi-home={!isIndex}
-			class="t-icon"
-			title={`${isIndex ? 'Counter' : 'Index'} page`}
-		/>
+		{#if $page.route.id === '/'}
+			<button
+				on:click={() => goto(`/countdown/${$state.selectedKey.split(':')[0].replaceAll('_', '-')}`)}
+				class="t-icon i-simple-icons-counterstrike"
+				title="Counter page"
+			/>
+		{:else}
+			<button
+				on:click={() => goto(`/?select=${$state.selectedKey}`)}
+				class="t-icon i-mdi-home"
+				title="Index page"
+			/>
+		{/if}
+
 		{#each links as { icon, href, title }}
 			<a rel="noreferrer" target="_blank" {title} {href}> <div class={`t-icon ${icon}`} /> </a>
 		{/each}
