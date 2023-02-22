@@ -39,7 +39,7 @@ if (import.meta.vitest) {
 	const now = new Date(2010, 5, 12); // 12th june 2010
 	describe.each([
 		{ date: 1, month: 12, year: 2000, next: new Date(2010, 11, 1) },
-		{ date: 5, month: 6, year: 2000, next: new Date(2011, 5, 5) }
+		{ date: 5, month: 6, year: 2000, next: new Date(2011, 5, 5) },
 	])(`$date-$month-$year next birthday is $next from ${now}`, ({ date, month, year, next }) => {
 		it('should calculate next birthday date correctly', () => {
 			const target = { date, month, year, name: '' } satisfies BirthdayTarget;
@@ -52,7 +52,7 @@ if (import.meta.vitest) {
 		[11, '11st'],
 		[33, '33rd'],
 		[62, '62nd'],
-		[1999, '1999th']
+		[1999, '1999th'],
 	])('$1 -> $2', (from, to) => {
 		it('should be correct', () => {
 			expect(asOrdinalNumber(from)).toBe(to);

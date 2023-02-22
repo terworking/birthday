@@ -19,7 +19,7 @@ export const fallBackPlatformToMiniFlareInDev = async (platform?: App.Platform) 
 		addEventListener("scheduled", (event) => {
 			event.waitUntil(Promise.resolve(event.scheduledTime));
 		});
-		`
+		`,
 	});
 
 	const env = await mf.getBindings();

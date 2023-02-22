@@ -20,10 +20,10 @@
 			new Date(
 				nextBirthdayDate.getFullYear() + index,
 				nextBirthdayDate.getMonth(),
-				nextBirthdayDate.getDate()
+				nextBirthdayDate.getDate(),
 			),
-			'd/M/yyyy'
-		)
+			'd/M/yyyy',
+		),
 	);
 </script>
 

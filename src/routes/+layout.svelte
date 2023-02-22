@@ -11,7 +11,7 @@
 	const state = writable<State>({
 		disableInteraction: false,
 		selectedKey: '',
-		selectedTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+		selectedTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 	});
 
 	const time = readable(new Date(), (set) => {

@@ -4,7 +4,7 @@ import UnoCSS from 'unocss/vite';
 
 const config: UserConfig = {
 	define: { 'import.meta.vitest': 'undefined' },
-	plugins: [UnoCSS({ mode: 'svelte-scoped' }), sveltekit()]
+	plugins: [UnoCSS({ mode: 'svelte-scoped' }), sveltekit()],
 };
 
 export default config;

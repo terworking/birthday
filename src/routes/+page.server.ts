@@ -11,7 +11,7 @@ export const load = (() => {
 				const offset = `${offsetInHour >= 0 ? '+' : ''}${offsetInHour}`;
 
 				return [name, `${name} (${abbreviation}, UTC${offset})`];
-			})
+			}),
 	);
 
 	return { targetMap, timeZoneMap };

@@ -14,7 +14,7 @@ export const load = (({ params }) => {
 
 	const [left, match, right] = Array.from(
 		{ length: 3 },
-		(_, index) => targets.at((-1 + index + matchIndex) % targets.length)!
+		(_, index) => targets.at((-1 + index + matchIndex) % targets.length)!,
 	);
 
 	const key = birthdayTargetAsKey(match);

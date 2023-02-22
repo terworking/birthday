@@ -6,18 +6,18 @@ const registerServiceWorker = () => navigator.serviceWorker.register('/sw.js');
 export const generateSubscriptionPayload = async (
 	key: string,
 	timeZone: string,
-	publicKey: string
+	publicKey: string,
 ): Promise<SubscriptionPayload> => {
 	const serviceWorker = await registerServiceWorker();
 	const subscription = (await serviceWorker.pushManager.subscribe({
 		userVisibleOnly: true,
-		applicationServerKey: publicKey
+		applicationServerKey: publicKey,
 	})) as unknown as PushSubscription;
 
 	return {
 		subscription: subscription,
 		target: key,
-		timeZone
+		timeZone,
 	};
 };
 

@@ -2,5 +2,5 @@ import { defineConfig, presetIcons, presetUno, transformerDirectives } from 'uno
 
 export default defineConfig({
 	transformers: [transformerDirectives()],
-	presets: [presetUno(), presetIcons()]
+	presets: [presetUno(), presetIcons()],
 });

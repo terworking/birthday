@@ -15,7 +15,7 @@ export interface SubscriptionMetadata {
 export const getSubscriptions = async (
 	KV: KVNamespace,
 	targets: BirthdayTarget[],
-	{ now = new Date() } = {}
+	{ now = new Date() } = {},
 ): Promise<Record<string, Subscription[]>> => {
 	const targetKeys = targets.map(birthdayTargetAsKey);
 
@@ -27,8 +27,8 @@ export const getSubscriptions = async (
 				const target = await KV.list({ prefix });
 
 				return [prefix, [...all.keys, ...target.keys].map(({ name }) => name)] as const;
-			})
-		)
+			}),
+		),
 	);
 
 	// target keys mapped with their subscription
@@ -38,7 +38,7 @@ export const getSubscriptions = async (
 		for (const subscriptionKey of subscriptionKeysMap[key]) {
 			const { value, metadata } = await KV.getWithMetadata<PushSubscription, SubscriptionMetadata>(
 				subscriptionKey,
-				'json'
+				'json',
 			);
 
 			if (value != null && metadata?.timeZone !== undefined) {

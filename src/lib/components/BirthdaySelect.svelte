@@ -13,7 +13,7 @@
 	$: sortedTargets = Object.entries(targetMap).sort(
 		([_, a], [__, b]) =>
 			calculateNextBirthdayDate(a, { now: $time }).valueOf() -
-			calculateNextBirthdayDate(b, { now: $time }).valueOf()
+			calculateNextBirthdayDate(b, { now: $time }).valueOf(),
 	);
 	onMount(() => {
 		if ($state.selectedKey === '') {

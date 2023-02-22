@@ -5,7 +5,7 @@
 	import {
 		askNotificationPermission,
 		checkWebpushCompability,
-		generateSubscriptionPayload
+		generateSubscriptionPayload,
 	} from '../webpush';
 	import type { BirthdayData } from './Birthday.svelte';
 
@@ -26,12 +26,12 @@
 			const payload = await generateSubscriptionPayload(
 				$state.selectedKey,
 				$state.selectedTimeZone,
-				publicKey
+				publicKey,
 			);
 
 			const response = await fetch('/api/subscribe', {
 				body: JSON.stringify(payload),
-				method: 'POST'
+				method: 'POST',
 			});
 
 			const text = await response.text();
@@ -54,11 +54,11 @@
 			const payload = await generateSubscriptionPayload(
 				$state.selectedKey,
 				$state.selectedTimeZone,
-				publicKey
+				publicKey,
 			);
 			const response = await fetch('/api/subscribe', {
 				body: JSON.stringify(payload),
-				method: 'DELETE'
+				method: 'DELETE',
 			});
 
 			const text = await response.text();

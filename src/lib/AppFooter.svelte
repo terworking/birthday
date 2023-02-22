@@ -14,23 +14,23 @@
 		{
 			icon: 'discord',
 			title: 'Discord server invite',
-			href: 'https://discord.gg/BMESwz5wE4'
+			href: 'https://discord.gg/BMESwz5wE4',
 		},
 		{
 			icon: 'git',
 			title: 'Source code',
-			href: 'https://github.com/terworking/birthday-notify'
+			href: 'https://github.com/terworking/birthday-notify',
 		},
 		{
 			icon: 'instagram',
 			title: 'Instagram account',
-			href: 'https://www.instagram.com/terworking/'
+			href: 'https://www.instagram.com/terworking/',
 		},
 		{
 			icon: 'youtube',
 			title: 'Youtube channel',
-			href: 'https://www.youtube.com/@terworking'
-		}
+			href: 'https://www.youtube.com/@terworking',
+		},
 	];
 
 	const state = getContext('state') as Writable<State>;
@@ -39,12 +39,12 @@
 			? {
 					icon: 'counter',
 					title: 'Counter page',
-					href: `/countdown/${$state.selectedKey.split(':')[0].replaceAll('_', '-')}`
+					href: `/countdown/${$state.selectedKey.split(':')[0].replaceAll('_', '-')}`,
 			  }
 			: {
 					icon: 'home',
 					title: 'Index page',
-					href: `/?select=${$state.selectedKey}`
+					href: `/?select=${$state.selectedKey}`,
 			  }
 	) satisfies FooterLink;
 </script>

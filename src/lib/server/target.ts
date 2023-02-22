@@ -4,5 +4,5 @@ import { items } from './target.json';
 
 export const targets: BirthdayTarget[] = items;
 export const targetMap: Record<string, BirthdayTarget> = Object.fromEntries(
-	targets.map((target) => [birthdayTargetAsKey(target), target])
+	targets.map((target) => [birthdayTargetAsKey(target), target]),
 );

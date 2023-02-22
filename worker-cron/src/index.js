@@ -10,10 +10,10 @@ export default {
 						Accept: 'application/vnd.github+json; charset=utf-8',
 						Authorization: `Bearer ${env.TOKEN}`,
 						'X-GitHub-Api-Version': '2022-11-28',
-						'User-Agent': 'worker-cron'
-					}
-				}
-			)
+						'User-Agent': 'worker-cron',
+					},
+				},
+			),
 		);
-	}
+	},
 };
