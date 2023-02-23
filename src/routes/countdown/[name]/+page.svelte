@@ -4,7 +4,7 @@
 	import BirthdaySubscribe from '$lib/components/BirthdaySubscribe.svelte';
 	import type { State } from '$lib/types';
 	import { asOrdinalNumber } from '$lib/util';
-	import { getContext } from 'svelte';
+	import { getContext, onMount } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import type { PageData } from './$types';
 
@@ -18,6 +18,17 @@
 	};
 
 	let birthdayAge: number = 0;
+
+	onMount(() => {
+		// ref: https://code.whatever.social/questions/37187288/changing-where-the-back-button-leads-to#37189260
+		const popstateCallback = async () => {
+			// automatically select current target when navigating back
+			await goto(`/?select=${$state.selectedKey}`, { replaceState: true, noScroll: true });
+		};
+
+		window.addEventListener('popstate', popstateCallback);
+		return () => window.removeEventListener('popstate', popstateCallback);
+	});
 </script>
 
 <svelte:head>
