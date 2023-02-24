@@ -1,10 +1,11 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import BirthdayCountdown from '$lib/components/BirthdayCountdown.svelte';
 	import BirthdaySubscribe from '$lib/components/BirthdaySubscribe.svelte';
 	import type { State } from '$lib/types';
 	import { asOrdinalNumber } from '$lib/util';
-	import { getContext, onMount } from 'svelte';
+	import { getContext, onMount, type SvelteComponent } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import type { PageData } from './$types';
 
@@ -13,11 +14,21 @@
 	const state = getContext('state') as Writable<State>;
 	$: $state.selectedKey = data.target.key;
 
+	let Confetti: typeof SvelteComponent | undefined = undefined;
+
+	let birthdayAge: number = 0;
+	let durationToNextBirthdayDate: Duration = {};
+	$: enableConfetti = durationToNextBirthdayDate.months === 0;
+
+	$: if (browser && enableConfetti && Confetti === undefined) {
+		import('$lib/components/BirthdayCountdownConfetti.svelte').then((it) => {
+			Confetti = it.default;
+		});
+	}
+
 	const navigate = async (to: 'next' | 'previous') => {
 		await goto(`/countdown/${data[to]}`, { replaceState: true, noScroll: true });
 	};
-
-	let birthdayAge: number = 0;
 
 	onMount(() => {
 		// ref: https://code.whatever.social/questions/37187288/changing-where-the-back-button-leads-to#37189260
@@ -42,7 +53,7 @@
 		class="t-icon i-mdi-pan-left"
 	/>
 	<div class="flex-1">
-		<BirthdayCountdown bind:birthdayAge {data} />
+		<BirthdayCountdown bind:birthdayAge bind:durationToNextBirthdayDate {data} />
 		<BirthdaySubscribe {data} />
 	</div>
 	<button
@@ -51,3 +62,5 @@
 		class="t-icon i-mdi-pan-right"
 	/>
 </div>
+
+<svelte:component this={Confetti} enabled={enableConfetti} />
