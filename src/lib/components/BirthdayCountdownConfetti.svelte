@@ -27,14 +27,10 @@
 
 <svelte:window bind:innerWidth={screenWidth} />
 
-<Particles
-	id="tsparticles"
-	options={{ preset: 'confetti', emitters }}
-	particlesInit={loadConfettiPreset}
-/>
-
-<style global>
-	#tsparticles {
-		position: absolute;
-	}
-</style>
+<div class="absolute">
+	<Particles
+		id="tsparticles"
+		options={{ preset: 'confetti', emitters }}
+		particlesInit={loadConfettiPreset}
+	/>
+</div>
