@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import BirthdayCountdown from '$lib/components/BirthdayCountdown.svelte';
 	import BirthdaySubscribe from '$lib/components/BirthdaySubscribe.svelte';
@@ -13,19 +14,23 @@
 	const state = getContext('state') as Writable<State>;
 	$: $state.selectedKey = data.target.key;
 
-	let Confetti: typeof SvelteComponent;
+	let Confetti: typeof SvelteComponent | undefined = undefined;
 
 	let birthdayAge: number = 0;
 	let durationToNextBirthdayDate: Duration = {};
 	$: enableConfetti = durationToNextBirthdayDate.months === 0;
+
+	$: if (browser && enableConfetti && Confetti === undefined) {
+		import('$lib/components/BirthdayCountdownConfetti.svelte').then((it) => {
+			Confetti = it.default;
+		});
+	}
 
 	const navigate = async (to: 'next' | 'previous') => {
 		await goto(`/countdown/${data[to]}`, { replaceState: true, noScroll: true });
 	};
 
 	onMount(async () => {
-		Confetti = (await import('$lib/components/BirthdayCountdownConfetti.svelte')).default;
-
 		// ref: https://code.whatever.social/questions/37187288/changing-where-the-back-button-leads-to#37189260
 		const popstateCallback = async () => {
 			// automatically select current target when navigating back
