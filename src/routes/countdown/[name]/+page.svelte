@@ -4,7 +4,7 @@
 	import BirthdaySubscribe from '$lib/components/BirthdaySubscribe.svelte';
 	import type { State } from '$lib/types';
 	import { asOrdinalNumber } from '$lib/util';
-	import { getContext, onMount } from 'svelte';
+	import { getContext, onMount, type SvelteComponent } from 'svelte';
 	import type { Writable } from 'svelte/store';
 	import type { PageData } from './$types';
 
@@ -13,7 +13,7 @@
 	const state = getContext('state') as Writable<State>;
 	$: $state.selectedKey = data.target.key;
 
-	let Particles: typeof import('svelte-particles').default;
+	let Confetti: typeof SvelteComponent;
 
 	let birthdayAge: number = 0;
 
@@ -22,7 +22,7 @@
 	};
 
 	onMount(async () => {
-		Particles = (await import('svelte-particles')).default;
+		Confetti = (await import('$lib/components/BirthdayCountdownConfetti.svelte')).default;
 
 		// ref: https://code.whatever.social/questions/37187288/changing-where-the-back-button-leads-to#37189260
 		const popstateCallback = async () => {
@@ -56,38 +56,4 @@
 	/>
 </div>
 
-<svelte:component
-	this={Particles}
-	id="tsparticles"
-	options={{
-		preset: 'confetti',
-		emitters: [
-			{
-				life: { count: 0 },
-				position: { x: 5, y: 20 },
-				particles: {
-					move: { direction: 'top-right' },
-				},
-				rate: { delay: 0.2, quantity: 5 },
-			},
-			{
-				life: { count: 0 },
-				position: { x: 95, y: 20 },
-				particles: {
-					move: { direction: 'top-left' },
-				},
-				rate: { delay: 0.2, quantity: 5 },
-			},
-		],
-	}}
-	particlesInit={async (engine) => {
-		const { loadConfettiPreset } = await import('tsparticles-preset-confetti');
-		await loadConfettiPreset(engine);
-	}}
-/>
-
-<style>
-	:global(#tsparticles) {
-		position: absolute;
-	}
-</style>
+<svelte:component this={Confetti} />
