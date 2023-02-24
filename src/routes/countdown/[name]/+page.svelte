@@ -16,6 +16,8 @@
 	let Confetti: typeof SvelteComponent;
 
 	let birthdayAge: number = 0;
+	let durationToNextBirthdayDate: Duration = {};
+	$: enableConfetti = durationToNextBirthdayDate.months === 0;
 
 	const navigate = async (to: 'next' | 'previous') => {
 		await goto(`/countdown/${data[to]}`, { replaceState: true, noScroll: true });
@@ -46,7 +48,7 @@
 		class="t-icon i-mdi-pan-left"
 	/>
 	<div class="flex-1">
-		<BirthdayCountdown bind:birthdayAge {data} />
+		<BirthdayCountdown bind:birthdayAge bind:durationToNextBirthdayDate {data} />
 		<BirthdaySubscribe {data} />
 	</div>
 	<button
@@ -56,4 +58,4 @@
 	/>
 </div>
 
-<svelte:component this={Confetti} />
+<svelte:component this={Confetti} enabled={enableConfetti} />

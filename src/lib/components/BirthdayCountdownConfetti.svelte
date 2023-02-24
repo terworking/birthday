@@ -1,6 +1,27 @@
 <script lang="ts">
 	import Particles from 'svelte-particles';
+	import type { ParticlesEvents } from 'svelte-particles';
 	import { loadConfettiPreset } from 'tsparticles-preset-confetti';
+
+	export let enabled = false;
+
+	let particlesContainer: ParticlesEvents['particlesLoaded']['detail']['particles'];
+	const onParticlesLoaded = ({ detail }: ParticlesEvents['particlesLoaded']) => {
+		particlesContainer = detail.particles;
+		particlesContainer?.stop();
+	};
+
+	$: if (enabled) {
+		particlesContainer?.refresh();
+	} else {
+		// @ts-expect-error https://github.com/matteobruni/tsparticles/issues/1184#issuecomment-1233153193
+		const emitters = particlesContainer?.plugins.get('emitters')?.array;
+		if (emitters !== undefined) {
+			for (const emitter of emitters) {
+				emitter.pause();
+			}
+		}
+	}
 
 	let screenWidth: number;
 	$: desktop = screenWidth >= 1024;
@@ -40,6 +61,7 @@
 <div class="absolute">
 	<Particles
 		id="tsparticles"
+		on:particlesLoaded={onParticlesLoaded}
 		options={{ preset: 'confetti', emitters }}
 		particlesInit={loadConfettiPreset}
 	/>
