@@ -13,13 +13,17 @@
 	const state = getContext('state') as Writable<State>;
 	$: $state.selectedKey = data.target.key;
 
+	let Particles: typeof import('svelte-particles').default;
+
+	let birthdayAge: number = 0;
+
 	const navigate = async (to: 'next' | 'previous') => {
 		await goto(`/countdown/${data[to]}`, { replaceState: true, noScroll: true });
 	};
 
-	let birthdayAge: number = 0;
+	onMount(async () => {
+		Particles = (await import('svelte-particles')).default;
 
-	onMount(() => {
 		// ref: https://code.whatever.social/questions/37187288/changing-where-the-back-button-leads-to#37189260
 		const popstateCallback = async () => {
 			// automatically select current target when navigating back
@@ -51,3 +55,39 @@
 		class="t-icon i-mdi-pan-right"
 	/>
 </div>
+
+<svelte:component
+	this={Particles}
+	id="tsparticles"
+	options={{
+		preset: 'confetti',
+		emitters: [
+			{
+				life: { count: 0 },
+				position: { x: 5, y: 20 },
+				particles: {
+					move: { direction: 'top-right' },
+				},
+				rate: { delay: 0.2, quantity: 5 },
+			},
+			{
+				life: { count: 0 },
+				position: { x: 95, y: 20 },
+				particles: {
+					move: { direction: 'top-left' },
+				},
+				rate: { delay: 0.2, quantity: 5 },
+			},
+		],
+	}}
+	particlesInit={async (engine) => {
+		const { loadConfettiPreset } = await import('tsparticles-preset-confetti');
+		await loadConfettiPreset(engine);
+	}}
+/>
+
+<style>
+	:global(#tsparticles) {
+		position: absolute;
+	}
+</style>
