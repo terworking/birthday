@@ -17,9 +17,9 @@
 			href: 'https://discord.gg/BMESwz5wE4',
 		},
 		{
-			icon: 'git',
-			title: 'Source code',
-			href: 'https://github.com/terworking/birthday-notify',
+			icon: 'github',
+			title: 'Source code (GitHub)',
+			href: 'https://github.com/terworking/birthday',
 		},
 		{
 			icon: 'instagram',
@@ -74,8 +74,8 @@
 		--uno: 'i-simple-icons-discord';
 	}
 
-	.git {
-		--uno: 'i-simple-icons-git';
+	.github {
+		--uno: 'i-simple-icons-github';
 	}
 
 	.instagram {
