@@ -30,7 +30,7 @@
 		await goto(`/countdown/${data[to]}`, { replaceState: true, noScroll: true });
 	};
 
-	onMount(async () => {
+	onMount(() => {
 		// ref: https://code.whatever.social/questions/37187288/changing-where-the-back-button-leads-to#37189260
 		const popstateCallback = async () => {
 			// automatically select current target when navigating back
