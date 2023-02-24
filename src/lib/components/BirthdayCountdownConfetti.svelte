@@ -10,17 +10,18 @@
 	let particlesContainer: Container | undefined;
 	const handleParticlesLoaded = ({ detail }: CustomEvent<{ particles?: Container }>) => {
 		particlesContainer = detail.particles;
-		particlesContainer?.stop();
 	};
 
-	$: if (enabled) {
-		particlesContainer?.refresh();
-	} else {
-		// https://github.com/matteobruni/tsparticles/issues/1184#issuecomment-1233153193
+	$: {
 		const emitters = particlesContainer?.plugins.get('emitters');
 		if (emitters !== undefined) {
+			// https://github.com/matteobruni/tsparticles/issues/1184#issuecomment-1233153193
 			for (const emitter of (emitters as Emitters).array) {
-				emitter.pause();
+				if (enabled) {
+					emitter.play();
+				} else {
+					emitter.pause();
+				}
 			}
 		}
 	}
