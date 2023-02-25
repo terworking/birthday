@@ -18,4 +18,8 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Terworking birthday</title>
+</svelte:head>
+
 <Birthday {data} />
