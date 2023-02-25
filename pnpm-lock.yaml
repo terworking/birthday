@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@cloudflare/workers-types': ^4.20230221.0
-  '@iconify-json/mdi': ^1.1.47
+  '@iconify-json/lucide': ^1.1.65
   '@iconify-json/simple-icons': ^1.1.44
   '@sveltejs/adapter-auto': ^2.0.0
   '@sveltejs/adapter-cloudflare': ^2.0.2
@@ -41,7 +41,7 @@ dependencies:
 
 devDependencies:
   '@cloudflare/workers-types': 4.20230221.0
-  '@iconify-json/mdi': 1.1.47
+  '@iconify-json/lucide': 1.1.65
   '@iconify-json/simple-icons': 1.1.44
   '@sveltejs/adapter-auto': 2.0.0_@sveltejs+kit@1.8.3
   '@sveltejs/adapter-cloudflare': 2.0.2_@sveltejs+kit@1.8.3
@@ -513,8 +513,8 @@ packages:
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
     dev: true
 
-  /@iconify-json/mdi/1.1.47:
-    resolution: {integrity: sha512-5E5mazdQaMNl3gmLL7whteh61weJBRfW2R9Rq0/pgAe9B0j22mViyADm/ooHZx07Vkc0ZqnkgUrpT6OsS9Qhzg==}
+  /@iconify-json/lucide/1.1.65:
+    resolution: {integrity: sha512-X+qF/V9e9fQuY6490sNDQrjlxAoYNxQX6f+XGvVw1vyyMNK7uOJxkFkb0e/yC0OblaB7skfFexgvO2EbbbCSIg==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

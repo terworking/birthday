@@ -50,7 +50,7 @@
 	<button
 		disabled={$state.disableInteraction}
 		on:click={() => navigate('previous')}
-		class="t-icon i-mdi-pan-left"
+		class="t-icon i-lucide-chevron-left"
 	/>
 	<div class="flex-1">
 		<BirthdayCountdown bind:birthdayAge bind:durationToNextBirthdayDate {data} />
@@ -59,7 +59,7 @@
 	<button
 		disabled={$state.disableInteraction}
 		on:click={() => navigate('next')}
-		class="t-icon i-mdi-pan-right"
+		class="t-icon i-lucide-chevron-right"
 	/>
 </div>
 

@@ -63,11 +63,11 @@
 
 <style>
 	.counter {
-		--uno: 'i-simple-icons-counterstrike';
+		--uno: 'i-lucide-timer';
 	}
 
 	.home {
-		--uno: 'i-mdi-home';
+		--uno: 'i-lucide-home';
 	}
 
 	.discord {

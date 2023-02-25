@@ -40,7 +40,11 @@
 <div class="birthday-select">
 	<label for="birthday">Pilih nama</label>
 	<div>
-		<button disabled={$state.disableInteraction} on:click={prevKey} class="t-icon i-mdi-pan-left" />
+		<button
+			disabled={$state.disableInteraction}
+			on:click={prevKey}
+			class="t-icon i-lucide-chevron-left"
+		/>
 		<select
 			disabled={$state.disableInteraction}
 			aria-labelledby="Pilih nama"
@@ -56,7 +60,7 @@
 		<button
 			disabled={$state.disableInteraction}
 			on:click={nextKey}
-			class="t-icon i-mdi-pan-right"
+			class="t-icon i-lucide-chevron-right"
 		/>
 	</div>
 
@@ -65,7 +69,7 @@
 		<button
 			disabled={$state.disableInteraction}
 			on:click={prevTimeZone}
-			class="t-icon i-mdi-pan-left"
+			class="t-icon i-lucide-chevron-left"
 		/>
 		<select
 			disabled={$state.disableInteraction}
@@ -81,7 +85,7 @@
 		<button
 			disabled={$state.disableInteraction}
 			on:click={nextTimeZone}
-			class="t-icon i-mdi-pan-right"
+			class="t-icon i-lucide-chevron-right"
 		/>
 	</div>
 </div>
