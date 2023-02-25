@@ -37,8 +37,8 @@
 	$: other = (
 		$page.route.id === '/'
 			? {
-					icon: 'counter',
-					title: 'Counter page',
+					icon: 'countdown',
+					title: 'Countdown page',
 					href: `/countdown/${$state.selectedKey.split(':')[0].replaceAll('_', '-')}`,
 			  }
 			: {
@@ -62,7 +62,7 @@
 </footer>
 
 <style>
-	.counter {
+	.countdown {
 		--uno: 'i-lucide-timer';
 	}
 
