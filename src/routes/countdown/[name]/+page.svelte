@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { goto } from '$app/navigation';
+	import { afterNavigate, goto, preloadData } from '$app/navigation';
 	import BirthdayCountdown from '$lib/components/BirthdayCountdown.svelte';
 	import BirthdaySubscribe from '$lib/components/BirthdaySubscribe.svelte';
 	import type { State } from '$lib/types';
@@ -29,6 +29,13 @@
 	const navigate = async (to: 'next' | 'previous') => {
 		await goto(`/countdown/${data[to]}`, { replaceState: true, noScroll: true });
 	};
+
+	afterNavigate(async () => {
+		await Promise.all(
+			// preload previous and next page data
+			[data.previous, data.next].map((it) => preloadData(`/countdown/${it}`)),
+		);
+	});
 
 	onMount(() => {
 		// ref: https://code.whatever.social/questions/37187288/changing-where-the-back-button-leads-to#37189260
