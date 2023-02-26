@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { getContext } from 'svelte';
-	import type { Writable } from 'svelte/store';
-	import type { State } from './types';
+	import { state } from './stores';
 
 	interface FooterLink {
 		icon: string;
@@ -33,7 +31,6 @@
 		},
 	];
 
-	const state = getContext('state') as Writable<State>;
 	$: other = (
 		$page.route.id === '/'
 			? {

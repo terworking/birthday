@@ -3,15 +3,12 @@
 	import { afterNavigate, goto, preloadData } from '$app/navigation';
 	import BirthdayCountdown from '$lib/components/BirthdayCountdown.svelte';
 	import BirthdaySubscribe from '$lib/components/BirthdaySubscribe.svelte';
-	import type { State } from '$lib/types';
+	import { state } from '$lib/stores';
 	import { asOrdinalNumber } from '$lib/util';
-	import { getContext, onMount, type SvelteComponent } from 'svelte';
-	import type { Writable } from 'svelte/store';
+	import { onMount, type SvelteComponent } from 'svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-
-	const state = getContext('state') as Writable<State>;
 	$: $state.selectedKey = data.target.key;
 
 	let Confetti: typeof SvelteComponent | undefined = undefined;

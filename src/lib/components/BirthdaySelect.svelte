@@ -1,14 +1,11 @@
 <script lang="ts">
-	import { getContext, onMount } from 'svelte';
-	import type { Readable, Writable } from 'svelte/store';
-	import type { State } from '$lib/types';
+	import { onMount } from 'svelte';
 	import { calculateNextBirthdayDate } from '$lib/util';
 	import type { BirthdayData } from './Birthday.svelte';
+	import { state, time } from '$lib/stores';
 
 	export let data: Pick<BirthdayData, 'targetMap' | 'timeZoneMap'>;
 	const { targetMap, timeZoneMap } = data;
-	const state = getContext('state') as Writable<State>;
-	const time = getContext('time') as Readable<Date>;
 
 	$: sortedTargets = Object.entries(targetMap).sort(
 		([_, a], [__, b]) =>

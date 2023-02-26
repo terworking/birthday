@@ -1,41 +1,8 @@
 <script lang="ts">
 	import AppClock from '$lib/AppClock.svelte';
 	import AppFooter from '$lib/AppFooter.svelte';
-	import type { State } from '$lib/types';
-	import { utcToZonedTime } from 'date-fns-tz';
-	import { setContext } from 'svelte';
-	import { derived, writable } from 'svelte/store';
 
 	import 'modern-normalize';
-
-	const state = writable<State>({
-		disableInteraction: false,
-		selectedKey: '',
-		selectedTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-	});
-
-	let timer: NodeJS.Timer | undefined = undefined;
-	const time = derived(
-		state,
-		($state, set) => {
-			const updateTime = () => {
-				set(utcToZonedTime(new Date(), $state.selectedTimeZone));
-			};
-
-			// reset the timer whenever state is updated
-			updateTime();
-			clearInterval(timer);
-			timer = setInterval(updateTime, 1000);
-
-			return () => {
-				clearInterval(timer);
-			};
-		},
-		new Date(),
-	);
-
-	setContext('state', state);
-	setContext('time', time);
 </script>
 
 <AppClock />

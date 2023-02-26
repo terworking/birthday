@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { getContext } from 'svelte';
-	import type { Writable } from 'svelte/store';
-	import type { State } from '../types';
+	import { state } from '$lib/stores';
 	import {
 		askNotificationPermission,
 		checkWebpushCompability,
@@ -11,7 +9,6 @@
 
 	export let data: Pick<BirthdayData, 'publicKey'>;
 	const { publicKey } = data;
-	const state = getContext('state') as Writable<State>;
 
 	const subscribe = async () => {
 		$state.disableInteraction = true;

@@ -8,15 +8,12 @@
 
 <script lang="ts">
 	import { calculateNextBirthdayDate } from '$lib/util';
+	import { time } from '$lib/stores';
 	import { formatDuration, intervalToDuration } from 'date-fns';
-	import { getContext } from 'svelte';
-	import type { Readable } from 'svelte/store';
 
 	export let data: CountdownData;
 	export let birthdayAge: number = 0;
 	export let durationToNextBirthdayDate: Duration = {};
-
-	const time = getContext('time') as Readable<Date>;
 
 	$: birthDate = new Date(data.target.year, data.target.month - 1, data.target.date);
 	$: nextBirthdayDate = calculateNextBirthdayDate(data.target, { now: $time });
