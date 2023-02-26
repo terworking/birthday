@@ -11,12 +11,11 @@
 	export let data: PageData;
 	$: $state.selectedKey = data.target.key;
 
-	let Confetti: typeof SvelteComponent | undefined = undefined;
-
 	let birthdayAge: number = 0;
 	let durationToNextBirthdayDate: Duration = {};
 	$: enableConfetti = durationToNextBirthdayDate.months === 0;
 
+	let Confetti: typeof SvelteComponent | undefined = undefined;
 	$: if (browser && enableConfetti && Confetti === undefined) {
 		import('$lib/components/BirthdayCountdownConfetti.svelte').then((it) => {
 			Confetti = it.default;
