@@ -6,7 +6,7 @@
 	import { setContext } from 'svelte';
 	import { derived, writable } from 'svelte/store';
 
-	import '$lib/assets/normalize.css';
+	import 'modern-normalize';
 
 	const state = writable<State>({
 		disableInteraction: false,
