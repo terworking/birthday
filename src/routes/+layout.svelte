@@ -4,7 +4,7 @@
 	import type { State } from '$lib/types';
 	import { utcToZonedTime } from 'date-fns-tz';
 	import { setContext } from 'svelte';
-	import { readable, writable } from 'svelte/store';
+	import { derived, writable } from 'svelte/store';
 
 	import '$lib/assets/normalize.css';
 
@@ -14,20 +14,25 @@
 		selectedTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 	});
 
-	const time = readable(new Date(), (set) => {
-		const update = (timeZone: string) => {
-			set(utcToZonedTime(new Date(), timeZone));
-		};
+	let timer: NodeJS.Timer | undefined = undefined;
+	const time = derived(
+		state,
+		($state, set) => {
+			const updateTime = () => {
+				set(utcToZonedTime(new Date(), $state.selectedTimeZone));
+			};
 
-		let interval: NodeJS.Timer;
-		state.subscribe(({ selectedTimeZone }) => {
-			update(selectedTimeZone);
-			clearInterval(interval);
-			interval = setInterval(() => update(selectedTimeZone), 1000);
-		});
+			// reset the timer whenever state is updated
+			updateTime();
+			clearInterval(timer);
+			timer = setInterval(updateTime, 1000);
 
-		return () => clearInterval(interval);
-	});
+			return () => {
+				clearInterval(timer);
+			};
+		},
+		new Date(),
+	);
 
 	setContext('state', state);
 	setContext('time', time);
