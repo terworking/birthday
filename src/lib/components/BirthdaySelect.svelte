@@ -19,28 +19,24 @@
 	});
 
 	$: keyIndex = sortedTargets.findIndex(([key]) => key === $state.selectedKey);
-	const nextKey = () =>
-		($state.selectedKey = sortedTargets[(keyIndex + 1) % sortedTargets.length][0]);
-	const prevKey = () =>
-		($state.selectedKey =
-			sortedTargets[(keyIndex + sortedTargets.length - 1) % sortedTargets.length][0]);
+	$: [previousTarget, nextTarget] = [-1, 1].map((it) => {
+		const target = sortedTargets[(it + keyIndex + sortedTargets.length) % sortedTargets.length];
+		return { key: target[0], ...target[1] };
+	});
 
 	$: timeZones = Object.entries(timeZoneMap);
-	$: timeZoneIndex = timeZones.findIndex(([key]) => key === $state.selectedTimeZone) ?? 0;
-	const nextTimeZone = () =>
-		($state.selectedTimeZone = timeZones[(timeZoneIndex + 1) % timeZones.length][0]);
-	const prevTimeZone = () =>
-		($state.selectedTimeZone =
-			timeZones[(timeZoneIndex + timeZones.length - 1) % timeZones.length][0]);
+	$: timeZoneIndex = timeZones.findIndex(([key]) => key === $state.selectedTimeZone);
+	$: nextTimeZone = timeZones[(timeZoneIndex + 1) % timeZones.length][0];
+	$: previousTimeZone = timeZones[(timeZoneIndex + timeZones.length - 1) % timeZones.length][0];
 </script>
 
 <div class="birthday-select">
 	<label for="birthday">Pilih nama</label>
 	<div>
 		<button
-			aria-label="Select previous name"
+			aria-label={`Select previous name (${previousTarget.name})`}
 			disabled={$state.disableInteraction}
-			on:click={prevKey}
+			on:click={() => ($state.selectedKey = previousTarget.key)}
 			class="t-icon i-lucide-chevron-left"
 		/>
 		<select
@@ -56,9 +52,9 @@
 			{/each}
 		</select>
 		<button
-			aria-label="Select next name"
+			aria-label={`Select next name (${nextTarget.name})`}
 			disabled={$state.disableInteraction}
-			on:click={nextKey}
+			on:click={() => ($state.selectedKey = nextTarget.key)}
 			class="t-icon i-lucide-chevron-right"
 		/>
 	</div>
@@ -66,9 +62,9 @@
 	<label for="timezone">Pilih zona waktu</label>
 	<div>
 		<button
-			aria-label="Select previous time zone"
+			aria-label={`Select previous time zone (${previousTimeZone})`}
 			disabled={$state.disableInteraction}
-			on:click={prevTimeZone}
+			on:click={() => ($state.selectedTimeZone = previousTimeZone)}
 			class="t-icon i-lucide-chevron-left"
 		/>
 		<select
@@ -83,9 +79,9 @@
 			{/each}
 		</select>
 		<button
-			aria-label="Select next time zone"
+			aria-label={`Select next time zone (${nextTimeZone})`}
 			disabled={$state.disableInteraction}
-			on:click={nextTimeZone}
+			on:click={() => ($state.selectedTimeZone = nextTimeZone)}
 			class="t-icon i-lucide-chevron-right"
 		/>
 	</div>
