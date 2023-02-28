@@ -38,6 +38,7 @@
 	<label for="birthday">Pilih nama</label>
 	<div>
 		<button
+			aria-label="Select previous name"
 			disabled={$state.disableInteraction}
 			on:click={prevKey}
 			class="t-icon i-lucide-chevron-left"
@@ -55,6 +56,7 @@
 			{/each}
 		</select>
 		<button
+			aria-label="Select next name"
 			disabled={$state.disableInteraction}
 			on:click={nextKey}
 			class="t-icon i-lucide-chevron-right"
@@ -64,6 +66,7 @@
 	<label for="timezone">Pilih zona waktu</label>
 	<div>
 		<button
+			aria-label="Select previous time zone"
 			disabled={$state.disableInteraction}
 			on:click={prevTimeZone}
 			class="t-icon i-lucide-chevron-left"
@@ -80,6 +83,7 @@
 			{/each}
 		</select>
 		<button
+			aria-label="Select next time zone"
 			disabled={$state.disableInteraction}
 			on:click={nextTimeZone}
 			class="t-icon i-lucide-chevron-right"

@@ -51,6 +51,7 @@
 
 <div class="flex items-center justify-between">
 	<button
+		aria-label="Goto previous countdown"
 		disabled={$state.disableInteraction}
 		on:click={() => navigate('previous')}
 		class="t-icon i-lucide-chevron-left"
@@ -60,6 +61,7 @@
 		<BirthdaySubscribe {data} />
 	</div>
 	<button
+		aria-label="Goto next countdown"
 		disabled={$state.disableInteraction}
 		on:click={() => navigate('next')}
 		class="t-icon i-lucide-chevron-right"

@@ -73,8 +73,20 @@
 </script>
 
 <div class="w-full flex justify-evenly">
-	<button on:click={subscribe} disabled={$state.disableInteraction}> Subscribe </button>
-	<button on:click={unsubscribe} disabled={$state.disableInteraction}> Unsubscribe </button>
+	<button
+		aria-label="Subscribe to push notification"
+		on:click={subscribe}
+		disabled={$state.disableInteraction}
+	>
+		Subscribe
+	</button>
+	<button
+		aria-label="Unsubscribe from push notification"
+		on:click={unsubscribe}
+		disabled={$state.disableInteraction}
+	>
+		Unsubscribe
+	</button>
 </div>
 
 <style lang="less">
