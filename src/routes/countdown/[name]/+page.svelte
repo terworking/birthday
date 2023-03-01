@@ -54,8 +54,8 @@
 		aria-label={`Goto previous countdown (${data.previous})`}
 		disabled={$state.disableInteraction}
 		on:click={() => navigate('previous')}
-		class="t-icon i-lucide-chevron-left"
-	/>
+		class="hint--bottom-right hint--bounce"><div class="t-icon i-lucide-chevron-left" /></button
+	>
 	<div class="flex-1">
 		<BirthdayCountdown bind:birthdayAge bind:durationToNextBirthdayDate {data} />
 		<BirthdaySubscribe {data} />
@@ -64,8 +64,8 @@
 		aria-label={`Goto next countdown (${data.next})`}
 		disabled={$state.disableInteraction}
 		on:click={() => navigate('next')}
-		class="t-icon i-lucide-chevron-right"
-	/>
+		class="hint--bottom-left hint--bounce"><div class="t-icon i-lucide-chevron-right" /></button
+	>
 </div>
 
 <svelte:component this={Confetti} enabled={enableConfetti} />

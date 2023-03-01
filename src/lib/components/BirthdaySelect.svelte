@@ -37,8 +37,8 @@
 			aria-label={`Select previous name (${previousTarget.name})`}
 			disabled={$state.disableInteraction}
 			on:click={() => ($state.selectedKey = previousTarget.key)}
-			class="t-icon i-lucide-chevron-left"
-		/>
+			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-left" /></button
+		>
 		<select
 			id="birthday"
 			disabled={$state.disableInteraction}
@@ -56,8 +56,8 @@
 			aria-label={`Select next name (${nextTarget.name})`}
 			disabled={$state.disableInteraction}
 			on:click={() => ($state.selectedKey = nextTarget.key)}
-			class="t-icon i-lucide-chevron-right"
-		/>
+			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-right" /></button
+		>
 	</div>
 
 	<label for="timezone">Pilih zona waktu</label>
@@ -66,8 +66,8 @@
 			aria-label={`Select previous time zone (${previousTimeZone})`}
 			disabled={$state.disableInteraction}
 			on:click={() => ($state.selectedTimeZone = previousTimeZone)}
-			class="t-icon i-lucide-chevron-left"
-		/>
+			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-left" /></button
+		>
 		<select
 			id="timezone"
 			disabled={$state.disableInteraction}
@@ -84,8 +84,8 @@
 			aria-label={`Select next time zone (${nextTimeZone})`}
 			disabled={$state.disableInteraction}
 			on:click={() => ($state.selectedTimeZone = nextTimeZone)}
-			class="t-icon i-lucide-chevron-right"
-		/>
+			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-right" /></button
+		>
 	</div>
 </div>
 

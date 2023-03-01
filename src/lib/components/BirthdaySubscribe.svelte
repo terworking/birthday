@@ -80,6 +80,7 @@
 
 <div class="w-full flex justify-evenly">
 	<button
+		class="hint--bottom hint--bounce"
 		aria-label={`Subscribe to "${selectedName}" push notification`}
 		on:click={subscribe}
 		disabled={$state.disableInteraction}
@@ -87,6 +88,7 @@
 		Subscribe
 	</button>
 	<button
+		class="hint--bottom hint--bounce"
 		aria-label={`Unsubscribe from "${selectedName}" push notification`}
 		on:click={unsubscribe}
 		disabled={$state.disableInteraction}

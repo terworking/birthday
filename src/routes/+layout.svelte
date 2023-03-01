@@ -3,6 +3,7 @@
 	import AppFooter from '$lib/AppFooter.svelte';
 
 	import 'modern-normalize';
+	import 'hint.css';
 </script>
 
 <AppClock />
@@ -46,6 +47,10 @@
 
 	.t-icon:hover {
 		--uno: '!text-$t-color-alt';
+	}
+
+	button[class*='hint--'] {
+		--uno: 'bg-transparent border-0';
 	}
 
 	button:not([disabled]) {
