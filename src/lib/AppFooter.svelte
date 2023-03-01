@@ -31,12 +31,18 @@
 		},
 	];
 
+	$: selectedKeyName = $state.selectedKey.split(':')[0];
+	$: selectedName = selectedKeyName
+		.split('_')
+		.map((it) => it.charAt(0).toUpperCase() + it.slice(1))
+		.join(' ');
+
 	$: other = (
 		$page.route.id === '/'
 			? {
 					icon: 'countdown',
-					title: 'Countdown page',
-					href: `/countdown/${$state.selectedKey.split(':')[0].replaceAll('_', '-')}`,
+					title: `${selectedName} countdown page`,
+					href: `/countdown/${selectedKeyName.replaceAll('_', '-')}`,
 			  }
 			: {
 					icon: 'home',
