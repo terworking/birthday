@@ -8,6 +8,20 @@ export const state = writable<State>({
 	selectedTimeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 });
 
+export const stateSelectedName = derived(
+	state,
+	($state, set) => {
+		set(
+			$state.selectedKey
+				.split(':')[0]
+				.split('_')
+				.map((it) => it.charAt(0).toUpperCase() + it.slice(1))
+				.join(' '),
+		);
+	},
+	'',
+);
+
 let timer: NodeJS.Timer | undefined = undefined;
 export const time = derived(
 	state,

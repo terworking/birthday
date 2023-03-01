@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { state } from './stores';
+	import { state, stateSelectedName } from './stores';
 
 	interface FooterLink {
 		icon: string;
@@ -31,18 +31,12 @@
 		},
 	];
 
-	$: selectedKeyName = $state.selectedKey.split(':')[0];
-	$: selectedName = selectedKeyName
-		.split('_')
-		.map((it) => it.charAt(0).toUpperCase() + it.slice(1))
-		.join(' ');
-
 	$: other = (
 		$page.route.id === '/'
 			? {
 					icon: 'countdown',
-					title: `${selectedName} countdown page`,
-					href: `/countdown/${selectedKeyName.replaceAll('_', '-')}`,
+					title: `${$stateSelectedName} countdown page`,
+					href: `/countdown/${$stateSelectedName.replaceAll(' ', '-').toLowerCase()}`,
 			  }
 			: {
 					icon: 'home',

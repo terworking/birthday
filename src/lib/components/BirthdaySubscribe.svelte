@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { state } from '$lib/stores';
+	import { state, stateSelectedName } from '$lib/stores';
 	import {
 		askNotificationPermission,
 		checkWebpushCompability,
@@ -9,12 +9,6 @@
 
 	export let data: Pick<BirthdayData, 'publicKey'>;
 	const { publicKey } = data;
-
-	$: selectedName = $state.selectedKey
-		.split(':')[0]
-		.split('_')
-		.map((it) => it.charAt(0).toUpperCase() + it.slice(1))
-		.join(' ');
 
 	const subscribe = async () => {
 		$state.disableInteraction = true;
@@ -81,7 +75,7 @@
 <div class="w-full flex justify-evenly">
 	<button
 		class="hint--bottom hint--bounce"
-		aria-label={`Subscribe to "${selectedName}" push notification`}
+		aria-label={`Subscribe to "${$stateSelectedName}" push notification`}
 		on:click={subscribe}
 		disabled={$state.disableInteraction}
 	>
@@ -89,7 +83,7 @@
 	</button>
 	<button
 		class="hint--bottom hint--bounce"
-		aria-label={`Unsubscribe from "${selectedName}" push notification`}
+		aria-label={`Unsubscribe from "${$stateSelectedName}" push notification`}
 		on:click={unsubscribe}
 		disabled={$state.disableInteraction}
 	>
