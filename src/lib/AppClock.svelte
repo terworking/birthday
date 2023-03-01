@@ -5,4 +5,4 @@
 	$: value = format($time, 'do MMMM, yyyy hh:mm:ss a');
 </script>
 
-<p class="font-semibold text-center">{value}</p>
+<p aria-label="Current local time" class="font-semibold text-center">{value}</p>

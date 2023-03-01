@@ -6,6 +6,7 @@
 
 	export let data: Pick<BirthdayData, 'targetMap' | 'timeZoneMap'>;
 	const { targetMap, timeZoneMap } = data;
+	$: disabled = $state.disableInteraction;
 
 	$: sortedTargets = Object.entries(targetMap).sort(
 		([_, a], [__, b]) =>
@@ -19,35 +20,27 @@
 	});
 
 	$: keyIndex = sortedTargets.findIndex(([key]) => key === $state.selectedKey);
-	const nextKey = () =>
-		($state.selectedKey = sortedTargets[(keyIndex + 1) % sortedTargets.length][0]);
-	const prevKey = () =>
-		($state.selectedKey =
-			sortedTargets[(keyIndex + sortedTargets.length - 1) % sortedTargets.length][0]);
+	$: [previousTarget, nextTarget] = [-1, 1].map((it) => {
+		const target = sortedTargets[(it + keyIndex + sortedTargets.length) % sortedTargets.length];
+		return { key: target[0], ...target[1] };
+	});
 
 	$: timeZones = Object.entries(timeZoneMap);
-	$: timeZoneIndex = timeZones.findIndex(([key]) => key === $state.selectedTimeZone) ?? 0;
-	const nextTimeZone = () =>
-		($state.selectedTimeZone = timeZones[(timeZoneIndex + 1) % timeZones.length][0]);
-	const prevTimeZone = () =>
-		($state.selectedTimeZone =
-			timeZones[(timeZoneIndex + timeZones.length - 1) % timeZones.length][0]);
+	$: timeZoneIndex = timeZones.findIndex(([key]) => key === $state.selectedTimeZone);
+	$: nextTimeZone = timeZones[(timeZoneIndex + 1) % timeZones.length][0];
+	$: previousTimeZone = timeZones[(timeZoneIndex + timeZones.length - 1) % timeZones.length][0];
 </script>
 
 <div class="birthday-select">
 	<label for="birthday">Pilih nama</label>
 	<div>
 		<button
-			disabled={$state.disableInteraction}
-			on:click={prevKey}
-			class="t-icon i-lucide-chevron-left"
-		/>
-		<select
-			disabled={$state.disableInteraction}
-			aria-labelledby="Pilih nama"
-			name="birthday"
-			bind:value={$state.selectedKey}
+			{disabled}
+			aria-label={`Select previous name (${previousTarget.name})`}
+			on:click={() => ($state.selectedKey = previousTarget.key)}
+			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-left" /></button
 		>
+		<select id="birthday" {disabled} bind:value={$state.selectedKey}>
 			<option value="" disabled>Pilih nama</option>
 			<option value="all">0 - SEMUA</option>
 			{#each Object.entries(targetMap) as [key, { name }], i}
@@ -55,35 +48,33 @@
 			{/each}
 		</select>
 		<button
-			disabled={$state.disableInteraction}
-			on:click={nextKey}
-			class="t-icon i-lucide-chevron-right"
-		/>
+			{disabled}
+			aria-label={`Select next name (${nextTarget.name})`}
+			on:click={() => ($state.selectedKey = nextTarget.key)}
+			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-right" /></button
+		>
 	</div>
 
 	<label for="timezone">Pilih zona waktu</label>
 	<div>
 		<button
-			disabled={$state.disableInteraction}
-			on:click={prevTimeZone}
-			class="t-icon i-lucide-chevron-left"
-		/>
-		<select
-			disabled={$state.disableInteraction}
-			aria-labelledby="Pilih zona waktu"
-			name="timezone"
-			bind:value={$state.selectedTimeZone}
+			{disabled}
+			aria-label={`Select previous time zone (${previousTimeZone})`}
+			on:click={() => ($state.selectedTimeZone = previousTimeZone)}
+			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-left" /></button
 		>
+		<select id="timezone" {disabled} bind:value={$state.selectedTimeZone}>
 			<option value="" disabled>Pilih zona waktu</option>
 			{#each timeZones as [key, value]}
 				<option value={key}>{value}</option>
 			{/each}
 		</select>
 		<button
-			disabled={$state.disableInteraction}
-			on:click={nextTimeZone}
-			class="t-icon i-lucide-chevron-right"
-		/>
+			{disabled}
+			aria-label={`Select next time zone (${nextTimeZone})`}
+			on:click={() => ($state.selectedTimeZone = nextTimeZone)}
+			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-right" /></button
+		>
 	</div>
 </div>
 

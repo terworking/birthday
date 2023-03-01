@@ -2,6 +2,8 @@
 	import AppClock from '$lib/AppClock.svelte';
 	import AppFooter from '$lib/AppFooter.svelte';
 
+	import '$lib/assets/button.less';
+	import 'hint.css';
 	import 'modern-normalize';
 </script>
 
@@ -36,7 +38,7 @@
 		--uno: 'flex flex-col items-center justify-between h-100vh p-8';
 	}
 
-	.__root > :not(.clock) {
+	.__root > * {
 		--uno: 'w-full max-w-sm';
 	}
 
@@ -46,13 +48,5 @@
 
 	.t-icon:hover {
 		--uno: '!text-$t-color-alt';
-	}
-
-	button:not([disabled]) {
-		--uno: 'cursor-pointer';
-	}
-
-	button[disabled] {
-		--uno: 'cursor-not-allowed';
 	}
 </style>

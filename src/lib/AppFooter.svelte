@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { state } from './stores';
+	import { state, stateSelectedName } from './stores';
 
 	interface FooterLink {
 		icon: string;
@@ -35,8 +35,8 @@
 		$page.route.id === '/'
 			? {
 					icon: 'countdown',
-					title: 'Countdown page',
-					href: `/countdown/${$state.selectedKey.split(':')[0].replaceAll('_', '-')}`,
+					title: `${$stateSelectedName} countdown page`,
+					href: `/countdown/${$stateSelectedName.replaceAll(' ', '-').toLowerCase()}`,
 			  }
 			: {
 					icon: 'home',
@@ -46,14 +46,16 @@
 	) satisfies FooterLink;
 </script>
 
-<footer class="flex flex-col items-center">
+<footer aria-label="Terworking links" class="flex flex-col items-center">
 	<div class="w-full flex justify-around">
-		<a href={other.href} title={other.title}>
+		<a href={other.href} aria-label={other.title} class="hint--top hint--bounce">
 			<div class={`t-icon ${other.icon}`} />
 		</a>
 
 		{#each links as { icon, href, title }}
-			<a rel="noreferrer" target="_blank" {title} {href}> <div class={`t-icon ${icon}`} /> </a>
+			<a {href} rel="noreferrer" target="_blank" aria-label={title} class="hint--top hint--bounce">
+				<div class={`t-icon ${icon}`} />
+			</a>
 		{/each}
 	</div>
 </footer>

@@ -1,0 +1,24 @@
+button {
+	--uno: 'cursor-pointer bg-transparent border-0';
+
+	&:disabled {
+		--uno: 'cursor-not-allowed';
+		filter: opacity(0.8);
+	}
+
+	&[class*='hint--']:disabled {
+		&::after {
+			/* hint--error */
+			background-color: #b34e4d;
+			text-shadow: 0 -1px 0px #592726;
+		}
+
+		&::after,
+		&::before {
+			/* hint--no-animate */
+			-webkit-transition-duration: 0ms;
+			-moz-transition-duration: 0ms;
+			transition-duration: 0ms;
+		}
+	}
+}

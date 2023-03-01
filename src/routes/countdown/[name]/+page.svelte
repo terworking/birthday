@@ -10,6 +10,7 @@
 
 	export let data: PageData;
 	$: $state.selectedKey = data.target.key;
+	$: disabled = $state.disableInteraction;
 
 	let birthdayAge: number = 0;
 	let durationToNextBirthdayDate: Duration = {};
@@ -51,19 +52,21 @@
 
 <div class="flex items-center justify-between">
 	<button
-		disabled={$state.disableInteraction}
+		{disabled}
+		aria-label={`Goto previous countdown (${data.previous})`}
 		on:click={() => navigate('previous')}
-		class="t-icon i-lucide-chevron-left"
-	/>
+		class="hint--bottom-right hint--bounce"><div class="t-icon i-lucide-chevron-left" /></button
+	>
 	<div class="flex-1">
 		<BirthdayCountdown bind:birthdayAge bind:durationToNextBirthdayDate {data} />
 		<BirthdaySubscribe {data} />
 	</div>
 	<button
-		disabled={$state.disableInteraction}
+		{disabled}
+		aria-label={`Goto next countdown (${data.next})`}
 		on:click={() => navigate('next')}
-		class="t-icon i-lucide-chevron-right"
-	/>
+		class="hint--bottom-left hint--bounce"><div class="t-icon i-lucide-chevron-right" /></button
+	>
 </div>
 
 <svelte:component this={Confetti} enabled={enableConfetti} />
