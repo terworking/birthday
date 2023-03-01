@@ -48,12 +48,14 @@
 
 <footer class="flex flex-col items-center">
 	<div class="w-full flex justify-around">
-		<a href={other.href} title={other.title}>
+		<a href={other.href} aria-label={other.title} class="hint--top hint--bounce">
 			<div class={`t-icon ${other.icon}`} />
 		</a>
 
 		{#each links as { icon, href, title }}
-			<a rel="noreferrer" target="_blank" {title} {href}> <div class={`t-icon ${icon}`} /> </a>
+			<a {href} rel="noreferrer" target="_blank" aria-label={title} class="hint--top hint--bounce">
+				<div class={`t-icon ${icon}`} />
+			</a>
 		{/each}
 	</div>
 </footer>
