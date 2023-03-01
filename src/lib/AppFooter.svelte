@@ -46,7 +46,7 @@
 	) satisfies FooterLink;
 </script>
 
-<footer class="flex flex-col items-center">
+<footer aria-label="Terworking links" class="flex flex-col items-center">
 	<div class="w-full flex justify-around">
 		<a href={other.href} aria-label={other.title} class="hint--top hint--bounce">
 			<div class={`t-icon ${other.icon}`} />
