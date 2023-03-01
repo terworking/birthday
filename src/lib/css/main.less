@@ -1,0 +1,31 @@
+@import 'hint.css';
+@import 'modern-normalize';
+
+@import './button.less';
+@import './icon.less';
+
+:root {
+	--uno: 'font-sans bg-$t-bg-color text-$t-color';
+
+	@media (prefers-color-scheme: light) {
+		--t-bg-color: #fdf6e3;
+		--t-bg-color-alt: #eee8d5;
+		--t-color: #839496;
+		--t-color-alt: #93a1a1;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		--t-bg-color: #002b36;
+		--t-bg-color-alt: #073642;
+		--t-color: #657b83;
+		--t-color-alt: #586e75;
+	}
+}
+
+body > div {
+	--uno: 'flex flex-col items-center justify-between h-100vh p-8';
+
+	> * {
+		--uno: 'w-full max-w-sm';
+	}
+}

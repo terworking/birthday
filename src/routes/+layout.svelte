@@ -2,51 +2,11 @@
 	import AppClock from '$lib/AppClock.svelte';
 	import AppFooter from '$lib/AppFooter.svelte';
 
-	import '$lib/assets/button.less';
-	import 'hint.css';
-	import 'modern-normalize';
+	import '$lib/css/main.less';
 </script>
 
 <AppClock />
 <slot />
 <AppFooter />
 
-<style uno:preflights global>
-	@media (prefers-color-scheme: light) {
-		:root {
-			--t-bg-color: #fdf6e3;
-			--t-bg-color-alt: #eee8d5;
-			--t-color: #839496;
-			--t-color-alt: #93a1a1;
-		}
-	}
-
-	@media (prefers-color-scheme: dark) {
-		:root {
-			--t-bg-color: #002b36;
-			--t-bg-color-alt: #073642;
-			--t-color: #657b83;
-			--t-color-alt: #586e75;
-		}
-	}
-
-	body {
-		--uno: 'font-sans bg-$t-bg-color text-$t-color';
-	}
-
-	.__root {
-		--uno: 'flex flex-col items-center justify-between h-100vh p-8';
-	}
-
-	.__root > * {
-		--uno: 'w-full max-w-sm';
-	}
-
-	.t-icon {
-		--uno: '!text-$t-color !h-6 md:!h-8 !w-6 md:!w-8';
-	}
-
-	.t-icon:hover {
-		--uno: '!text-$t-color-alt';
-	}
-</style>
+<style uno:preflights global></style>
