@@ -39,13 +39,7 @@
 			on:click={() => ($state.selectedKey = previousTarget.key)}
 			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-left" /></button
 		>
-		<select
-			id="birthday"
-			disabled={$state.disableInteraction}
-			aria-labelledby="Pilih nama"
-			name="birthday"
-			bind:value={$state.selectedKey}
-		>
+		<select id="birthday" disabled={$state.disableInteraction} bind:value={$state.selectedKey}>
 			<option value="" disabled>Pilih nama</option>
 			<option value="all">0 - SEMUA</option>
 			{#each Object.entries(targetMap) as [key, { name }], i}
@@ -68,13 +62,7 @@
 			on:click={() => ($state.selectedTimeZone = previousTimeZone)}
 			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-left" /></button
 		>
-		<select
-			id="timezone"
-			disabled={$state.disableInteraction}
-			aria-labelledby="Pilih zona waktu"
-			name="timezone"
-			bind:value={$state.selectedTimeZone}
-		>
+		<select id="timezone" disabled={$state.disableInteraction} bind:value={$state.selectedTimeZone}>
 			<option value="" disabled>Pilih zona waktu</option>
 			{#each timeZones as [key, value]}
 				<option value={key}>{value}</option>
