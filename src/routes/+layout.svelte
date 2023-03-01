@@ -2,8 +2,9 @@
 	import AppClock from '$lib/AppClock.svelte';
 	import AppFooter from '$lib/AppFooter.svelte';
 
-	import 'modern-normalize';
+	import '$lib/assets/button.less';
 	import 'hint.css';
+	import 'modern-normalize';
 </script>
 
 <AppClock />
@@ -37,7 +38,7 @@
 		--uno: 'flex flex-col items-center justify-between h-100vh p-8';
 	}
 
-	.__root > :not(.clock) {
+	.__root > * {
 		--uno: 'w-full max-w-sm';
 	}
 
@@ -47,32 +48,5 @@
 
 	.t-icon:hover {
 		--uno: '!text-$t-color-alt';
-	}
-
-	button {
-		--uno: 'cursor-pointer bg-transparent border-0';
-	}
-
-	button:disabled {
-		--uno: 'cursor-not-allowed';
-		filter: opacity(0.8);
-	}
-
-	button[class*='hint--']:disabled::after {
-		/* hint--error */
-		background-color: #b34e4d;
-		text-shadow: 0 -1px 0px #592726;
-
-		/* hint--no-animate */
-		-webkit-transition-duration: 0ms;
-		-moz-transition-duration: 0ms;
-		transition-duration: 0ms;
-	}
-
-	button[class*='hint--']:disabled::before {
-		/* hint--no-animate */
-		-webkit-transition-duration: 0ms;
-		-moz-transition-duration: 0ms;
-		transition-duration: 0ms;
 	}
 </style>
