@@ -10,7 +10,11 @@
 	export let data: Pick<BirthdayData, 'publicKey'>;
 	const { publicKey } = data;
 
-	$: cleanKey = $state.selectedKey.split(':')[0].replaceAll('_', '-');
+	$: selectedName = $state.selectedKey
+		.split(':')[0]
+		.split('_')
+		.map((it) => it.charAt(0).toUpperCase() + it.slice(1))
+		.join(' ');
 
 	const subscribe = async () => {
 		$state.disableInteraction = true;
@@ -76,14 +80,14 @@
 
 <div class="w-full flex justify-evenly">
 	<button
-		aria-label={`Subscribe to "${cleanKey}" push notification`}
+		aria-label={`Subscribe to "${selectedName}" push notification`}
 		on:click={subscribe}
 		disabled={$state.disableInteraction}
 	>
 		Subscribe
 	</button>
 	<button
-		aria-label={`Unsubscribe from "${cleanKey}" push notification`}
+		aria-label={`Unsubscribe from "${selectedName}" push notification`}
 		on:click={unsubscribe}
 		disabled={$state.disableInteraction}
 	>
