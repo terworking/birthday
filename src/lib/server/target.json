@@ -1,4 +1,5 @@
 {
+	"$schema": "./target.schema.json",
 	"items": [
 		{ "date": 6, "month": 5, "name": "Adi Zuliarrahman", "year": 2003 },
 		{ "date": 17, "month": 12, "name": "Ahmad Yasser", "year": 2003 },

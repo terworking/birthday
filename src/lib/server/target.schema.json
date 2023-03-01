@@ -1,0 +1,36 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema",
+	"properties": {
+		"items": {
+			"title": "Subscription items",
+			"minItems": 1,
+			"items": {
+				"properties": {
+					"name": {
+						"title": "The target's name",
+						"type": "string"
+					},
+					"date": {
+						"title": "The target's date of birth",
+						"type": "number",
+						"maximum": 31,
+						"minimum": 1
+					},
+					"month": {
+						"title": "The target's month of birth",
+						"type": "number",
+						"maximum": 12,
+						"minimum": 1
+					},
+					"year": {
+						"title": "The target's year of birth",
+						"type": "number",
+						"minimum": 1970
+					}
+				},
+				"required": ["name", "date", "month", "year"]
+			}
+		}
+	},
+	"required": ["items"]
+}
