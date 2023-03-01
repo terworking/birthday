@@ -40,6 +40,7 @@
 			class="t-icon i-lucide-chevron-left"
 		/>
 		<select
+			id="birthday"
 			disabled={$state.disableInteraction}
 			aria-labelledby="Pilih nama"
 			name="birthday"
@@ -68,6 +69,7 @@
 			class="t-icon i-lucide-chevron-left"
 		/>
 		<select
+			id="timezone"
 			disabled={$state.disableInteraction}
 			aria-labelledby="Pilih zona waktu"
 			name="timezone"
