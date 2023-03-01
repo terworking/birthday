@@ -49,15 +49,30 @@
 		--uno: '!text-$t-color-alt';
 	}
 
-	button[class*='hint--'] {
-		--uno: 'bg-transparent border-0';
+	button {
+		--uno: 'cursor-pointer bg-transparent border-0';
 	}
 
-	button:not([disabled]) {
-		--uno: 'cursor-pointer';
-	}
-
-	button[disabled] {
+	button:disabled {
 		--uno: 'cursor-not-allowed';
+		filter: opacity(0.8);
+	}
+
+	button[class*='hint--']:disabled::after {
+		/* hint--error */
+		background-color: #b34e4d;
+		text-shadow: 0 -1px 0px #592726;
+
+		/* hint--no-animate */
+		-webkit-transition-duration: 0ms;
+		-moz-transition-duration: 0ms;
+		transition-duration: 0ms;
+	}
+
+	button[class*='hint--']:disabled::before {
+		/* hint--no-animate */
+		-webkit-transition-duration: 0ms;
+		-moz-transition-duration: 0ms;
+		transition-duration: 0ms;
 	}
 </style>

@@ -9,6 +9,7 @@
 
 	export let data: Pick<BirthdayData, 'publicKey'>;
 	const { publicKey } = data;
+	$: disabled = $state.disableInteraction;
 
 	const subscribe = async () => {
 		$state.disableInteraction = true;
@@ -74,29 +75,25 @@
 
 <div class="w-full flex justify-evenly">
 	<button
-		class="hint--bottom hint--bounce"
+		{disabled}
 		aria-label={`Subscribe to "${$stateSelectedName}" push notification`}
 		on:click={subscribe}
-		disabled={$state.disableInteraction}
+		class="hint--bottom hint--bounce"
 	>
 		Subscribe
 	</button>
 	<button
-		class="hint--bottom hint--bounce"
+		{disabled}
 		aria-label={`Unsubscribe from "${$stateSelectedName}" push notification`}
 		on:click={unsubscribe}
-		disabled={$state.disableInteraction}
+		class="hint--bottom hint--bounce"
 	>
 		Unsubscribe
 	</button>
 </div>
 
-<style lang="less">
+<style>
 	button {
 		--uno: 'bg-$t-bg-color-alt color-inherit border border-solid border-current px-2 py-1.5';
-
-		&:disabled {
-			filter: opacity(0.7);
-		}
 	}
 </style>

@@ -6,6 +6,7 @@
 
 	export let data: Pick<BirthdayData, 'targetMap' | 'timeZoneMap'>;
 	const { targetMap, timeZoneMap } = data;
+	$: disabled = $state.disableInteraction;
 
 	$: sortedTargets = Object.entries(targetMap).sort(
 		([_, a], [__, b]) =>
@@ -34,12 +35,12 @@
 	<label for="birthday">Pilih nama</label>
 	<div>
 		<button
+			{disabled}
 			aria-label={`Select previous name (${previousTarget.name})`}
-			disabled={$state.disableInteraction}
 			on:click={() => ($state.selectedKey = previousTarget.key)}
 			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-left" /></button
 		>
-		<select id="birthday" disabled={$state.disableInteraction} bind:value={$state.selectedKey}>
+		<select id="birthday" {disabled} bind:value={$state.selectedKey}>
 			<option value="" disabled>Pilih nama</option>
 			<option value="all">0 - SEMUA</option>
 			{#each Object.entries(targetMap) as [key, { name }], i}
@@ -47,8 +48,8 @@
 			{/each}
 		</select>
 		<button
+			{disabled}
 			aria-label={`Select next name (${nextTarget.name})`}
-			disabled={$state.disableInteraction}
 			on:click={() => ($state.selectedKey = nextTarget.key)}
 			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-right" /></button
 		>
@@ -57,20 +58,20 @@
 	<label for="timezone">Pilih zona waktu</label>
 	<div>
 		<button
+			{disabled}
 			aria-label={`Select previous time zone (${previousTimeZone})`}
-			disabled={$state.disableInteraction}
 			on:click={() => ($state.selectedTimeZone = previousTimeZone)}
 			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-left" /></button
 		>
-		<select id="timezone" disabled={$state.disableInteraction} bind:value={$state.selectedTimeZone}>
+		<select id="timezone" {disabled} bind:value={$state.selectedTimeZone}>
 			<option value="" disabled>Pilih zona waktu</option>
 			{#each timeZones as [key, value]}
 				<option value={key}>{value}</option>
 			{/each}
 		</select>
 		<button
+			{disabled}
 			aria-label={`Select next time zone (${nextTimeZone})`}
-			disabled={$state.disableInteraction}
 			on:click={() => ($state.selectedTimeZone = nextTimeZone)}
 			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-right" /></button
 		>
