@@ -49,12 +49,12 @@
 <footer aria-label="Terworking links" class="flex flex-col items-center">
 	<div class="w-full flex justify-around">
 		<a href={other.href} aria-label={other.title} class="hint--top hint--bounce">
-			<div class={`t-icon ${other.icon}`} />
+			<div class="t-icon {other.icon}" />
 		</a>
 
 		{#each links as { icon, href, title }}
 			<a {href} rel="noreferrer" target="_blank" aria-label={title} class="hint--top hint--bounce">
-				<div class={`t-icon ${icon}`} />
+				<div class="t-icon {icon}" />
 			</a>
 		{/each}
 	</div>

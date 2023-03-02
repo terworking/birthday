@@ -53,7 +53,7 @@
 <div class="flex items-center justify-between">
 	<button
 		{disabled}
-		aria-label={`Goto previous countdown (${data.previous})`}
+		aria-label="Goto previous countdown ({data.previous})"
 		on:click={() => navigate('previous')}
 		class="hint--bottom-right hint--bounce"><div class="t-icon i-lucide-chevron-left" /></button
 	>
@@ -63,7 +63,7 @@
 	</div>
 	<button
 		{disabled}
-		aria-label={`Goto next countdown (${data.next})`}
+		aria-label="Goto next countdown ({data.next})"
 		on:click={() => navigate('next')}
 		class="hint--bottom-left hint--bounce"><div class="t-icon i-lucide-chevron-right" /></button
 	>

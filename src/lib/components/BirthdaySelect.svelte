@@ -36,7 +36,7 @@
 	<div>
 		<button
 			{disabled}
-			aria-label={`Select previous name (${previousTarget.name})`}
+			aria-label="Select previous name ({previousTarget.name})"
 			on:click={() => ($state.selectedKey = previousTarget.key)}
 			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-left" /></button
 		>
@@ -49,7 +49,7 @@
 		</select>
 		<button
 			{disabled}
-			aria-label={`Select next name (${nextTarget.name})`}
+			aria-label="Select next name ({nextTarget.name})"
 			on:click={() => ($state.selectedKey = nextTarget.key)}
 			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-right" /></button
 		>
@@ -59,7 +59,7 @@
 	<div>
 		<button
 			{disabled}
-			aria-label={`Select previous time zone (${previousTimeZone})`}
+			aria-label="Select previous time zone ({previousTimeZone})"
 			on:click={() => ($state.selectedTimeZone = previousTimeZone)}
 			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-left" /></button
 		>
@@ -71,7 +71,7 @@
 		</select>
 		<button
 			{disabled}
-			aria-label={`Select next time zone (${nextTimeZone})`}
+			aria-label="Select next time zone ({nextTimeZone})"
 			on:click={() => ($state.selectedTimeZone = nextTimeZone)}
 			class="hint--top hint--bounce"><div class="t-icon i-lucide-chevron-right" /></button
 		>
