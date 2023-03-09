@@ -1,12 +1,4 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["local>terworking/renovate-config"],
-	"automergeType": "branch",
-	"packageRules": [
-		{
-			"matchPackageNames": ["@vvo/tzdb"],
-			"matchUpdateTypes": ["minor", "patch", "bump"],
-			"automerge": true
-		}
-	]
+	"extends": ["local>terworking/renovate-config"]
 }
