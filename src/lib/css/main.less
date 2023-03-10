@@ -29,3 +29,11 @@ body > div {
 		--uno: 'w-full max-w-sm';
 	}
 }
+
+:is(a, button)[class*='hint--'] {
+	&::after,
+	&::before {
+		// hide hint.css on mobile
+		--uno: 'lt-md:hidden';
+	}
+}
