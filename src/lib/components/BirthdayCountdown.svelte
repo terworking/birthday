@@ -22,16 +22,20 @@
 
 	let content: string;
 	$: {
-		content = formatDuration(intervalToDuration({ start: $time, end: nextBirthdayDate }), {
-			format: ['months', 'days', 'hours', 'minutes', 'seconds'],
+		const format = ['hours', 'minutes', 'seconds'];
+		for (const k of ['days', 'months'] as const) {
+			if (durationToNextBirthdayDate[k]) {
+				format.unshift(k);
+			}
+		}
+
+		const re = format.includes('months')
+			? /(day|hour)s? / // append a newline after days? if month is not removed
+			: /(hours?) /; // otherwise, append one after hours?
+		content = formatDuration(durationToNextBirthdayDate, {
+			format,
 			zero: true,
-		}).replace(/0 (month|day)s? /g, ''); // remove 0 month and 0 days
-		content = content.replace(
-			content.includes('month')
-				? /(day|hour)s? / // only add a newline after days? if month is not removed
-				: /(hours?) /,
-			'$1\n', // add a newline after a match
-		);
+		}).replace(re, '$&\n');
 	}
 </script>
 
