@@ -31,7 +31,7 @@
 		"unocss": "0.50.6",
 		"vite": "4.1.4",
 		"vitest": "0.29.3",
-		"wrangler": "2.12.2"
+		"wrangler": "2.12.3"
 	},
 	"type": "module",
 	"dependencies": {
