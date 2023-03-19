@@ -3,8 +3,9 @@
 	import { afterNavigate, goto, preloadData } from '$app/navigation';
 	import BirthdayCountdown from '$lib/components/BirthdayCountdown.svelte';
 	import BirthdaySubscribe from '$lib/components/BirthdaySubscribe.svelte';
-	import { state } from '$lib/stores';
-	import { asOrdinalNumber } from '$lib/util';
+	import { state, time } from '$lib/stores';
+	import { asOrdinalNumber, calculateNextBirthdayDate } from '$lib/util';
+	import { intervalToDuration } from 'date-fns';
 	import { onMount, type SvelteComponent } from 'svelte';
 	import type { PageData } from './$types';
 
@@ -12,8 +13,10 @@
 	$: $state.selectedKey = data.target.key;
 	$: disabled = $state.disableInteraction;
 
-	let birthdayAge: number = 0;
-	let durationToNextBirthdayDate: Duration = {};
+	$: birthDate = new Date(data.target.year, data.target.month - 1, data.target.date);
+	$: nextBirthdayDate = calculateNextBirthdayDate(data.target, { now: $time });
+	$: birthdayAge = intervalToDuration({ start: birthDate, end: nextBirthdayDate }).years!;
+	$: durationToNextBirthdayDate = intervalToDuration({ start: $time, end: nextBirthdayDate });
 	$: enableConfetti = durationToNextBirthdayDate.months === 0;
 
 	let Confetti: typeof SvelteComponent | undefined = undefined;
@@ -58,7 +61,7 @@
 		class="hint--bottom-right hint--bounce"><div class="t-icon i-lucide-chevron-left" /></button
 	>
 	<div class="flex-1">
-		<BirthdayCountdown bind:birthdayAge bind:durationToNextBirthdayDate {data} />
+		<BirthdayCountdown {birthdayAge} {durationToNextBirthdayDate} {data} />
 		<BirthdaySubscribe {data} />
 	</div>
 	<button

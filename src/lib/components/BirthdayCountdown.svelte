@@ -7,18 +7,11 @@
 </script>
 
 <script lang="ts">
-	import { calculateNextBirthdayDate } from '$lib/util';
-	import { time } from '$lib/stores';
-	import { formatDuration, intervalToDuration } from 'date-fns';
+	import { formatDuration } from 'date-fns';
 
 	export let data: CountdownData;
-	export let birthdayAge: number = 0;
-	export let durationToNextBirthdayDate: Duration = {};
-
-	$: birthDate = new Date(data.target.year, data.target.month - 1, data.target.date);
-	$: nextBirthdayDate = calculateNextBirthdayDate(data.target, { now: $time });
-	$: birthdayAge = intervalToDuration({ start: birthDate, end: nextBirthdayDate }).years!;
-	$: durationToNextBirthdayDate = intervalToDuration({ start: $time, end: nextBirthdayDate });
+	export let birthdayAge: number;
+	export let durationToNextBirthdayDate: Duration;
 
 	let content: string;
 	$: {
