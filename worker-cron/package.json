@@ -2,7 +2,7 @@
 	"name": "worker-cron",
 	"version": "0.0.0",
 	"devDependencies": {
-		"wrangler": "2.14.0"
+		"wrangler": "2.15.1"
 	},
 	"private": true,
 	"scripts": {
