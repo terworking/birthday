@@ -5,8 +5,8 @@ dependencies:
     specifier: 6.106.0
     version: 6.106.0
   cf-webpush:
-    specifier: 1.1.2
-    version: 1.1.2
+    specifier: 1.1.4
+    version: 1.1.4
   date-fns:
     specifier: 2.29.3
     version: 2.29.3
@@ -1441,8 +1441,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /cf-webpush@1.1.2:
-    resolution: {integrity: sha512-ulRQ1BoSYvXYCTgp05b6oQcCR7LV19eMlZGnPR4gDRM1IFRRFF3cej1HkKucZsRE7YSb11kuX0+SZ7lG49q/JQ==}
+  /cf-webpush@1.1.4:
+    resolution: {integrity: sha512-rhzwJIIONRjHyY93dlnEqHuQlgdH7x4SXQuaU3bf6vZQXHJgCSfZ36FsqE2xBHjClJxQKBrdr4WVHJ5xpDlceg==}
     dev: false
 
   /chai@4.3.7:
