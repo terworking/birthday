@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@vvo/tzdb':
-    specifier: 6.106.0
-    version: 6.106.0
+    specifier: 6.107.0
+    version: 6.107.0
   cf-webpush:
     specifier: 1.1.4
     version: 1.1.4
@@ -1342,8 +1342,8 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /@vvo/tzdb@6.106.0:
-    resolution: {integrity: sha512-NMgDMHn79j5ABSTqCMxXROgLSzLx8QS/HzuSCkvcZ+TGgvVUh1Ob7JN9Vsp6r7LU5av02aWv6shfpogtHsxTWA==}
+  /@vvo/tzdb@6.107.0:
+    resolution: {integrity: sha512-WVDKqpaP5UXVMC5pa1i9HQ8BHD5wBTUvxLPArC5BGalXlKrOBxS8otKz4YjQl7zMsiG/MoW46jGTHRbcgrKkVQ==}
     dev: false
 
   /acorn-walk@8.2.0:
