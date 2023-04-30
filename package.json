@@ -37,7 +37,7 @@
 	"dependencies": {
 		"@vvo/tzdb": "6.107.0",
 		"cf-webpush": "1.1.4",
-		"date-fns": "2.29.3",
+		"date-fns": "2.30.0",
 		"date-fns-tz": "2.0.0",
 		"hint.css": "2.7.0",
 		"modern-normalize": "1.1.0",
