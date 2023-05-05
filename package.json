@@ -14,7 +14,7 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "4.20230404.0",
-		"@iconify-json/lucide": "1.1.85",
+		"@iconify-json/lucide": "1.1.87",
 		"@iconify-json/simple-icons": "1.1.51",
 		"@sveltejs/adapter-auto": "2.0.1",
 		"@sveltejs/adapter-cloudflare": "2.2.1",
