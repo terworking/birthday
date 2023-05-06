@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 devDependencies:
   wrangler:
-    specifier: 2.17.0
-    version: 2.17.0
+    specifier: 2.19.0
+    version: 2.19.0
 
 packages:
 
@@ -903,8 +903,8 @@ packages:
       isexe: 2.0.0
     dev: true
 
-  /wrangler@2.17.0:
-    resolution: {integrity: sha512-ucmVHP5BAUVyC/18hReEKgxGSgU0EOxGd+ElHRHVBeGH6LPcsOoC1TolTaDYYnbOuZMbYmHAR5OH1agayr3kZg==}
+  /wrangler@2.19.0:
+    resolution: {integrity: sha512-/XykXkD7dtvBMWq2p84V/aHhkifZA15+HBD7nm/pV62s6MJrJ+DWd1QJB7CF2D7DqknBLxdWpmmZB6YCo0BtMw==}
     engines: {node: '>=16.13.0'}
     hasBin: true
     dependencies:
