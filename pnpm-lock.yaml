@@ -43,8 +43,8 @@ devDependencies:
     specifier: 1.1.53
     version: 1.1.53
   '@sveltejs/adapter-auto':
-    specifier: 2.0.1
-    version: 2.0.1(@sveltejs/kit@1.16.3)
+    specifier: 2.1.0
+    version: 2.1.0(@sveltejs/kit@1.16.3)
   '@sveltejs/adapter-cloudflare':
     specifier: 2.2.4
     version: 2.2.4(@sveltejs/kit@1.16.3)
@@ -992,8 +992,8 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@sveltejs/adapter-auto@2.0.1(@sveltejs/kit@1.16.3):
-    resolution: {integrity: sha512-anxxYMcQy7HWSKxN4YNaVcgNzCHtNFwygq72EA1Xv7c+5gSECOJ1ez1PYoLciPiFa7A3XBvMDQXUFJ2eqLDtAA==}
+  /@sveltejs/adapter-auto@2.1.0(@sveltejs/kit@1.16.3):
+    resolution: {integrity: sha512-o2pZCfATFtA/Gw/BB0Xm7k4EYaekXxaPGER3xGSY3FvzFJGTlJlZjBseaXwYSM94lZ0HniOjTokN3cWaLX6fow==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
