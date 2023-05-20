@@ -30,7 +30,7 @@
 		"typescript": "5.0.4",
 		"unocss": "0.51.13",
 		"vite": "4.3.8",
-		"vitest": "0.31.0",
+		"vitest": "0.31.1",
 		"wrangler": "2.20.0"
 	},
 	"type": "module",
