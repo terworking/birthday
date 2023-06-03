@@ -42,7 +42,7 @@
 		"hint.css": "2.7.0",
 		"modern-normalize": "1.1.0",
 		"svelte-particles": "2.9.3",
-		"tsparticles-engine": "2.9.3",
+		"tsparticles-engine": "2.10.0",
 		"tsparticles-plugin-emitters": "2.9.3",
 		"tsparticles-preset-confetti": "2.9.3"
 	}
