@@ -30,8 +30,8 @@ dependencies:
     specifier: 2.10.1
     version: 2.10.1
   tsparticles-plugin-emitters:
-    specifier: 2.10.0
-    version: 2.10.0
+    specifier: 2.10.1
+    version: 2.10.1
   tsparticles-preset-confetti:
     specifier: 2.10.0
     version: 2.10.0
@@ -2846,8 +2846,8 @@ packages:
       tsparticles-engine: 2.10.1
     dev: false
 
-  /tsparticles-plugin-emitters@2.10.0:
-    resolution: {integrity: sha512-O+/qyeCo6Ykua7Q/EnN8aLJmK+hN2NLaRfqDVNG7RB0iIyCgyhxUN8Hty6iDzXQAnNx0bmDOBGyuo10FLGIYdg==}
+  /tsparticles-plugin-emitters@2.10.1:
+    resolution: {integrity: sha512-SHuPH0qYA70gWNeOzn3DXk9W/IjTMtbeYhHWLOruTThrcLgBT4bRI5ooLnITjraMaTYf4FWdl7Mi/1MRkT5yUg==}
     dependencies:
       tsparticles-engine: 2.10.1
     dev: false
@@ -2863,7 +2863,7 @@ packages:
     dependencies:
       tsparticles-engine: 2.10.1
       tsparticles-move-base: 2.10.0
-      tsparticles-plugin-emitters: 2.10.0
+      tsparticles-plugin-emitters: 2.10.1
       tsparticles-plugin-motion: 2.10.0
       tsparticles-shape-circle: 2.10.0
       tsparticles-shape-square: 2.10.0
