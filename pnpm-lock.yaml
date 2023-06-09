@@ -27,8 +27,8 @@ dependencies:
     specifier: 2.9.3
     version: 2.9.3(svelte@3.59.1)
   tsparticles-engine:
-    specifier: 2.10.0
-    version: 2.10.0
+    specifier: 2.10.1
+    version: 2.10.1
   tsparticles-plugin-emitters:
     specifier: 2.10.0
     version: 2.10.0
@@ -2737,7 +2737,7 @@ packages:
       svelte: '>=3'
     dependencies:
       svelte: 3.59.1
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /svelte-preprocess@5.0.4(less@4.1.3)(postcss@8.4.23)(svelte@3.59.1)(typescript@5.1.3):
@@ -2835,33 +2835,33 @@ packages:
     resolution: {integrity: sha512-mSxlJJwl3BMEQCUNnxXBU9jP4JBktcEGhURcPR6VQVlnP0FdDEsIaz0C35dXNGLyRfrATNofF0F5p2KPxQgB+w==}
     dev: true
 
-  /tsparticles-engine@2.10.0:
-    resolution: {integrity: sha512-9y2w8zeBheeMyM65UeRKpw/fk5WSC00GspPfG2MmtiGUCXReBkirT6ixXDiO3IWL3BF18vVzdYpmKpphjy6dJg==}
+  /tsparticles-engine@2.10.1:
+    resolution: {integrity: sha512-DV2gYsbChyiXYIZYgnXtKHSAZdvnNMJpVf9Cw0gO7vjQ6pcgLAeyboRtvsaTfwKZNzzA7BeSf1lVhgGxorL4CQ==}
     requiresBuild: true
     dev: false
 
   /tsparticles-move-base@2.10.0:
     resolution: {integrity: sha512-jbFyCnzRSp+mCw9Mn9OkjY1vfLWFeKH9NkakxhH/v7oVIW8P0MNZsfaghsXZ8QBV9x7N2ZcyVa+o3Tcj4ioPZQ==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /tsparticles-plugin-emitters@2.10.0:
     resolution: {integrity: sha512-O+/qyeCo6Ykua7Q/EnN8aLJmK+hN2NLaRfqDVNG7RB0iIyCgyhxUN8Hty6iDzXQAnNx0bmDOBGyuo10FLGIYdg==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /tsparticles-plugin-motion@2.10.0:
     resolution: {integrity: sha512-NhvjM2vrDjnuskMeFGReHM7Gf+Scf2cBfYi+iLWHQ4DCY7wXVaZ1GXh+pkoN3fLHfn/Q33vY1fnOwQe0OOZMHA==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /tsparticles-preset-confetti@2.10.0:
     resolution: {integrity: sha512-yikBAIAv0GApEYc3DSc9M3xza3iYD/LV1wAfVFv/OndfiVe1NqrIkCgKJ6rZjT+P5AxvYISzzlsw1xxJqMZIHQ==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
       tsparticles-move-base: 2.10.0
       tsparticles-plugin-emitters: 2.10.0
       tsparticles-plugin-motion: 2.10.0
@@ -2881,67 +2881,67 @@ packages:
   /tsparticles-shape-circle@2.10.0:
     resolution: {integrity: sha512-RqwVa7yJNY34tf/N6HpAjS7j/u2RbCj3ymwh8lqo3g5PedzjONqjrrnIlE4l1Wg4KZM1A+AKAE1xON/phxOqoA==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /tsparticles-shape-square@2.10.0:
     resolution: {integrity: sha512-FxHULSI54G+MrHUjkbMr495HnAWXx6pk9jTf95VfQmPIFRxR3+SVd2A125aYU7pMzGkSDIzsnXU49Jf2h02Mqw==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /tsparticles-updater-angle@2.9.3:
     resolution: {integrity: sha512-Z8VLOw2UUxrvV3YH44My5kmeBUcJUHTSCMRUIqFvgvxDs0Q/g2eVWkr1L+Crpw6PE5FJMdDGWRjWwxMwNdVfuQ==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /tsparticles-updater-color@2.10.0:
     resolution: {integrity: sha512-bu0hPsLbPOeUIOGebAGOT3icCkTnmGeEDLbB3xO5jofTL8FlSzHdhbUg3FpKRTdxMVgEYpmG+RueTuR9GZRREg==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /tsparticles-updater-life@2.10.0:
     resolution: {integrity: sha512-MZXjP2Y1Ra49QJj0DI5Pnd9/ajdvMUkeH4x5fsRcfk9bmPm2SLuuYtX8hfIPOOjcyExyjLZ//7U9bjXWXSM4VA==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /tsparticles-updater-opacity@2.10.0:
     resolution: {integrity: sha512-Vc6wAVyWQZp9ADhqv/3q6qDpRagVx5jVfXCUx+tlRTWL/CMvRV9IWPVuNiDZsCnUiiXkKZ51k4y5H+3F2PPonQ==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /tsparticles-updater-out-modes@2.10.0:
     resolution: {integrity: sha512-wyexwhxbbYw0mWUvjQGzPRzPj0Mkg8DFD+EYoD/Sx+RwBduolG1v1Dnbk1OXhQ443CSuZPQAQXdVAKXdOgYoWg==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /tsparticles-updater-roll@2.10.0:
     resolution: {integrity: sha512-t4+ujSA4ccTibCof5fJljLaCfJpvztCaW45dbAB5ZdUI6Xiym5mZ/x/AB6+i4c8p0C932rg3R7qlukUWdN6V5Q==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /tsparticles-updater-size@2.10.0:
     resolution: {integrity: sha512-vy6u9E3zcf8LyijhyeMKrRDJthZ5sj5eX+dt7/cO8B01YmNtUNKde4ceg1f3l5qsb3P9X6xvN2yFILoSiXI96g==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /tsparticles-updater-tilt@2.10.0:
     resolution: {integrity: sha512-VBGDLTw7G0irRm8NPLJ4QrSIzCOkB5GIUgIrwKzYFoQpwMc/XKZnxvz9xgntOtc+6gSc1VMvlBmlD3Xsds2+4Q==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /tsparticles-updater-wobble@2.10.0:
     resolution: {integrity: sha512-ZEXmfyWeOKsBjpsNYTELfXJeltl5h3E3LXTpzhBt2ebL87Wb1J0vQ9mrEjTWBx19YDv6bsvRlZAozJTWMcqh4g==}
     dependencies:
-      tsparticles-engine: 2.10.0
+      tsparticles-engine: 2.10.1
     dev: false
 
   /type-detect@4.0.8:
