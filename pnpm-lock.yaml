@@ -44,8 +44,8 @@ devDependencies:
     specifier: 1.1.101
     version: 1.1.101
   '@iconify-json/simple-icons':
-    specifier: 1.1.55
-    version: 1.1.55
+    specifier: 1.1.56
+    version: 1.1.56
   '@sveltejs/adapter-auto':
     specifier: 2.1.0
     version: 2.1.0(@sveltejs/kit@1.20.2)
@@ -557,8 +557,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/simple-icons@1.1.55:
-    resolution: {integrity: sha512-bQG9NtG3EnJbNCuwBrTLjoyWX61djNvHCJ7cG+96qzcchFxAP2BVy9qug5YrTsJoOIaOsXqFrYFjITHyI8e4Og==}
+  /@iconify-json/simple-icons@1.1.56:
+    resolution: {integrity: sha512-fsgArC3HmjQhAMXkjvIz0CrYsmjW3dSxAqUGAjsdQcikL03J4mqAgD8FpTEmMh22JrOB9GWVLINC07OTAeqskg==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
