@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -41,8 +41,8 @@ devDependencies:
     specifier: 4.20230518.0
     version: 4.20230518.0
   '@iconify-json/lucide':
-    specifier: 1.1.99
-    version: 1.1.99
+    specifier: 1.1.101
+    version: 1.1.101
   '@iconify-json/simple-icons':
     specifier: 1.1.55
     version: 1.1.55
@@ -551,8 +551,8 @@ packages:
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
     dev: true
 
-  /@iconify-json/lucide@1.1.99:
-    resolution: {integrity: sha512-2d908sOUl3tow5QWNU94GQvC1eFt6Zd+/o6MzvVeoNjt7xXLBUYPUkcFQJYbjDCeqaxxk80YwH62PE2krefL8Q==}
+  /@iconify-json/lucide@1.1.101:
+    resolution: {integrity: sha512-ijEWw52wUFxZXsjbSWhyw5EUE1IBxu4v0t52SyQlgM33RK5557xkrBKWRv0oHV2xDcvkdNuQLoNwg7vl7rUtGA==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
