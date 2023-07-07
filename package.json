@@ -13,7 +13,7 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "4.20230518.0",
+		"@cloudflare/workers-types": "4.20230628.0",
 		"@iconify-json/lucide": "1.1.108",
 		"@iconify-json/simple-icons": "1.1.59",
 		"@sveltejs/adapter-auto": "2.1.0",
