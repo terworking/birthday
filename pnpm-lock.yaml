@@ -24,8 +24,8 @@ dependencies:
     specifier: 1.1.0
     version: 1.1.0
   svelte-particles:
-    specifier: 2.10.1
-    version: 2.10.1(svelte@3.59.2)
+    specifier: 2.11.0
+    version: 2.11.0(svelte@3.59.2)
   tsparticles-engine:
     specifier: 2.11.0
     version: 2.11.0
@@ -2687,8 +2687,8 @@ packages:
       svelte: 3.59.2
     dev: true
 
-  /svelte-particles@2.10.1(svelte@3.59.2):
-    resolution: {integrity: sha512-/yN6B0HBrO2ULVGxo4YRjYcLtzysL5QWD267IfKrhCd+JfQwMV0kPisBqvS4XMoBCksmwf4nyyrKesgrDze0Qg==}
+  /svelte-particles@2.11.0(svelte@3.59.2):
+    resolution: {integrity: sha512-YswKzqJo4xOhVmz0zGz+aSpQE381eEa110UWgJBAX74j8qF+w17hv+OUfSS92AMK+JcotLP+1vPvDBlOCS/45w==}
     peerDependencies:
       svelte: '>=3'
     dependencies:
