@@ -38,8 +38,8 @@ dependencies:
 
 devDependencies:
   '@cloudflare/workers-types':
-    specifier: 4.20230710.1
-    version: 4.20230710.1
+    specifier: 4.20230717.1
+    version: 4.20230717.1
   '@iconify-json/lucide':
     specifier: 1.1.112
     version: 1.1.112
@@ -72,10 +72,10 @@ devDependencies:
     version: 3.59.2
   svelte-check:
     specifier: 3.4.6
-    version: 3.4.6(less@4.1.3)(postcss@8.4.25)(svelte@3.59.2)
+    version: 3.4.6(less@4.1.3)(postcss@8.4.27)(svelte@3.59.2)
   svelte-preprocess:
     specifier: 5.0.4
-    version: 5.0.4(less@4.1.3)(postcss@8.4.25)(svelte@3.59.2)(typescript@5.1.6)
+    version: 5.0.4(less@4.1.3)(postcss@8.4.27)(svelte@3.59.2)(typescript@5.1.6)
   tslib:
     specifier: 2.6.0
     version: 2.6.0
@@ -84,7 +84,7 @@ devDependencies:
     version: 5.1.6
   unocss:
     specifier: 0.53.5
-    version: 0.53.5(postcss@8.4.25)(vite@4.4.6)
+    version: 0.53.5(postcss@8.4.27)(vite@4.4.6)
   vite:
     specifier: 4.4.6
     version: 4.4.6(@types/node@18.14.0)(less@4.1.3)
@@ -129,8 +129,8 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/workers-types@4.20230710.1:
-    resolution: {integrity: sha512-VqEY/ZqyHKBn6ivdePSWebpqojwbCXVEuwLkMYHs0UoOAqcGylkVcabdZYdQJKeNxXcOUZ9UBId/x9UsPUm2XQ==}
+  /@cloudflare/workers-types@4.20230717.1:
+    resolution: {integrity: sha512-JmtYqsn/rc0gq83rlgItGsh/aJsTQh6ebJTDbq794kGOH7ym6MlpLtbCJj/Qz+hCPgdqoHDOLTlQQguARLi78A==}
     dev: true
 
   /@esbuild-plugins/node-globals-polyfill@0.1.1(esbuild@0.16.3):
@@ -1021,7 +1021,7 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
-      '@cloudflare/workers-types': 4.20230710.1
+      '@cloudflare/workers-types': 4.20230717.1
       '@sveltejs/kit': 1.22.3(svelte@3.59.2)(vite@4.4.6)
       esbuild: 0.18.11
       worktop: 0.8.0-next.15
@@ -1184,7 +1184,7 @@ packages:
       sirv: 2.0.3
     dev: true
 
-  /@unocss/postcss@0.53.5(postcss@8.4.25):
+  /@unocss/postcss@0.53.5(postcss@8.4.27):
     resolution: {integrity: sha512-IfZl4GxrpegP/861bp3e0X3VcQJ9/M3VxC9UQ7zzxkOz/E8R09iMpbnznVLrTiLp2r96p5k/ggXLoadFm1FxGA==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -1195,7 +1195,7 @@ packages:
       css-tree: 2.3.1
       fast-glob: 3.3.0
       magic-string: 0.30.1
-      postcss: 8.4.25
+      postcss: 8.4.27
     dev: true
 
   /@unocss/preset-attributify@0.53.5:
@@ -2374,15 +2374,6 @@ packages:
       pathe: 1.1.1
     dev: true
 
-  /postcss@8.4.25:
-    resolution: {integrity: sha512-7taJ/8t2av0Z+sQEvNzCkpDynl0tX3uJMCODi6nT3PfASC7dYCWV9aQ+uiCf+KBD4SEFcu+GvJdGdwzQ6OSjCw==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.6
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
-    dev: true
-
   /postcss@8.4.27:
     resolution: {integrity: sha512-gY/ACJtJPSmUFPDCHtX78+01fHa64FaU4zaaWfuh1MhGJISufJAH4cun6k/8fwsHYeK4UQmENQK+tRLCFJE8JQ==}
     engines: {node: ^10 || ^12 || >=14}
@@ -2660,7 +2651,7 @@ packages:
       acorn: 8.10.0
     dev: true
 
-  /svelte-check@3.4.6(less@4.1.3)(postcss@8.4.25)(svelte@3.59.2):
+  /svelte-check@3.4.6(less@4.1.3)(postcss@8.4.27)(svelte@3.59.2):
     resolution: {integrity: sha512-OBlY8866Zh1zHQTkBMPS6psPi7o2umTUyj6JWm4SacnIHXpWFm658pG32m3dKvKFL49V4ntAkfFHKo4ztH07og==}
     hasBin: true
     peerDependencies:
@@ -2673,7 +2664,7 @@ packages:
       picocolors: 1.0.0
       sade: 1.8.1
       svelte: 3.59.2
-      svelte-preprocess: 5.0.4(less@4.1.3)(postcss@8.4.25)(svelte@3.59.2)(typescript@5.1.6)
+      svelte-preprocess: 5.0.4(less@4.1.3)(postcss@8.4.27)(svelte@3.59.2)(typescript@5.1.6)
       typescript: 5.1.6
     transitivePeerDependencies:
       - '@babel/core'
@@ -2705,7 +2696,7 @@ packages:
       tsparticles-engine: 2.11.0
     dev: false
 
-  /svelte-preprocess@5.0.4(less@4.1.3)(postcss@8.4.25)(svelte@3.59.2)(typescript@5.1.6):
+  /svelte-preprocess@5.0.4(less@4.1.3)(postcss@8.4.27)(svelte@3.59.2)(typescript@5.1.6):
     resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}
     engines: {node: '>= 14.10.0'}
     requiresBuild: true
@@ -2747,7 +2738,7 @@ packages:
       detect-indent: 6.1.0
       less: 4.1.3
       magic-string: 0.27.0
-      postcss: 8.4.25
+      postcss: 8.4.27
       sorcery: 0.11.0
       strip-indent: 3.0.0
       svelte: 3.59.2
@@ -2934,7 +2925,7 @@ packages:
       busboy: 1.6.0
     dev: true
 
-  /unocss@0.53.5(postcss@8.4.25)(vite@4.4.6):
+  /unocss@0.53.5(postcss@8.4.27)(vite@4.4.6):
     resolution: {integrity: sha512-LXAdtzAaH8iEDWxW4t9i6TvJNw0OSrgdN+jw8rAZAWb73Nx51ZLoKPUB1rFvQMr2Li7LcsUj5hYpOrQbhhafYg==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -2947,7 +2938,7 @@ packages:
       '@unocss/cli': 0.53.5
       '@unocss/core': 0.53.5
       '@unocss/extractor-arbitrary-variants': 0.53.5
-      '@unocss/postcss': 0.53.5(postcss@8.4.25)
+      '@unocss/postcss': 0.53.5(postcss@8.4.27)
       '@unocss/preset-attributify': 0.53.5
       '@unocss/preset-icons': 0.53.5
       '@unocss/preset-mini': 0.53.5
