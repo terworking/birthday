@@ -71,8 +71,8 @@ devDependencies:
     specifier: 3.59.2
     version: 3.59.2
   svelte-check:
-    specifier: 3.4.6
-    version: 3.4.6(less@4.2.0)(postcss@8.4.27)(svelte@3.59.2)
+    specifier: 3.5.0
+    version: 3.5.0(less@4.2.0)(postcss@8.4.27)(svelte@3.59.2)
   svelte-preprocess:
     specifier: 5.0.4
     version: 5.0.4(less@4.2.0)(postcss@8.4.27)(svelte@3.59.2)(typescript@5.1.6)
@@ -1736,17 +1736,6 @@ packages:
       strip-final-newline: 3.0.0
     dev: true
 
-  /fast-glob@3.3.0:
-    resolution: {integrity: sha512-ChDuvbOypPuNjO8yIDf36x7BlZX1smcUMTTcyoIjycexOxd6DFsKsg21qVBzEmr3G7fUKIRy2/psii+CIUt7FA==}
-    engines: {node: '>=8.6.0'}
-    dependencies:
-      '@nodelib/fs.stat': 2.0.5
-      '@nodelib/fs.walk': 1.2.8
-      glob-parent: 5.1.2
-      merge2: 1.4.1
-      micromatch: 4.0.5
-    dev: true
-
   /fast-glob@3.3.1:
     resolution: {integrity: sha512-kNFPyjhh5cKjrUltxs+wFx+ZkbRaxxmZ+X0ZU31SOsxCEtP9VPgtq2teZw1DebupL5GmDaNQ6yKMMVcM41iqDg==}
     engines: {node: '>=8.6.0'}
@@ -2673,15 +2662,15 @@ packages:
       acorn: 8.10.0
     dev: true
 
-  /svelte-check@3.4.6(less@4.2.0)(postcss@8.4.27)(svelte@3.59.2):
-    resolution: {integrity: sha512-OBlY8866Zh1zHQTkBMPS6psPi7o2umTUyj6JWm4SacnIHXpWFm658pG32m3dKvKFL49V4ntAkfFHKo4ztH07og==}
+  /svelte-check@3.5.0(less@4.2.0)(postcss@8.4.27)(svelte@3.59.2):
+    resolution: {integrity: sha512-KHujbn4k17xKYLmtCwv0sKKM7uiHTYcQvXnvrCcNU6a7hcszh99zFTIoiu/Sp/ewAw5aJmillJ1Cs8gKLmcX4A==}
     hasBin: true
     peerDependencies:
       svelte: ^3.55.0 || ^4.0.0-next.0 || ^4.0.0
     dependencies:
       '@jridgewell/trace-mapping': 0.3.17
       chokidar: 3.5.3
-      fast-glob: 3.3.0
+      fast-glob: 3.3.1
       import-fresh: 3.3.0
       picocolors: 1.0.0
       sade: 1.8.1
