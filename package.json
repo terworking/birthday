@@ -18,7 +18,7 @@
 		"@iconify-json/simple-icons": "1.1.72",
 		"@sveltejs/adapter-auto": "2.1.0",
 		"@sveltejs/adapter-cloudflare": "2.3.3",
-		"@sveltejs/kit": "1.25.0",
+		"@sveltejs/kit": "1.25.1",
 		"less": "4.2.0",
 		"miniflare": "2.14.1",
 		"prettier": "2.8.8",
