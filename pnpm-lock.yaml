@@ -38,8 +38,8 @@ dependencies:
 
 devDependencies:
   '@cloudflare/workers-types':
-    specifier: 4.20230922.0
-    version: 4.20230922.0
+    specifier: 4.20231002.0
+    version: 4.20231002.0
   '@iconify-json/lucide':
     specifier: 1.1.132
     version: 1.1.132
@@ -129,8 +129,8 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/workers-types@4.20230922.0:
-    resolution: {integrity: sha512-0N3fg4uv9pS7PXMVYmEmEGs1P1yzMIsqym0sO//o2IjtZhsf7RwOozJtdazDAL0fBIWsl1PRX7BmKe92RV+5qw==}
+  /@cloudflare/workers-types@4.20231002.0:
+    resolution: {integrity: sha512-gQMKf3THqAFWH426OXXfVx0gFLXiSiL2fo6mKjQYx4PU74MgmVDFh25NvpAIBK+XN+xXlrImClfYeqErXIT7jA==}
     dev: true
 
   /@esbuild-plugins/node-globals-polyfill@0.1.1(esbuild@0.16.3):
@@ -1021,7 +1021,7 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
-      '@cloudflare/workers-types': 4.20230922.0
+      '@cloudflare/workers-types': 4.20231002.0
       '@sveltejs/kit': 1.25.1(svelte@3.59.2)(vite@4.4.11)
       esbuild: 0.18.11
       worktop: 0.8.0-next.15
