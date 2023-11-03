@@ -16,7 +16,7 @@
 		"@cloudflare/workers-types": "4.20231025.0",
 		"@iconify-json/lucide": "1.1.139",
 		"@iconify-json/simple-icons": "1.1.76",
-		"@sveltejs/adapter-auto": "2.1.0",
+		"@sveltejs/adapter-auto": "2.1.1",
 		"@sveltejs/adapter-cloudflare": "2.3.3",
 		"@sveltejs/kit": "1.27.1",
 		"less": "4.2.0",
