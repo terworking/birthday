@@ -17,7 +17,7 @@
 		"@iconify-json/lucide": "1.1.206",
 		"@iconify-json/simple-icons": "1.1.113",
 		"@sveltejs/adapter-auto": "2.1.1",
-		"@sveltejs/adapter-cloudflare": "2.3.3",
+		"@sveltejs/adapter-cloudflare": "2.3.4",
 		"@sveltejs/kit": "1.27.6",
 		"less": "4.2.0",
 		"miniflare": "2.14.1",
