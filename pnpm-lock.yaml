@@ -75,13 +75,13 @@ devDependencies:
     version: 3.8.5(@babel/core@7.23.3)(less@4.2.0)(postcss@8.4.27)(svelte@3.59.2)
   svelte-preprocess:
     specifier: 5.1.4
-    version: 5.1.4(@babel/core@7.23.3)(less@4.2.0)(postcss@8.4.27)(svelte@3.59.2)(typescript@5.3.2)
+    version: 5.1.4(@babel/core@7.23.3)(less@4.2.0)(postcss@8.4.27)(svelte@3.59.2)(typescript@5.5.4)
   tslib:
     specifier: 2.6.3
     version: 2.6.3
   typescript:
-    specifier: 5.3.2
-    version: 5.3.2
+    specifier: 5.5.4
+    version: 5.5.4
   unocss:
     specifier: 0.57.7
     version: 0.57.7(postcss@8.4.27)(vite@4.5.3)
@@ -3122,8 +3122,8 @@ packages:
       picocolors: 1.0.0
       sade: 1.8.1
       svelte: 3.59.2
-      svelte-preprocess: 5.1.4(@babel/core@7.23.3)(less@4.2.0)(postcss@8.4.27)(svelte@3.59.2)(typescript@5.3.2)
-      typescript: 5.3.2
+      svelte-preprocess: 5.1.4(@babel/core@7.23.3)(less@4.2.0)(postcss@8.4.27)(svelte@3.59.2)(typescript@5.5.4)
+      typescript: 5.5.4
     transitivePeerDependencies:
       - '@babel/core'
       - coffeescript
@@ -3154,7 +3154,7 @@ packages:
       tsparticles-engine: 2.12.0
     dev: false
 
-  /svelte-preprocess@5.1.4(@babel/core@7.23.3)(less@4.2.0)(postcss@8.4.27)(svelte@3.59.2)(typescript@5.3.2):
+  /svelte-preprocess@5.1.4(@babel/core@7.23.3)(less@4.2.0)(postcss@8.4.27)(svelte@3.59.2)(typescript@5.5.4):
     resolution: {integrity: sha512-IvnbQ6D6Ao3Gg6ftiM5tdbR6aAETwjhHV+UKGf5bHGYR69RQvF1ho0JKPcbUON4vy4R7zom13jPjgdOWCQ5hDA==}
     engines: {node: '>= 16.0.0'}
     requiresBuild: true
@@ -3201,7 +3201,7 @@ packages:
       sorcery: 0.11.0
       strip-indent: 3.0.0
       svelte: 3.59.2
-      typescript: 5.3.2
+      typescript: 5.5.4
     dev: true
 
   /svelte@3.59.2:
@@ -3371,8 +3371,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /typescript@5.3.2:
-    resolution: {integrity: sha512-6l+RyNy7oAHDfxC4FzSJcz9vnjTKxrLpDG5M2Vu4SHRVNg6xzqZp6LYSR9zjqQTu8DU/f5xwxUdADOkbrIX2gQ==}
+  /typescript@5.5.4:
+    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
