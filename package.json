@@ -39,7 +39,7 @@
 		"cf-webpush": "1.1.4",
 		"date-fns": "2.30.0",
 		"date-fns-tz": "2.0.1",
-		"hint.css": "2.7.0",
+		"hint.css": "3.0.0",
 		"modern-normalize": "1.1.0",
 		"svelte-particles": "2.12.0",
 		"tsparticles-engine": "2.12.0",
