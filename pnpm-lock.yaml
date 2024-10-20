@@ -18,8 +18,8 @@ dependencies:
     specifier: 2.0.1
     version: 2.0.1(date-fns@2.30.0)
   hint.css:
-    specifier: 2.7.0
-    version: 2.7.0
+    specifier: 3.0.0
+    version: 3.0.0
   modern-normalize:
     specifier: 1.1.0
     version: 1.1.0
@@ -1910,8 +1910,8 @@ packages:
       duplexer: 0.1.2
     dev: true
 
-  /hint.css@2.7.0:
-    resolution: {integrity: sha512-kNtr/oXTOFA+qYLFAHY1dKVKZuAbavCPB22+w9kaFzqjB9ZLSFJyksxrVsJCphQiQxAYLazXZdrOaGLRe0hZMA==}
+  /hint.css@3.0.0:
+    resolution: {integrity: sha512-UoJ+yLO2kEcfsm/XMU1suAIR0sxCq4HO22pw4okJQo5TQDlA2BrJ57Eaxh4eT+9PDInIDTRm9TVzzbHHWEqASQ==}
     dev: false
 
   /html-rewriter-wasm@0.4.1:
