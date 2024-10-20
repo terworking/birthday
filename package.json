@@ -35,7 +35,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@vvo/tzdb": "6.142.0",
+		"@vvo/tzdb": "6.147.0",
 		"cf-webpush": "1.1.4",
 		"date-fns": "2.30.0",
 		"date-fns-tz": "2.0.1",
