@@ -19,7 +19,7 @@
 		"@sveltejs/adapter-auto": "2.1.1",
 		"@sveltejs/adapter-cloudflare": "2.3.4",
 		"@sveltejs/kit": "1.30.4",
-		"less": "4.2.0",
+		"less": "4.2.1",
 		"miniflare": "2.14.4",
 		"prettier": "2.8.8",
 		"prettier-plugin-svelte": "2.10.1",
