@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@vvo/tzdb':
-    specifier: 6.147.0
-    version: 6.147.0
+    specifier: 6.150.0
+    version: 6.150.0
   cf-webpush:
     specifier: 1.1.4
     version: 1.1.4
@@ -1402,8 +1402,8 @@ packages:
       pretty-format: 29.6.1
     dev: true
 
-  /@vvo/tzdb@6.147.0:
-    resolution: {integrity: sha512-naptD2MNHejOzUzqGAIR0KoDwQq0SNH07Z/HqbGF8c9JpednT/UHSfa6vfAR1velUUe64UwRGaOiVDEs7JrbYw==}
+  /@vvo/tzdb@6.150.0:
+    resolution: {integrity: sha512-iBnodeX9W33DExpcqtQijYbcr8Opyt9SZEq3lAw3ZYud1eO87sFdaupi4xDn1Heobssw8V1cCKzaWchWuIOjpg==}
     dev: false
 
   /acorn-walk@8.2.0:
