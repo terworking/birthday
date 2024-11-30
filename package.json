@@ -28,7 +28,7 @@
 		"svelte-preprocess": "5.1.4",
 		"tslib": "2.8.1",
 		"typescript": "5.7.2",
-		"unocss": "0.63.4",
+		"unocss": "0.64.1",
 		"vite": "4.5.5",
 		"vitest": "0.34.6",
 		"wrangler": "2.21.2"
